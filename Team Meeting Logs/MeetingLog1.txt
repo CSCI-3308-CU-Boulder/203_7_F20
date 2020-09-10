@@ -1,1 +1,6 @@
-
+Meeting Log 1 (Tuesday 9/8 and Wednesday 9/9)
+Met on Tuesday 9/8 at 7:15 PM via Zoom.
+Started on the Milestone 1. Finished all the way up to the Meeting Plan.
+Met again on Wednesday 9/9 at 6:45 PM via Zoom.
+Finished up Milestone 1. Discussed backend, frontend, and coding languages.
+Created layout for Case Diagram.
