@@ -6,3 +6,4 @@ Met again on Wednesday 9/9 at 6:45 PM via Zoom.
 Discussed backend, frontend, and coding languages.
 Created Jira board for Development Method.
 Created layout for Case Diagram.
+Ended meeting at 7:44 PM.
