@@ -3,5 +3,6 @@ Met on Tuesday 9/8 at 7:15 PM via Zoom.
 Started on the Milestone 1. Finished all the way up to the Meeting Plan.
 Ended meeting at 8:20 PM.
 Met again on Wednesday 9/9 at 6:45 PM via Zoom.
-Finished up Milestone 1. Discussed backend, frontend, and coding languages.
+Discussed backend, frontend, and coding languages.
+Created Jira board for Development Method.
 Created layout for Case Diagram.
