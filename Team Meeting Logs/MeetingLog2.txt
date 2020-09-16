@@ -4,3 +4,4 @@ Had TA meeting with Surya
 Started working on list of features, starting with profile setup
 Compiled ideas for the feed page, friends page, user page, donations, and explore page
 Started to visualize what the pages will look like
+Ended meeting at 8:15 PM
