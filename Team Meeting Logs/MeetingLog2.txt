@@ -9,3 +9,4 @@ Met up on Wednesday at 6:45 PM via Zoom
 Figured out the architecture for the project
 Added all the list of features into the Jira board
 Started working on the backend
+Ended meeting at 7:47 PM
