@@ -1,10 +1,5 @@
 # Group 203_7 for CSCI 3308 in Fall 2020 at CU Boulder
-## Members:
- - Matthew Teta
- -Brian Mayers
--Samuel Mast
--Charlie Koepke
-- Rebecca Coryell
+## Project Team Members:
 -Lakshya Jaishankar
 
 ## Application Name: envi
