@@ -5,6 +5,7 @@
 -Samuel Mast
 -Charlie Koepke
 - Rebecca Coryell
+-Lakshya Jaishankar
 
 ## Application Name: envi
 
