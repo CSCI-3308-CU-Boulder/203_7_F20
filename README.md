@@ -2,12 +2,6 @@
 ## Members:
 
  - Matthew Teta
- - Rebecca Coryell
- - Lakshya Jaishankar
- - Samuel Mast
- - Sarah Zendle
- - Charlie Koepke
- - Brian Mayers
 
 ## Application Name: envi
 
