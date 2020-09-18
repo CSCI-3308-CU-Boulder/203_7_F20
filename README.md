@@ -3,6 +3,7 @@
 
  - Matthew Teta
  -Brian Mayers
+-Samuel Mast
 
 ## Application Name: envi
 
