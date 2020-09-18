@@ -2,6 +2,7 @@
 ## Members:
 
  - Matthew Teta
+ -Brian Mayers
 
 ## Application Name: envi
 
