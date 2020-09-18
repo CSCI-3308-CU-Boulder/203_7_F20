@@ -1,5 +1,6 @@
 # Group 203_7 for CSCI 3308 in Fall 2020 at CU Boulder
 ## Members:
+Project Team Members:
    Brian Mayers
 
 ## Application Name: envi
