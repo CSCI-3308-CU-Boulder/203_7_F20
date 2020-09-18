@@ -6,6 +6,7 @@
  -Brian Mayers
 -Samuel Mast
 -Charlie Koepke
+- Rebecca Coryell
 =======
 >>>>>>> 9d62039ef345f217729cef1132eb46a0da716ece
 >>>>>>> e741656e7df66aff5fdf8232fdd0d9cd414974fe
