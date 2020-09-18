@@ -6,6 +6,7 @@
 -Charlie Koepke
 - Rebecca Coryell
 -Lakshya Jaishankar
+-Sarah Zendle
 
 ## Application Name: envi
 
