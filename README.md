@@ -4,6 +4,7 @@
    Brian Mayers
 	Samuel Mast
    Rebecca Coryell
+	Charlie Koepke
 
  - Matthew Teta
  -Brian Mayers
