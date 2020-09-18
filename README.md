@@ -1,9 +1,12 @@
 # Group 203_7 for CSCI 3308 in Fall 2020 at CU Boulder
 ## Members:
 
+<<<<<<< HEAD
  - Matthew Teta
  -Brian Mayers
 -Samuel Mast
+=======
+>>>>>>> 9d62039ef345f217729cef1132eb46a0da716ece
 
 ## Application Name: envi
 
