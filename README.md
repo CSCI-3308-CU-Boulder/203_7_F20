@@ -1,7 +1,14 @@
 # Group 203_7 for CSCI 3308 in Fall 2020 at CU Boulder
 ## Members:
-
-Charlie Koepke
+=======
+<<<<<<< HEAD
+ - Matthew Teta
+ -Brian Mayers
+-Samuel Mast
+-Charlie Koepke
+=======
+>>>>>>> 9d62039ef345f217729cef1132eb46a0da716ece
+>>>>>>> e741656e7df66aff5fdf8232fdd0d9cd414974fe
 
 ## Application Name: envi
 
