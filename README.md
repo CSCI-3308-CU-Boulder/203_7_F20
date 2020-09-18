@@ -2,6 +2,7 @@
 ## Members:
    Brian Mayers
 	Samuel Mast
+   Rebecca Coryell
 
 ## Application Name: envi
 
