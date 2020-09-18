@@ -1,8 +1,6 @@
 # Group 203_7 for CSCI 3308 in Fall 2020 at CU Boulder
 ## Members:
 
- - Matthew Teta
- -Brian Mayers
 
 ## Application Name: envi
 
