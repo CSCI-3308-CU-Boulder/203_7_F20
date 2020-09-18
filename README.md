@@ -1,6 +1,7 @@
 # Group 203_7 for CSCI 3308 in Fall 2020 at CU Boulder
 ## Members:
    Brian Mayers
+	Samuel Mast
 
 ## Application Name: envi
 
