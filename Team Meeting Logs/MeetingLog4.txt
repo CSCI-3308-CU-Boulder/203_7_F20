@@ -4,3 +4,5 @@ Had TA meeting with Surya.
 Changed around the project model to work on backend and front end parallel.
 Sarah,Charlie and Lakshya are doing frontend.
 Brain, Matt, Becca and Sam are doing backend.
+Frontend group started working on the different pages.
+Ended meeting at 8:24 PM.
