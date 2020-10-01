@@ -6,3 +6,7 @@ Sarah,Charlie and Lakshya are doing frontend.
 Brain, Matt, Becca and Sam are doing backend.
 Frontend group started working on the different pages.
 Ended meeting at 8:24 PM.
+Met on Wednesday 9/30 at 6:45 PM via Zoom.
+Frontend team needs to learn React for the page formatting.
+Backend is working on creating the database and getting everything started.
+Ended meeting at 7:51 PM.
