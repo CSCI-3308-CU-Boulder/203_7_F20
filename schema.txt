@@ -1,0 +1,13 @@
+
+User:
+    PRIMARY_KEY
+    Username
+    Password
+    Name
+    Birthday
+    Profile Picture
+    Signup Date
+    achievements[]
+    actions[]
+    friends[PRIMARY_KEY]
+
