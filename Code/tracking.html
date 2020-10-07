@@ -4,7 +4,7 @@
         body {
           font-family: "Lato", sans-serif;
         }
-        
+
         .sidenav {
           height: 100%;
           width: 160px;
@@ -16,7 +16,7 @@
           overflow-x: hidden;
           padding-top: 20px;
         }
-        
+
         .sidenav a {
           padding: 6px 8px 6px 16px;
           text-decoration: none;
@@ -24,17 +24,17 @@
           color: #818181;
           display: block;
         }
-        
+
         .sidenav a:hover {
           color: #f1f1f1;
         }
-        
+
         .main {
           margin-left: 160px; /* Same as the width of the sidenav */
           font-size: 28px; /* Increased text to enable scrolling */
           padding: 0px 10px;
         }
-        
+
         @media screen and (max-height: 450px) {
           .sidenav {padding-top: 15px;}
           .sidenav a {font-size: 18px;}
@@ -69,10 +69,21 @@
         <a href="friends.html">Friends</a>
         <a href="donate.html">Donate</a>
     </div>
-    
+
     <!-- Page content -->
     <div class="main">
-        ...
+      <img id="bottle" src="waterBottle.jpg" alt="Water Bottle">
+      <p></p>
+      <button id="button" onclick="taskComplete()">Complete Task</button>
+      <p></p>
+      <table border="">
+        <tr>
+          <th>Bottles Filled</th>
+        </tr>
+        <tr>
+          <th id="bottle_count">0</th>
+        </tr>
+      </table>
     </div>
     <div class="container">
       <h1 style="text-align:center">tracking</h1>
@@ -85,5 +96,9 @@
         </div>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	  <script src="file:///Users/charlie/Desktop/college/CSCI%203308/envi/tracker.js"></script>
   </body>
 </html>
