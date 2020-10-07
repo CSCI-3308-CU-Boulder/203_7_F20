@@ -1,0 +1,6 @@
+\\ creates user profile table
+create table userprofile (user_id int primary key, firstname varchar, lastname varchar, email varchar, password varchar, 
+birthday varchar, signupdate date, actions varchar[], achievments varchar[]);
+
+\\creates linking table to array of friends
+create table friend_link (user_id int, friends int[], FOREIGN KEY(user_id) REFERENCES userprofile(user_id));
