@@ -5,19 +5,14 @@
 //   document.querySelector('input[type=file]').addEventListener('change', function(){
 //     this.form.submit()});
 
-var user = "./assets/profile_pic_placeholder.gif";
-function uploadImage(){
-    var imageString = '<image\
-    id="profileImage"\
-    src="' + user + '/>\
-    style="margin-left: 0px"\>';
+var userImg = "./assets/profile_pic_placeholder.gif"; //hardcoded user data
 
-    var container = document.createElement("div");
-    container.classList.add("container");
-    container.innerHTML = imageString;
+function uploadImage() {
+  var imageString = '<img src="' + userImg + '">';
+  var container = document.createElement("div");
+  container.classList.add("container");
+  container.innerHTML = imageString;
 
-    var here = document.getElementById("profile_picture");
-    here.appendChild(container);
+  var here = document.getElementById("profile_picture");
+  here.appendChild(container);
 }
-
-
