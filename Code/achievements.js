@@ -59,8 +59,9 @@ function displayAchievements() {
   }
   var container = document.createElement("div");
   container.classList.add("container");
+  container.classList.add("");
   container.innerHTML = containerContent;
 
-  var here = document.getElementById("here");
+  var here = document.getElementById("ach");
   here.appendChild(container);
 }
