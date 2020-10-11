@@ -29,6 +29,8 @@
       color: #f1f1f1;
     }
 
+    
+
     /* #imageUpload
         {
             display: none;
@@ -39,6 +41,11 @@
             cursor: pointer;
             width: 300px;
         } */
+
+    img {
+      max-width: 90%;
+      max-height: 90%;
+    }
 
     .main {
       margin-left: 160px; /* Same as the width of the sidenav */
@@ -135,16 +142,40 @@
       <a href="donate.html">Donate</a>
     </div>
 
-    <div class="container" id="main" style="margin-left: 150px">
+    <div class="container" id="main" style="margin-left: 170px">
       <br />
       <div class="row">
         <div class="col">
-          <div class="container" id="profile_picture">
+          <div class="row">
+            <div class="small-12 medium-2 large-2 columns">
+              <div class="circle">
+                <!-- User Profile Image -->
+                <img class="profile-pic" src="./assets/profile_pic_placeholder.gif">
+                <!-- Default Image -->
+                <i class="fa fa-user fa-5x"></i>
+              </div>
+              <div class="p-image">
+                <i class="fa fa-camera upload-button"></i>
+                 <input class="file-upload" type="file" accept="image/*"/>
+                <div class="card-body text-center">
+                  <button type="button" class="btn btn-success">
+                    Update Profile
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <!-- <div class="container" id="profile_picture">
             <div class="card" style="width: 18rem">
               <img
                 class="card-img-top"
+                id="profile-pic" alt="Profile picture"
                 src="./assets/profile_pic_placeholder.gif"
                 alt="click to change profile picture"
+                <input type="file" id="my-file" />
+                <br>
+                <input class="file-upload" type="file" accept="image/*"/>
               />
               <div class="card-body text-center">
                 <button type="button" class="btn btn-success">
@@ -152,8 +183,7 @@
                 </button>
               </div>
             </div>
-          </div>
-        </div>
+          </div> -->
 
         <div class="col">
           <div class="container" id="basic_info">
