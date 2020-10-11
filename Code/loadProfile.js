@@ -1,4 +1,20 @@
 //some hardcoded achievements to demonstrate functionality:
+/*
+axios
+  .get("/user?ID=12345")
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+  */
+
 var achievements = [
   {
     name: "Demo Achievement 1",
@@ -71,4 +87,28 @@ function displayAchievements() {
 
   var here = document.getElementById("ach");
   here.appendChild(container);
+}
+
+function displayPicture() {
+  var pic_string = `<img
+    id="profile-pic"
+    width="500"
+    src="${exUser.userImg}"
+  />`;
+  console.log(pic_string);
+
+  //$("#profile_picture.card-body").appendTo(pic_string);
+
+  document.getElementById("profile_picture").innerHTML = pic_string;
+}
+
+function displayInfo() {
+  document.getElementById("username").innerHTML = exUser.username;
+  document.getElementById("level").innerHTML = "Level: " + exUser.userLevel;
+}
+
+function loadProfile() {
+  displayPicture();
+  displayAchievements();
+  displayInfo();
 }
