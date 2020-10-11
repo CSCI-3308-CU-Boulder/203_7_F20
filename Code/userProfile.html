@@ -29,8 +29,6 @@
       color: #f1f1f1;
     }
 
-    
-
     /* #imageUpload
         {
             display: none;
@@ -57,10 +55,10 @@
         are the default bootstrap breakpoints,
       if you have custom ones,
       edit these to fit yours. @media only screen and (min-width: 320px) { */
-      .container,
-      .container-fluid {
-        padding-left: 100px; /*just an example*/
-      }
+    .container,
+    .container-fluid {
+      padding-left: 100px; /*just an example*/
+    }
 
     @media only screen and (min-width: 480px) {
       .container,
@@ -108,7 +106,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script src=".\userProfile.js"></script>
-    <script src="./achievements.js"></script>
+    <script src="./loadProfile.js"></script>
 
     <nav class="navbar bg-dark navbar-expand-lg" style="margin-left: 150px">
       <ul class="navbar-nav">
@@ -142,30 +140,41 @@
       <a href="donate.html">Donate</a>
     </div>
 
-    <div class="container" id="main" style="margin-left: 170px">
-      <br />
-      <div class="row">
-        <div class="col">
-          <div class="row">
-            <div class="small-12 medium-2 large-2 columns">
-              <div class="circle">
-                <!-- User Profile Image -->
-                <img class="profile-pic" src="./assets/profile_pic_placeholder.gif">
-                <!-- Default Image -->
-                <i class="fa fa-user fa-5x"></i>
-              </div>
-              <div class="p-image">
-                <i class="fa fa-camera upload-button"></i>
-                 <input class="file-upload" type="file" accept="image/*"/>
-                <div class="card-body text-center">
-                  <button type="button" class="btn btn-success">
-                    Update Profile
-                  </button>
+    <div class="d-flex align-items-start">
+      <div class="container" id="main" style="margin-left: 150px">
+        <br />
+        <div class="row">
+          <div class="col-6">
+            <div class="row">
+              <div class="small-12 medium-2 large-2 columns">
+                <div class="circle">
+                  <div class="card">
+                    <!-- User Profile Image -->
+                    <div class="container">
+                      <div class="card-body">
+                        <img
+                          class="profile-pic"
+                          width="500"
+                          src="./assets/profile_pic_placeholder.gif"
+                        />
+                        <!-- Default Image -->
+                        <i class="fa fa-user fa-5x"></i>
+                      </div>
+
+                      <div class="p-image">
+                        <i class="fa fa-camera upload-button"></i>
+                        <input
+                          class="file-upload"
+                          type="file"
+                          accept="image/*"
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
           <!-- <div class="container" id="profile_picture">
             <div class="card" style="width: 18rem">
               <img
@@ -185,22 +194,30 @@
             </div>
           </div> -->
 
-        <div class="col">
-          <div class="container" id="basic_info">
-            <div class="card">
-              <div class="card-header">
-                <h4>username</h4>
-              </div>
-              <div class="card-body">
-                <p class="card-title">Level: i</p>
+          <div class="col-6">
+            <div class="container" id="basic_info">
+              <div class="card-6">
+                <div class="card-header">
+                  <h4>username</h4>
+                </div>
+                <div class="card-body">
+                  <p class="card-title">Level: i</p>
+                </div>
+                <div class="card-body text-center">
+                  <button type="button" class="btn btn-success">
+                    Update Profile
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="full-width-div" id="ach"></div>
+        <div class="row">
+          <div class="col-12">
+            <div class="full-width-div" id="ach"></div>
+          </div>
+        </div>
       </div>
     </div>
   </body>

@@ -17,7 +17,14 @@ var achievements = [
   },
 ];
 
-var userAch = [0, 2, 1]; //hardcoded user data - an array of achievement keys
+var exAch = [0, 2, 1]; //hardcoded user data - an array of achievement keys
+
+var exUser = {
+  username: "username",
+  userImg: "./assets/profile_pic_placeholder.gif",
+  userLevel: 1,
+  userAch: exAch,
+};
 
 class achievement {
   constructor(achId) {
@@ -53,13 +60,13 @@ function createAchievement(achId) {
 function displayAchievements() {
   //builds container with dynamic amount of cards depending on user data
   var containerContent = "<h3> My Achievements </h3>  ";
-  for (i = 0; i < userAch.length; i++) {
-    var cardContent = createAchievement(userAch[i]);
+  for (i = 0; i < exUser.userAch.length; i++) {
+    var cardContent = createAchievement(exUser.userAch[i]);
     containerContent += cardContent;
   }
   var container = document.createElement("div");
   container.classList.add("container");
-  container.classList.add("");
+  // container.classList.add("");
   container.innerHTML = containerContent;
 
   var here = document.getElementById("ach");

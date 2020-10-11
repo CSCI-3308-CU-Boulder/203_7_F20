@@ -1,49 +1,56 @@
 <!DOCTYPE html>
 <html>
-    <style>
-        body {
-          font-family: "Lato", sans-serif;
-        }
-        
-        .sidenav {
-          height: 100%;
-          width: 160px;
-          position: fixed;
-          z-index: 1;
-          top: 0;
-          left: 0;
-          background-color: #111;
-          overflow-x: hidden;
-          padding-top: 20px;
-        }
-        
-        .sidenav a {
-          padding: 6px 8px 6px 16px;
-          text-decoration: none;
-          font-size: 25px;
-          color: #818181;
-          display: block;
-        }
-        
-        .sidenav a:hover {
-          color: #f1f1f1;
-        }
-        
-        .main {
-          margin-left: 160px; /* Same as the width of the sidenav */
-          font-size: 28px; /* Increased text to enable scrolling */
-          padding: 0px 10px;
-        }
-        
-        @media screen and (max-height: 450px) {
-          .sidenav {padding-top: 15px;}
-          .sidenav a {font-size: 18px;}
-        }
-    </style>
+  <style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
+
+    .sidenav {
+      height: 100%;
+      width: 160px;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    .sidenav a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .main {
+      margin-left: 160px; /* Same as the width of the sidenav */
+      font-size: 28px; /* Increased text to enable scrolling */
+      padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {
+        padding-top: 15px;
+      }
+      .sidenav a {
+        font-size: 18px;
+      }
+    }
+  </style>
   <head>
     <title>envi</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -62,26 +69,43 @@
     </nav>
   </head>
   <body>
-                <!-- Side navigation -->
-    <div class="sidenav">
-        <a href="userProfile.html">Profile</a>
-        <a href="tracking.html">Tracking</a>
-        <a href="friends.html">Friends</a>
-        <a href="donate.html">Donate</a>
+    <!-- Side navigation -->
+    <div class="sidenav" style="width: 150px">
+      <br />
+      <br />
+      <br />
+      <br />
+      <p>
+        <a href="homePage.html">
+          <img
+            src="./assets/envi.png"
+            alt="envi logo"
+            width="100px"
+            height="100px"
+            style="margin-top: -120px; margin-left: 10px"
+          />
+        </a>
+      </p>
+      <a href="userProfile.html" style="margin-top: -10px">Profile</a>
+      <a href="tracking.html">Tracking</a>
+      <a href="friends.html">Friends</a>
+      <a href="donate.html">Donate</a>
     </div>
-    
+
     <!-- Page content -->
-    <div class="main">
-        ...
-    </div>
+    <div class="main" style="margin-left: 150px">...</div>
     <div class="container">
-      <h1 style="text-align:center">friends</h1>
+      <h1 style="text-align: center">friends</h1>
       <div class="row">
         <div class="mr-auto">
-          <a class="btn btn-success" href="signupForm.html" role="button" >Sign Up</a>
+          <a class="btn btn-success" href="signupForm.html" role="button"
+            >Sign Up</a
+          >
         </div>
         <div class="ml-auto">
-          <a class="btn btn-success" href="loginForm.html" role="button">Login</a>
+          <a class="btn btn-success" href="loginForm.html" role="button"
+            >Login</a
+          >
         </div>
       </div>
     </div>
