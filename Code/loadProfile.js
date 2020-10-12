@@ -1,21 +1,5 @@
-//some hardcoded achievements to demonstrate functionality:
-/*
-axios
-  .get("/user?ID=12345")
-  .then(function (response) {
-    // handle success
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function () {
-    // always executed
-  });
-  */
-
-var achievements = [
+var exAch = [
+  //hardcoded user achievements
   {
     name: "Demo Achievement 1",
     description: "demo description text 1",
@@ -33,8 +17,6 @@ var achievements = [
   },
 ];
 
-var exAch = [0, 2, 1]; //hardcoded user data - an array of achievement keys
-
 var exUser = {
   username: "username",
   userImg: "./assets/profile_pic_placeholder.gif",
@@ -42,17 +24,8 @@ var exUser = {
   userAch: exAch,
 };
 
-class achievement {
-  constructor(achId) {
-    this.name = achievements[achId].name;
-    this.description = achievements[achId].description;
-    this.image = achievements[achId].image;
-  }
-}
-
-function createAchievement(achId) {
+function createAchievement(ach) {
   //builds string to insert card into html
-  var ach = new achievement(achId);
   var cardStr =
     '<div class = "card flex-row flex-wrap">\
     <div class="card-header border-0">\
@@ -73,42 +46,62 @@ function createAchievement(achId) {
   return cardStr;
 }
 
-function displayAchievements() {
+function displayAchievements(user) {
   //builds container with dynamic amount of cards depending on user data
   var containerContent = "<h3> My Achievements </h3>  ";
-  for (i = 0; i < exUser.userAch.length; i++) {
-    var cardContent = createAchievement(exUser.userAch[i]);
+  for (i = 0; i < user.userAch.length; i++) {
+    var cardContent = createAchievement(user.userAch[i]);
     containerContent += cardContent;
   }
   var container = document.createElement("div");
   container.classList.add("container");
-  // container.classList.add("");
   container.innerHTML = containerContent;
 
-  var here = document.getElementById("ach");
+  var here = document.getElementById("achievements");
   here.appendChild(container);
 }
 
-function displayPicture() {
+function displayPicture(user) {
   var pic_string = `<img
     id="profile-pic"
     width="500"
-    src="${exUser.userImg}"
+    src="${user.userImg}"
   />`;
   console.log(pic_string);
-
-  //$("#profile_picture.card-body").appendTo(pic_string);
 
   document.getElementById("profile_picture").innerHTML = pic_string;
 }
 
-function displayInfo() {
-  document.getElementById("username").innerHTML = exUser.username;
-  document.getElementById("level").innerHTML = "Level: " + exUser.userLevel;
+function displayInfo(user) {
+  document.getElementById("username").innerHTML = user.username;
+  document.getElementById("level").innerHTML = "Level: " + user.userLevel;
 }
 
 function loadProfile() {
-  displayPicture();
-  displayAchievements();
-  displayInfo();
+  //get user data from test server
+  axios
+    .get("http://localhost:5000/achievementsTest")
+    .then(function (response) {
+      // handle success
+      console.log(response);
+      var user = response.data;
+      displayPicture(user);
+      displayAchievements(user);
+      displayInfo(user);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+
+  /*
+    //RUN HARDCODED EXAMPLE (NO SERVER CALL)
+    //comment out above code and uncomment this section to see example
+    displayPicture(exUser);
+    displayAchievements(exUser);
+    displayInfo(exUser);
+    */
 }

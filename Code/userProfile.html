@@ -105,7 +105,10 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script src=".\userProfile.js"></script>
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="./userProfile.js"></script>
     <script src="./loadProfile.js"></script>
 
     <nav class="navbar bg-dark navbar-expand-lg" style="margin-left: 150px">
@@ -145,21 +148,19 @@
         <br />
         <div class="row">
           <div class="col-6">
-            <div class="sm-12 md-2 lg-2 columns">
-              <div class="circle">
-                <div class="card flex-row flex-wrap">
-                  <!-- User Profile Image -->
-                  <div class="container">
-                    <div class="card-body" id="profile_picture"></div>
-                    <!--Image loaded from files-->
-                    <div class="p-image">
-                      <i class="fa fa-camera" id="upload-button"></i>
-                      <input id="file-upload" type="file" accept="image/*" />
-                    </div>
-                  </div>
+            <!-- <div class="sm-12 md-2 lg-2 columns"> -->
+            <div class="card">
+              <!-- User Profile Image -->
+              <div class="container">
+                <div class="card-body" id="profile_picture"></div>
+                <!--Image loaded from files-->
+                <div class="p-image">
+                  <i class="fa fa-camera" id="upload-button"></i>
+                  <input id="file-upload" type="file" accept="image/*" />
                 </div>
               </div>
             </div>
+            <!-- </div> -->
           </div>
           <!-- <div class="container" id="profile_picture">
             <div class="card" style="width: 18rem">
@@ -201,7 +202,7 @@
 
         <div class="row">
           <div class="col-12">
-            <div class="full-width-div" id="ach"></div>
+            <div id="achievements"></div>
           </div>
         </div>
       </div>
