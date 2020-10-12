@@ -36,6 +36,39 @@ pool.connect((err, client, done) => {
       )
     }
     
+    app.get('/user/:username', (req, res) => {
+      res.send(`Username is ${req.params.username}`);
+    });
+    
+    app.get('/achievementsTest', (req, res) => {
+      const achievements = [
+        {
+          name: "Demo Achievement 1",
+          description: "demo description text 1",
+          image: "./assets/envi.png",
+        },
+        {
+          name: "Demo Achievement 2",
+          description: "demo description text 2",
+          image: "./assets/envi.png",
+        },
+        {
+          name: "Demo Achievement 3",
+          description: "demo description text 3",
+          image: "./assets/envi.png",
+        },
+      ];
+
+      const exUser = {
+        username: "username",
+        userImg: "./assets/profile_pic_placeholder.gif",
+        userLevel: 1,
+        userAch: achievements,
+      };
+
+      res.json(exUser);
+    });
+    
     app.route('/books')
     // GET endpoint
     .get(getBooks)
@@ -47,5 +80,6 @@ pool.connect((err, client, done) => {
     app.listen(port, () => {
       console.log(`Server listening on port ${port}`)
     })
-})
-
+  })
+  
+  
