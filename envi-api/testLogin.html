@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Login</title>
+</head>
+<body>
+    <form action="http://localhost:5000/signup" method="post">
+        <input type="text" name="username" id="username">
+        <input type="password" name="password" id="password">
+        <input type="text" name="firstname" id="firstname">
+        <input type="text" name="lastname" id="lastname">
+        <input type="text" name="email" id="email">
+        <input type="text" name="birthday" id="birthday">
+        <button type="submit">Sign Up</button>
+    </form>
+    <br>
+    <br>
+    <form action="http://localhost:5000/login" method="POST">
+        <input type="text" name="username" id="username">
+        <input type="password" name="password" id="password">
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
