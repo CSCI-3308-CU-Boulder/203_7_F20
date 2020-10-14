@@ -61,17 +61,13 @@ function createAchievement(ach) {
 
 function displayAchievements(user) {
   //builds container with dynamic amount of cards depending on user data
-  var containerContent = "<h3> My Achievements </h3>  ";
+  var achContent = "<h3> My Achievements </h3>  ";
   for (i = 0; i < user.userAch.length; i++) {
     var cardContent = createAchievement(user.userAch[i]);
-    containerContent += cardContent;
+    achContent += cardContent;
   }
-  var container = document.createElement("div");
-  container.classList.add("container");
-  container.innerHTML = containerContent;
 
-  var here = document.getElementById("achievements");
-  here.appendChild(container);
+  document.getElementById("achievements").innerHTML = achContent;
 }
 
 function displayPicture(user) {
