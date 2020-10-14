@@ -24,6 +24,19 @@ var exUser = {
   userAch: exAch,
 };
 
+var images = [
+  "./assets/colorEarth.jpg",
+  "./assets/envi.png",
+  "./assets/environmentalist.jpg",
+  "./assets/flatirons.png",
+  "./assets/flowers.jpg",
+  "./assets/hydroflask.jpg",
+  "./assets/ice.jpg",
+  "./assets/mountains.png",
+  "./assets/plant.jpg",
+  "./assets/recycling.svg",
+];
+
 function createAchievement(ach) {
   //builds string to insert card into html
   var cardStr =
@@ -65,7 +78,7 @@ function displayPicture(user) {
   var pic_string = `<img
     id="profile-pic"
     width="500"
-    src="${user.userImg}"
+    src="${images[user.image_id]}"
   />`;
   console.log(pic_string);
 
