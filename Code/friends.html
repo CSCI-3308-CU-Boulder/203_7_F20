@@ -97,17 +97,82 @@
     <div class="container">
       <h1 style="text-align: center">friends</h1>
       <div class="row">
-        <div class="mr-auto">
-          <a class="btn btn-success" href="signupForm.html" role="button"
-            >Sign Up</a
-          >
-        </div>
         <div class="ml-auto">
-          <a class="btn btn-success" href="loginForm.html" role="button"
-            >Login</a
-          >
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addFriend">Add Friend</button>
+        </div>
+      </div>
+
+      <!-- Cards that display friend information -->
+      <!-- Click on the card, it will upload info, like in football lab -->
+      <!-- Ideally will pull info from backend to show the first few cards -->
+      <div class="container" id="friendDisplay">
+      </div>
+
+      <div id="friendProfile" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="showName"></h4>
+            </div>
+            <div class="modal-body">
+              <table border="">
+                <tr>
+                  <th align="left">Level</th>
+                  <th alighn="center">Bottles Filled</th>
+                  <th align="right">Acheivements</th>
+                </tr>
+                <tr>
+                  <td id="level"></td>
+                  <td id="bottles"></td>
+                  <td id="acheivements"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div id="addFriend" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add Friend</h4>
+            </div>
+            <div class="modal-body">
+              <div class="box" style="width: 100%; text-align: center">
+                <input type="text" placeholder="Search" onkeyup="searchBar" id="search">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script>
+    <script src="search.js"></script>
+    <script src="friendProfile.js"></script>
   </body>
 </html>
