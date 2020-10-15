@@ -64,10 +64,10 @@ function createAchievement(ach) {
 
 function displayAchievements(user) {
   //builds container with dynamic amount of cards depending on user data
-  var achContent = "<h3> My Achievements </h3> ";
+  var achContent = "</br> <h3> My Achievements </h3> ";
   for (i = 0; i < user.achievements.length; i++) {
     var cardContent = createAchievement(user.achievements[i]);
-    // achContent += "</br>";
+    achContent += "</br>";
     achContent += cardContent;
   }
 
@@ -96,8 +96,6 @@ function displayInfo(user) {
 
 function displayProfilePic(id)
 {
-  // console.log("id=",id);
-  // console.log("src", document.getElementById("1").id);
   if (id == document.getElementById("1").id) {
     document.getElementById("profile-pic").src = "./assets/colorEarth.jpg";
   }
@@ -139,16 +137,6 @@ function updateInfo() {
     document.getElementById("username").innerHTML = document.getElementById("modal_username").value;
   }
 }
-// function displayInfo(user) {
-//   document.getElementById("username").innerHTML = user.username;
-//   document.getElementById("level").innerHTML = "Level: " + user.level;
-//   document.getElementById("name").innerHTML = user.name;
-//   // document.getElementById("modal_name").innerHTML;
-
-//   if (user.name != document.getElementById("modal_name").value) {
-//     document.getElementById("modal_name").innerHTML = user.name;
-//   }
-// }
 
 function onClick() {
   updateProfile();
@@ -156,31 +144,34 @@ function onClick() {
 }
 
 function loadProfile() {
+
   // get user data from test server
 
-  axios
-    .get("/users/:mteets4")
-    .then(function (response) {
-      // handle success
-      console.log(response);
-      var user = response.data;
-      displayPicture(user);
-      displayAchievements(user);
-      displayInfo(user);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
+  // axios
+  //   .get("http://localhost:5000/users/mteets4")
 
-  /*
+  //   .then(function (response) {
+  //     // handle success
+  //     console.log(response);
+  //     var user = response.data;
+  //     displayPicture(user);
+  //     displayAchievements(user);
+  //     displayInfo(user);
+  //   })
+  //   .catch(function (error) {
+  //     // handle error
+  //     console.log(error);
+  //   })
+  //   .then(function () {
+  //     // always executed
+  //   });
+
+  
+
   //RUN HARDCODED EXAMPLE (NO SERVER CALL)
   //comment out above code and uncomment this section to see example
   displayPicture(exUser);
   displayAchievements(exUser);
   displayInfo(exUser);
-  */
+  
 }
