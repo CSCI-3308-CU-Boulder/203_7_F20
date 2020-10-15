@@ -19,9 +19,9 @@ var exAch = [
 
 var exUser = {
   username: "username",
-  firstname: "Example",
-  lastname: "User",
+  name: "Example User",
   level: 1,
+  bottles_filled: 1,
   achievements: exAch,
   image_id: 3,
   bottles_filled: 30,
@@ -64,9 +64,10 @@ function createAchievement(ach) {
 
 function displayAchievements(user) {
   //builds container with dynamic amount of cards depending on user data
-  var achContent = "<h3> My Achievements </h3>  ";
+  var achContent = "</br> <h3> My Achievements </h3> ";
   for (i = 0; i < user.achievements.length; i++) {
     var cardContent = createAchievement(user.achievements[i]);
+    achContent += "</br>";
     achContent += cardContent;
   }
 
@@ -84,16 +85,53 @@ function displayPicture(user) {
   document.getElementById("profile_picture").innerHTML = pic_string;
 }
 
+// function displayChangedInfo(user) {
+//   document.getElementById("name").innerHTML = user.name;
+//   var modalName = document.getElementById("modal_name").value;
+
+//   if (profileName != modalName) {
+//     document.getElementById("modal_name").innerHTML = profileName;
+//   }
+// }
+
 function displayInfo(user) {
   document.getElementById("username").innerHTML = user.username;
   document.getElementById("level").innerHTML = "Level: " + user.level;
-  document.getElementById("name").innerHTML =
-    user.firstname + " " + user.lastname;
+  document.getElementById("bottles_filled").innerHTML = "Bottles Filled: " + user.bottles_filled;
+  document.getElementById("name").innerHTML = user.name;
+  // document.getElementById("modal_name").innerHTML;
+
+}
+
+function updateInfo() {
+  if (document.getElementById("modal_name").innerHTML != document.getElementById("name")) {
+    document.getElementById("name").innerHTML = document.getElementById("modal_name").value;
+  }
+
+  if (document.getElementById("modal_username").innerHTML != document.getElementById("username")) {
+    document.getElementById("username").innerHTML = document.getElementById("modal_username").value;
+  }
+}
+// function displayInfo(user) {
+//   document.getElementById("username").innerHTML = user.username;
+//   document.getElementById("level").innerHTML = "Level: " + user.level;
+//   document.getElementById("name").innerHTML = user.name;
+//   // document.getElementById("modal_name").innerHTML;
+
+//   if (user.name != document.getElementById("modal_name").value) {
+//     document.getElementById("modal_name").innerHTML = user.name;
+//   }
+// }
+
+function onClick() {
+  updateProfile();
+  displayInfo(user);
 }
 
 function loadProfile() {
   //get user data from test server
 
+<<<<<<< HEAD
   axios
     .get("http://localhost:5000/users/mteets4")
     .then(function (response) {
@@ -113,10 +151,31 @@ function loadProfile() {
     });
 
   /*
+=======
+  // axios
+  //   .get("/users/:mteets4")
+  //   .then(function (response) {
+  //     // handle success
+  //     console.log(response);
+  //     var user = response.data;
+  //     displayPicture(user);
+  //     displayAchievements(user);
+  //     displayInfo(user);
+  //   })
+  //   .catch(function (error) {
+  //     // handle error
+  //     console.log(error);
+  //   })
+  //   .then(function () {
+  //     // always executed
+  //   });
+
+  
+>>>>>>> 6d19a9319df89fadc15cee778c642ea51c1438b2
   //RUN HARDCODED EXAMPLE (NO SERVER CALL)
   //comment out above code and uncomment this section to see example
   displayPicture(exUser);
   displayAchievements(exUser);
   displayInfo(exUser);
-  */
+  
 }

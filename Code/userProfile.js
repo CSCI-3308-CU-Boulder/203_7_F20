@@ -49,27 +49,27 @@
 
 
 
-function updateProfile() {
-  var button = document.getElementById('my_submit_button');
-  var fName = document.getElementById("first_name").value;
-  var lName = document.getElementById("last_name").value;
-  button.disabled = false;
+// function updateProfile() {
+//   var button = document.getElementById('my_submit_button');
+//   var profileName = document.getElementById("modal_name").value;
+//   // var lName = document.getElementById("last_name").value;
+//   button.disabled = false;
   
-  if (fName && lName) {
-    document.getElementById("first_name").disabled = true;
-    document.getElementById("last_name").disabled = true;
-  }
-  if (document.getElementById("first_name").disabled == false && document.getElementById("last_name").disabled == false) {
-    button.disabled = true;
-  }
-  else {
-    button.disabled = false;
-  }
-}
+//   if (profileName) {
+//     document.getElementById("modal_name").disabled = true;
+//     // document.getElementById("last_name").disabled = true;
+//   }
+//   if (document.getElementById("modal_name").disabled == false) {
+//     button.disabled = true;
+//   }
+//   else {
+//     button.disabled = false;
+//   }
+// }
 
 function resetName() {
-  document.getElementById("first_name").disabled = false;
-  document.getElementById("last_name").disabled = false;
+  document.getElementById("modal_name").disabled = false;
+  // document.getElementById("last_name").disabled = false;
 }
 
 function onClickFunction() {
