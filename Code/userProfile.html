@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <style>
-    body {
+    body { 
       font-family: "Lato", sans-serif;
     }
 
@@ -29,13 +29,21 @@
       color: #f1f1f1;
     }
 
-    /* .particles-js-canvas{
+    .particles-js-canvas{
       z-index: -1;
-    } */
+    }
 
     img {
       max-width: 90%;
       max-height: 90%;
+    }
+
+    .column {
+      float: left;
+      width: 25%;
+      padding-left: 30px;
+      padding-right: 20px;
+      padding-top: 10px;
     }
 
     .main {
@@ -89,10 +97,21 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
 
-    
-  </head>
-  
-  <body onload="loadProfile()">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="./userProfile.js"></script>
+    <script src="./loadProfile.js"></script>
+
     <nav class="navbar bg-dark navbar-expand-lg" style="margin-left: 150px">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -100,6 +119,9 @@
         </li>
       </ul>
     </nav>
+  </head>
+
+  <body onload="loadProfile()">
     <div class="sidenav" style="width: 150px">
       <br />
       <br />
@@ -108,11 +130,11 @@
       <p>
         <a href="homePage.html">
           <img
-          src="./assets/envi.png"
-          alt="envi logo"
-          width="100px"
-          height="100px"
-          style="margin-top: -120px; margin-left: 10px"
+            src="./assets/envi.png"
+            alt="envi logo"
+            width="100px"
+            height="100px"
+            style="margin-top: -120px; margin-left: 10px"
           />
         </a>
       </p>
@@ -121,25 +143,23 @@
       <a href="friends.html">Friends</a>
       <a href="donate.html">Donate</a>
     </div>
-    
+
     <div class="d-flex align-items-start">
       <div class="container" id="main" style="margin-left: 150px">
         <br />
         <div class="row">
           <div class="col-6">
             <!-- <div class="sm-12 md-2 lg-2 columns"> -->
-              <div class="card">
-                <!-- User Profile Image -->
-                <div class="container">
-                  <div class="card-body" id="profile_picture"></div>
-                  <!--Image loaded from files-->
-                  <div class="p-image">
-                    <i class="fa fa-camera" id="upload-button"></i>
-                    <input id="file-upload" type="file" accept="image/*" />
-                  </div>
+            <div class="card">
+              <!-- User Profile Image -->
+              <div class="container">
+                <div class="card-body" id="profile_picture"></div>
+                <!--Image loaded from files-->
+                <div class="p-image">
+                  <i class="fa fa-camera" id="upload-button"></i>
+                  <input id="file-upload" type="file" accept="image/*" />
                 </div>
               </div>
-              <!-- </div> -->
             </div>
             <!-- </div> -->
           </div>
@@ -174,48 +194,75 @@
                   <p class="card-title" id="bottles_filled"></p>
                 </div>
                 <div class="card-body text-center">
-                  <button type="button" class="btn btn-success">
-                    Update Profile
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-6">
-              <div class="container" id="basic_info">
-                <div class="card-6">
-                  <div class="card-header">
-                    <h4 id="username"></h4>
-                  </div>
-                  <div class="card-body">
-                    <h6 id="name"></h6>
-                    <p class="card-title" id="level"></p>
-                  </div>
-                  <div class="card-body text-center">
-                    <a href="#myModal" class="btn btn-success" data-toggle="modal"
+                  <a href="#myModal" class="btn btn-success" data-toggle="modal"
                     >Update Profile</a
-                    >
-                  </div>
-                  <!-- Modal HTML -->
-                  <div id="myModal" class="modal fade">
-                    <div class="modal-dialog modal-login">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <div class="avatar">
-                            <img
+                  >
+                </div>
+                <!-- Modal HTML -->
+                <div id="myModal" class="modal fade">
+                  <div class="modal-dialog modal-login">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div class="avatar">
+                          <img
                             src="https://www.tutorialrepublic.com/examples/images/avatar.png"
                             alt="Avatar"
-                            />
-                          </div>
-                          <h4 class="modal-title">Update Info</h4>
-                          <button
+                          />
+                        </div>
+                        <h4 class="modal-title">Update Info</h4>
+                        <button
                           type="button"
                           class="close"
                           data-dismiss="modal"
                           aria-hidden="true"
-                          >
+                        >
                           &times;
                         </button>
+                      </div>
+                      <!-- The grid: four columns -->
+                      <div class="row">
+                        <div class="column">
+                          <img src="./assets/colorEarth.jpg" id="1" alt="Earth image" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/envi.png" id="2" alt="Envi image" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/environmentalist.jpg" id="3" alt="Environmentalist image" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/flatirons.png" id="4" alt="Flatirons image" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/flowers.jpg" id="5" alt="Flower image" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/hydroflask.jpg" id="6" alt="Hydroflask image" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/ice.jpg" id="7" alt="Ice image" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/mountains.png" id="8" alt="Mountains image" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/plant.jpg" id="9" alt="Plant image" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/recycling.jpeg" id="10" alt="Recycling image" onclick="displayProfilePic(id)">
+                        </div>
+                      </div>
+
+                      <!-- The expanding image container -->
+                      <div class="container">
+                        <!-- Close the image -->
+                        <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+
+                        <!-- Expanded image -->
+                        <img id="expandedImg" style="width:100%">
+
+                        <!-- Image text -->
+                        <div id="imgtext"></div>
                       </div>
                       <div class="modal-body">
                         <div class="form-group">
@@ -240,24 +287,20 @@
                         </div>
                         <div class="form-group">
                           <input
-                          id="defaultForm-email"
-                          type="email"
-                          class="form-control validate"
-                          name="email"
-                          placeholder="Email Address"
-                          required="required"
+                            id="defaultForm-email"
+                            type="email"
+                            class="form-control validate"
+                            name="email"
+                            placeholder="Email Address"
+                            required="required"
                           />
                         </div>
                         <!-- <div class="form-group">
                           <input id="cpsw" type="password" class="form-control" name="confirm password"
-                          placeholder="Confirm Password" required="required">
+                            placeholder="Confirm Password" required="required">
                         </div> -->
                         <div class="form-group">
                           <button
-                          type="button"
-                          id="my_submit_button"
-                          class="btn btn-primary save"
-                          onclick="updateProfile()"
                             type="button"
                             id="my_submit_button"
                             class="btn btn-primary save"
@@ -271,56 +314,34 @@
                             class="btn btn-primary save"
                             onclick="resetName()"
                           >
-                          Update
-                        </button>
-                        <button
-                        type="button"
-                        id="my_reset_button"
-                        class="btn btn-primary save"
-                        onclick="resetName()"
-                        >
-                        Change Name
-                      </button>
+                            Change Name
+                          </button>
+                        </div>
+                      </div>
+                      <!-- <div class="modal-footer">
+                        <div id="message" style="display:block">
+                          <h3>Password must contain the following:</h3>
+                          <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                          <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                          <p id="number" class="invalid">A <b>number</b></p>
+                          <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                          <p id="match" class="invalid">Password and Confirm Password Match</p>
+                        </div>
+                      </div> -->
                     </div>
                   </div>
-                  <!-- <div class="modal-footer">
-                    <div id="message" style="display:block">
-                      <h3>Password must contain the following:</h3>
-                      <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                      <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                      <p id="number" class="invalid">A <b>number</b></p>
-                      <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                      <p id="match" class="invalid">Password and Confirm Password Match</p>
-                    </div>
-                  </div> -->
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div id="achievements"></div>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <div class="row">
-      <div class="col-12">
-        <div id="achievements"></div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!-- Axios -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-<script src="./userProfile.js"></script>
-<script src="./loadProfile.js"></script>
-</body>
+  </body>
 </html>

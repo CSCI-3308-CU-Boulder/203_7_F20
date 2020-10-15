@@ -85,15 +85,6 @@ function displayPicture(user) {
   document.getElementById("profile_picture").innerHTML = pic_string;
 }
 
-// function displayChangedInfo(user) {
-//   document.getElementById("name").innerHTML = user.name;
-//   var modalName = document.getElementById("modal_name").value;
-
-//   if (profileName != modalName) {
-//     document.getElementById("modal_name").innerHTML = profileName;
-//   }
-// }
-
 function displayInfo(user) {
   document.getElementById("username").innerHTML = user.username;
   document.getElementById("level").innerHTML = "Level: " + user.level;
@@ -101,6 +92,40 @@ function displayInfo(user) {
   document.getElementById("name").innerHTML = user.name;
   // document.getElementById("modal_name").innerHTML;
 
+}
+
+function displayProfilePic(id)
+{
+  if (id == document.getElementById("1").id) {
+    document.getElementById("profile-pic").src = "./assets/colorEarth.jpg";
+  }
+  if (id == document.getElementById("2").id) {
+    document.getElementById("profile-pic").src = "./assets/envi.png";
+  }
+  if (id == document.getElementById("3").id) {
+    document.getElementById("profile-pic").src = "./assets/environmentalist.jpg";
+  }
+  if (id == document.getElementById("4").id) {
+    document.getElementById("profile-pic").src = "./assets/flatirons.png";
+  }
+  if (id == document.getElementById("5").id) {
+    document.getElementById("profile-pic").src = "./assets/flowers.jpg";
+  }
+  if (id == document.getElementById("6").id) {
+    document.getElementById("profile-pic").src = "./assets/hydroflask.jpg";
+  }
+  if (id == document.getElementById("7").id) {
+    document.getElementById("profile-pic").src = "./assets/ice.jpg";
+  }
+  if (id == document.getElementById("8").id) {
+    document.getElementById("profile-pic").src = "./assets/mountains.png";
+  }
+  if (id == document.getElementById("9").id) {
+    document.getElementById("profile-pic").src = "./assets/plant.jpg";
+  }
+  if (id == document.getElementById("10").id) {
+    document.getElementById("profile-pic").src = "./assets/recycling.jpeg";
+  }
 }
 
 function updateInfo() {
@@ -112,16 +137,6 @@ function updateInfo() {
     document.getElementById("username").innerHTML = document.getElementById("modal_username").value;
   }
 }
-// function displayInfo(user) {
-//   document.getElementById("username").innerHTML = user.username;
-//   document.getElementById("level").innerHTML = "Level: " + user.level;
-//   document.getElementById("name").innerHTML = user.name;
-//   // document.getElementById("modal_name").innerHTML;
-
-//   if (user.name != document.getElementById("modal_name").value) {
-//     document.getElementById("modal_name").innerHTML = user.name;
-//   }
-// }
 
 function onClick() {
   updateProfile();
@@ -129,31 +144,12 @@ function onClick() {
 }
 
 function loadProfile() {
-  //get user data from test server
 
-<<<<<<< HEAD
-  axios
-    .get("http://localhost:5000/users/mteets4")
-    .then(function (response) {
-      // handle success
-      console.log(response);
-      var user = response.data;
-      displayPicture(user);
-      displayAchievements(user);
-      displayInfo(user);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
+  // get user data from test server
 
-  /*
-=======
   // axios
-  //   .get("/users/:mteets4")
+  //   .get("http://localhost:5000/users/mteets4")
+
   //   .then(function (response) {
   //     // handle success
   //     console.log(response);
@@ -171,7 +167,7 @@ function loadProfile() {
   //   });
 
   
->>>>>>> 6d19a9319df89fadc15cee778c642ea51c1438b2
+
   //RUN HARDCODED EXAMPLE (NO SERVER CALL)
   //comment out above code and uncomment this section to see example
   displayPicture(exUser);
