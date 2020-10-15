@@ -19,9 +19,9 @@ var exAch = [
 
 var exUser = {
   username: "username",
-  userImg: "./assets/profile_pic_placeholder.gif",
-  userLevel: 1,
-  userAch: exAch,
+  level: 1,
+  achievements: exAch,
+  image_id: 3,
 };
 
 var images = [
@@ -34,7 +34,7 @@ var images = [
   "./assets/ice.jpg",
   "./assets/mountains.png",
   "./assets/plant.jpg",
-  "./assets/recycling.svg",
+  "./assets/recycling.jpeg",
 ];
 
 function createAchievement(ach) {
@@ -62,8 +62,8 @@ function createAchievement(ach) {
 function displayAchievements(user) {
   //builds container with dynamic amount of cards depending on user data
   var achContent = "<h3> My Achievements </h3>  ";
-  for (i = 0; i < user.userAch.length; i++) {
-    var cardContent = createAchievement(user.userAch[i]);
+  for (i = 0; i < user.achievements.length; i++) {
+    var cardContent = createAchievement(user.achievements[i]);
     achContent += cardContent;
   }
 
@@ -83,11 +83,12 @@ function displayPicture(user) {
 
 function displayInfo(user) {
   document.getElementById("username").innerHTML = user.username;
-  document.getElementById("level").innerHTML = "Level: " + user.userLevel;
+  document.getElementById("level").innerHTML = "Level: " + user.level;
 }
 
 function loadProfile() {
   //get user data from test server
+  /*
   axios
     .get("http://localhost:5000/achievementsTest")
     .then(function (response) {
@@ -105,12 +106,11 @@ function loadProfile() {
     .then(function () {
       // always executed
     });
-
-  /*
-    //RUN HARDCODED EXAMPLE (NO SERVER CALL)
-    //comment out above code and uncomment this section to see example
-    displayPicture(exUser);
-    displayAchievements(exUser);
-    displayInfo(exUser);
     */
+
+  //RUN HARDCODED EXAMPLE (NO SERVER CALL)
+  //comment out above code and uncomment this section to see example
+  displayPicture(exUser);
+  displayAchievements(exUser);
+  displayInfo(exUser);
 }

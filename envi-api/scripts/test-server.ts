@@ -29,7 +29,6 @@ app.get("/achievementsTest", (req, res) => {
 
   const exUser = {
     username: "username",
-    userImg: "./assets/profile_pic_placeholder.gif",
     userLevel: 1,
     userAch: achievements,
     image_id: 9,
