@@ -130,29 +130,29 @@ function onClick() {
 function loadProfile() {
   //get user data from test server
 
-  axios
-    .get("/users/:mteets4")
-    .then(function (response) {
-      // handle success
-      console.log(response);
-      var user = response.data;
-      displayPicture(user);
-      displayAchievements(user);
-      displayInfo(user);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
+  // axios
+  //   .get("/users/:mteets4")
+  //   .then(function (response) {
+  //     // handle success
+  //     console.log(response);
+  //     var user = response.data;
+  //     displayPicture(user);
+  //     displayAchievements(user);
+  //     displayInfo(user);
+  //   })
+  //   .catch(function (error) {
+  //     // handle error
+  //     console.log(error);
+  //   })
+  //   .then(function () {
+  //     // always executed
+  //   });
 
-  /*
+  
   //RUN HARDCODED EXAMPLE (NO SERVER CALL)
   //comment out above code and uncomment this section to see example
   displayPicture(exUser);
   displayAchievements(exUser);
   displayInfo(exUser);
-  */
+  
 }
