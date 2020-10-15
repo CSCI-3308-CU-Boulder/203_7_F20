@@ -7,6 +7,10 @@ var friends = [{name:"Matthew Teta", level: 2, bottle_filled: 10, acheivements: 
         {name:"Brian Mayer", level: 2, bottle_filled: 12, acheivements: "None"},
         {name:"Samuel Mast", level: 3, bottle_filled: 15, acheivements: "None"}];
 
+var add = [{name: "Surya Kanoria", level: 10, bottle_filled: 50, acheivements: "None"},
+			{name: "Friend", level: 3, bottle_filled: 16, acheivements: "None"},
+			{name: "Buddy", level: 0, bottle_filled: 4, acheivements: "None"}];
+
 window.onload = function displayFriends() {
   var load = "";
   for (var i = 0; i < friends.length; i++) {
@@ -22,4 +26,21 @@ function friendProfile(index) {
   document.getElementById("level").innerHTML = friends[index].level;
   document.getElementById("bottles").innerHTML = friends[index].bottle_filled;
   document.getElementById("acheivements").innerHTML = friends[index].acheivements;
+}
+
+function displayAdd() {
+	var output = "";
+	for (var i = 0; i < add.length; i++) {
+		output += '<tr><td>';
+		output += add[i].name;
+		output += '</td><td><button class="btn btn-success" type="button" onclick="addFriend(' + i + ')"';
+		output += '>Add</button></td></tr>';
+	}
+
+	document.getElementById("add").innerHTML = output;
+}
+
+function addFriend(index) {
+	// Loop through and see if the friend is already there
+	
 }
