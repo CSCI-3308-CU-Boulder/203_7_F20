@@ -8,17 +8,6 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script src="./signupForm.js"></script>
-
     <nav class="navbar bg-dark navbar-expand-lg">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -33,7 +22,7 @@
         <h6>Welcome to Envi! Please fill out the information below to create your
         account.</h6>
       </p>
-      <form action="userProfile.html">
+      <form action="#" onsubmit="signup()">
         <div class="form-group">
           <label for="email">Email address</label>
           <input
@@ -45,6 +34,19 @@
           />
         </div>
         <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            onkeyup="enableButton()"
+            type="name"
+            class="form-control"
+            id="username"
+            placeholder="Choose a username"
+          />
+          <small id="passwordHelp" class="form-text text-muted"
+            >This is the name that will be displayed on your profile.</small
+          >
+        </div>
+        <div class="form-group">
           <label for="name">Name</label>
           <input
             onkeyup="enableButton()"
@@ -53,9 +55,6 @@
             id="name"
             placeholder="Enter name"
           />
-          <small id="passwordHelp" class="form-text text-muted"
-            >This is the name that will be displayed on your profile.</small
-          >
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -75,8 +74,8 @@
         <div class="form-group">
           <label for="conf_password">Confirm Password</label>
           <input
-            onkeyup="enableButton()"
-            type="conf_password"
+            onkeyup="enableButton(e)"
+            type="password"
             class="form-control"
             id="conf_password"
             placeholder="Password"
@@ -107,5 +106,19 @@
         </button>
       </form>
     </div>
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="./signupForm.js"></script>
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </html>

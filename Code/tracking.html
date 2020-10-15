@@ -51,15 +51,8 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
     <nav class="navbar bg-dark navbar-expand-lg">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -67,8 +60,6 @@
         </li>
       </ul>
     </nav>
-  </head>
-  <body>
     <!-- Side navigation -->
     <div class="sidenav" style="width: 150px">
       <br />
@@ -97,7 +88,7 @@
         <div class="container">
         <img id="bottle" src="./assets/waterBottle.jpg" alt="Water Bottle" />
         <p></p>
-        <button id="btn btn-primary" onclick="taskComplete()">Complete Task</button>
+        <button class="btn btn-primary" onclick="taskComplete()">Complete Task</button>
         <p></p>
         <table border="">
           <tr>
@@ -112,6 +103,14 @@
       </div>
       </div>
     </div>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -127,6 +126,8 @@
       integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
       crossorigin="anonymous"
     ></script>
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="tracker.js"></script>
   </body>
 </html>
