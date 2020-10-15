@@ -8,6 +8,15 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
 
+    <style>
+      .valid {
+        border: default;
+      }
+      .invalid {
+        border: 2px red solid;
+      }
+    </style>
+
     <nav class="navbar bg-dark navbar-expand-lg">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -74,7 +83,7 @@
         <div class="form-group">
           <label for="conf_password">Confirm Password</label>
           <input
-            onkeyup="enableButton(e)"
+            onkeyup="enableButton()"
             type="password"
             class="form-control"
             id="conf_password"
@@ -85,6 +94,45 @@
             >Must match password entered above.</small
           >
         </div>
+
+        <p>Please choose a profile picture:</p>
+        <div onclick="choosePicture()">
+        <div class="row">
+            <div class="col">
+              <img src="./assets/colorEarth.jpg" width="100" id="0">
+            </div>
+            <div class="col">
+              <img src="./assets/envi.png" width="100" id="1">
+            </div>
+            <div class="col" >
+              <img src="./assets/environmentalist.jpg" width="100" id="2">
+            </div>
+            <div class="col" >
+              <img src="./assets/flatirons.png" width="100" id="3">
+            </div>
+            <div class="col">
+              <img src="./assets/flowers.jpg" width="100" id="4">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <img src="./assets/hydroflask.jpg" width="100" id="5">
+            </div>
+            <div class="col">
+              <img src="./assets/ice.jpg" width="100" id="6">
+            </div>
+            <div class="col">
+              <img src="./assets/mountains.png" width="100" id="7">
+            </div>
+            <div class="col">
+              <img src="./assets/plant.jpg" width="100" id="8">
+            </div>
+            <div class="col">
+              <img src="./assets/recycling.jpeg" width="100" id="9">
+            </div>
+          </div>
+        </div>
+
         <div class="form-group form-check">
           <input
             onclick="enableButton()"
@@ -106,6 +154,7 @@
         </button>
       </form>
     </div>
+
 
 
     <!-- jQuery library -->

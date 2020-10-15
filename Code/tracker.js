@@ -49,3 +49,10 @@ function setImage() {
   document.getElementById("bottle_count").innerHTML = count + 1;
   document.getElementById("level").innerHTML = level + 1;
 }
+
+function resetToEmpty() {
+  count = 0;
+  bottlesFilled = 0;
+  document.getElementById("bottle").src = "./assets/waterBottle.jpg";
+  document.getElementById("bottle_count").innerHTML = bottlesFilled;
+}
