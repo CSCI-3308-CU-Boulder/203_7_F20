@@ -64,9 +64,10 @@ function createAchievement(ach) {
 
 function displayAchievements(user) {
   //builds container with dynamic amount of cards depending on user data
-  var achContent = "<h3> My Achievements </h3>  ";
+  var achContent = "<h3> My Achievements </h3> ";
   for (i = 0; i < user.achievements.length; i++) {
     var cardContent = createAchievement(user.achievements[i]);
+    // achContent += "</br>";
     achContent += cardContent;
   }
 
@@ -83,15 +84,6 @@ function displayPicture(user) {
 
   document.getElementById("profile_picture").innerHTML = pic_string;
 }
-
-// function displayChangedInfo(user) {
-//   document.getElementById("name").innerHTML = user.name;
-//   var modalName = document.getElementById("modal_name").value;
-
-//   if (profileName != modalName) {
-//     document.getElementById("modal_name").innerHTML = profileName;
-//   }
-// }
 
 function displayInfo(user) {
   document.getElementById("username").innerHTML = user.username;
@@ -164,31 +156,31 @@ function onClick() {
 }
 
 function loadProfile() {
-  //get user data from test server
+  // get user data from test server
 
-  // axios
-  //   .get("/users/:mteets4")
-  //   .then(function (response) {
-  //     // handle success
-  //     console.log(response);
-  //     var user = response.data;
-  //     displayPicture(user);
-  //     displayAchievements(user);
-  //     displayInfo(user);
-  //   })
-  //   .catch(function (error) {
-  //     // handle error
-  //     console.log(error);
-  //   })
-  //   .then(function () {
-  //     // always executed
-  //   });
+  axios
+    .get("/users/:mteets4")
+    .then(function (response) {
+      // handle success
+      console.log(response);
+      var user = response.data;
+      displayPicture(user);
+      displayAchievements(user);
+      displayInfo(user);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
 
-  
+  /*
   //RUN HARDCODED EXAMPLE (NO SERVER CALL)
   //comment out above code and uncomment this section to see example
   displayPicture(exUser);
   displayAchievements(exUser);
   displayInfo(exUser);
-  
+  */
 }

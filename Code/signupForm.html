@@ -8,16 +8,14 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script src="./signupForm.js"></script>
+    <style>
+      .valid {
+        border: default;
+      }
+      .invalid {
+        border: 2px red solid;
+      }
+    </style>
 
     <nav class="navbar bg-dark navbar-expand-lg">
       <ul class="navbar-nav">
@@ -33,7 +31,7 @@
         <h6>Welcome to Envi! Please fill out the information below to create your
         account.</h6>
       </p>
-      <form action="userProfile.html">
+      <form action="#" onsubmit="signup()">
         <div class="form-group">
           <label for="email">Email address</label>
           <input
@@ -45,6 +43,19 @@
           />
         </div>
         <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            onkeyup="enableButton()"
+            type="name"
+            class="form-control"
+            id="username"
+            placeholder="Choose a username"
+          />
+          <small id="passwordHelp" class="form-text text-muted"
+            >This is the name that will be displayed on your profile.</small
+          >
+        </div>
+        <div class="form-group">
           <label for="name">Name</label>
           <input
             onkeyup="enableButton()"
@@ -53,9 +64,6 @@
             id="name"
             placeholder="Enter name"
           />
-          <small id="passwordHelp" class="form-text text-muted"
-            >This is the name that will be displayed on your profile.</small
-          >
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -76,7 +84,7 @@
           <label for="conf_password">Confirm Password</label>
           <input
             onkeyup="enableButton()"
-            type="conf_password"
+            type="password"
             class="form-control"
             id="conf_password"
             placeholder="Password"
@@ -86,6 +94,45 @@
             >Must match password entered above.</small
           >
         </div>
+
+        <p>Please choose a profile picture:</p>
+        <div onclick="choosePicture()">
+        <div class="row">
+            <div class="col">
+              <img src="./assets/colorEarth.jpg" width="100" id="0">
+            </div>
+            <div class="col">
+              <img src="./assets/envi.png" width="100" id="1">
+            </div>
+            <div class="col" >
+              <img src="./assets/environmentalist.jpg" width="100" id="2">
+            </div>
+            <div class="col" >
+              <img src="./assets/flatirons.png" width="100" id="3">
+            </div>
+            <div class="col">
+              <img src="./assets/flowers.jpg" width="100" id="4">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <img src="./assets/hydroflask.jpg" width="100" id="5">
+            </div>
+            <div class="col">
+              <img src="./assets/ice.jpg" width="100" id="6">
+            </div>
+            <div class="col">
+              <img src="./assets/mountains.png" width="100" id="7">
+            </div>
+            <div class="col">
+              <img src="./assets/plant.jpg" width="100" id="8">
+            </div>
+            <div class="col">
+              <img src="./assets/recycling.jpeg" width="100" id="9">
+            </div>
+          </div>
+        </div>
+
         <div class="form-group form-check">
           <input
             onclick="enableButton()"
@@ -107,5 +154,20 @@
         </button>
       </form>
     </div>
+
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="./signupForm.js"></script>
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </html>
