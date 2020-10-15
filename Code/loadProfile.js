@@ -19,6 +19,8 @@ var exAch = [
 
 var exUser = {
   username: "username",
+  firstname: "Example",
+  lastname: "User",
   level: 1,
   achievements: exAch,
   image_id: 3,
@@ -84,6 +86,8 @@ function displayPicture(user) {
 function displayInfo(user) {
   document.getElementById("username").innerHTML = user.username;
   document.getElementById("level").innerHTML = "Level: " + user.level;
+  document.getElementById("name").innerHTML =
+    user.firstname + " " + user.lastname;
 }
 
 function loadProfile() {
