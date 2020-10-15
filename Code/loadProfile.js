@@ -24,6 +24,7 @@ var exUser = {
   level: 1,
   achievements: exAch,
   image_id: 3,
+  bottles_filled: 30,
 };
 
 var images = [
