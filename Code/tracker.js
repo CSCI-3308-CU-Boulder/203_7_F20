@@ -7,7 +7,7 @@ function loadBottles() {
     .then(function (response) {
       // handle success
       console.log(response);
-      count = response.data.num_bottles;
+      bottlesFilled = response.data.num_bottles;
     })
     .catch(function (error) {
       // handle error

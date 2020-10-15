@@ -3,6 +3,19 @@ var upperCaseLetters = /[A-Z]/g; // : Fill in the regular experssion for upperCa
 var numbers = /[0-9]/g; // : Fill in the regular experssion for digits
 var minLength = 8;
 
+var images = [
+  "./assets/colorEarth.jpg",
+  "./assets/envi.png",
+  "./assets/environmentalist.jpg",
+  "./assets/flatirons.png",
+  "./assets/flowers.jpg",
+  "./assets/hydroflask.jpg",
+  "./assets/ice.jpg",
+  "./assets/mountains.png",
+  "./assets/plant.jpg",
+  "./assets/recycling.jpeg",
+];
+
 function validatePassword() {
   //eventually should become offkey function (checks as user types)
   var lower = false;
