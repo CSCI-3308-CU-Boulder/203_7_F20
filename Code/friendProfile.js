@@ -16,7 +16,7 @@ window.onload = function displayFriends() {
   for (var i = 0; i < friends.length; i++) {
     load += ('<div class="row"><div class="column" style="margin-right: auto; margin-left: auto"><div class="card"><h5 class="card-header" >');
     load += (friends[i].name);
-    load += ('</h5><button type="button" class="card-footer btn btn-primary" onclick="friendProfile(' + i + ')" data-toggle="modal" data-target="#friendProfile">Open Profile</button></div></div></div>');
+    load += ('</h5><button type="button" class="btn btn-info" onclick="friendProfile(' + i + ')" data-toggle="modal" data-target="#friendProfile">Open Profile</button></div></div></div></br>');
   }
   document.getElementById("friendDisplay").innerHTML = load;
 }
