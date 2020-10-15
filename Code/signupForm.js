@@ -3,6 +3,8 @@ var upperCaseLetters = /[A-Z]/g; // : Fill in the regular experssion for upperCa
 var numbers = /[0-9]/g; // : Fill in the regular experssion for digits
 var minLength = 8;
 
+var image_id;
+
 var images = [
   "./assets/colorEarth.jpg",
   "./assets/envi.png",
@@ -16,8 +18,25 @@ var images = [
   "./assets/recycling.jpeg",
 ];
 
+function choosePicture() {
+  //clear current selection
+  for (var i = 0; i < 10; i++) {
+    var elem = document.getElementById(i);
+    elem.classList.remove("border");
+    elem.classList.remove("border-primary");
+  }
+
+  //highlight new selection
+  var chosen = event.target;
+  console.log(chosen.id);
+  if (chosen.nodeName == "IMG") {
+    chosen.classList.add("border");
+    chosen.classList.add("border-primary");
+    image_id = chosen.id;
+  }
+}
+
 function validatePassword() {
-  //eventually should become offkey function (checks as user types)
   var lower = false;
   var upper = false;
   var number = false;
@@ -51,7 +70,6 @@ function enableButton() {
   var validpsw = document.getElementById("passwordHelp");
   var match = document.getElementById("matchHelp");
 
-  // TODO: Clear this function for students to implement
   var button = document.getElementById("submit_button");
   var valid = false;
   var match = false;
@@ -59,15 +77,9 @@ function enableButton() {
     valid = validatePassword();
     match = password.value === confirm.value;
   }
-  // if (email.value != "") {
-  //   isEmail = true;
-  // }
-  // if (name.value != "") {
-  //   isName = true;
-  // }
 
   var condition =
-    match && valid && email.value && name.value && checkbox.checked; // TODO: Replace false with the correct condition
+    match && valid && email.value && name.value && checkbox.checked;
   if (condition) {
     button.disabled = false;
   } else {

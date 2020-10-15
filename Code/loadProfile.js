@@ -95,7 +95,7 @@ function loadProfile() {
   //get user data from test server
 
   axios
-    .get("/users/:mteets4")
+    .get("http://localhost:5000/users/mteets4")
     .then(function (response) {
       // handle success
       console.log(response);
