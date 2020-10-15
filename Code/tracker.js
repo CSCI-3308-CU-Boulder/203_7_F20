@@ -51,6 +51,7 @@
 
 var count = 0;
 var level = 0
+var bottles_filled = 0;
 var baseUrl = "http://localhost:5000"
 
 $(document).ready(function () {
@@ -74,13 +75,15 @@ function loadBottles() {
 }
 
 function taskComplete() {
-  count = (count + 1) % 5;
+  count++;
+  bottles_filled++;
   axios.post(baseUrl + "/users/mteets4/completeTask", {}).then((response) => {
     console.log(response);
   });
-  if (count == 5) {
+  if (count % 5 == 0) {
     level++;
     alert("Congratulations you leved up!");
+    count = 0;
   }
   setImage()
 }
@@ -97,8 +100,8 @@ function setImage() {
   } else if (count == 4) {
     document.getElementById("bottle").src = "./assets/waterBottle.jpg";
   }
-  document.getElementById("bottle_count").innerHTML = count + 1;
-  document.getElementById("level").innerHTML = level + 1;
+  document.getElementById("bottle_count").innerHTML = bottles_filled;
+  document.getElementById("level").innerHTML = level;
 }
 
 function resetToEmpty() {
