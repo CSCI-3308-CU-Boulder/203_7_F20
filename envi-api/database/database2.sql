@@ -11,23 +11,23 @@ CREATE TABLE users (
     signupdate timestamp default current_timestamp
 );
 
--- creates linking table to array of friends
+-- -- creates linking table to array of friends
 CREATE TABLE friend_link (
     user_id INT NOT NULL, 
     friends_id_array int[], 
-    FOREIGN KEY(user_id) REFERENCES user_profile(user_id)
+    FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
 CREATE TABLE actions_link (
     user_id INT NOT NULL, 
     actions_id_array int[], 
-    FOREIGN KEY(user_id) REFERENCES user_profile(user_id)
+    FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
 CREATE TABLE achievments (
     user_id INT NOT NULL, 
     achievments_id_array int[], 
-    FOREIGN KEY(user_id) REFERENCES user_profile(user_id)
+    FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
 CREATE TABLE  achievments_list (

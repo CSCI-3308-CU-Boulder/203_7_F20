@@ -32,6 +32,7 @@ app.get("/achievementsTest", (req, res) => {
     userImg: "./assets/profile_pic_placeholder.gif",
     userLevel: 1,
     userAch: achievements,
+    image_id: 9,
   };
 
   res.json(exUser);

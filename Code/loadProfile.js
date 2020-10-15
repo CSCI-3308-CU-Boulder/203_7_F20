@@ -24,6 +24,19 @@ var exUser = {
   userAch: exAch,
 };
 
+var images = [
+  "./assets/colorEarth.jpg",
+  "./assets/envi.png",
+  "./assets/environmentalist.jpg",
+  "./assets/flatirons.png",
+  "./assets/flowers.jpg",
+  "./assets/hydroflask.jpg",
+  "./assets/ice.jpg",
+  "./assets/mountains.png",
+  "./assets/plant.jpg",
+  "./assets/recycling.svg",
+];
+
 function createAchievement(ach) {
   //builds string to insert card into html
   var cardStr =
@@ -48,24 +61,20 @@ function createAchievement(ach) {
 
 function displayAchievements(user) {
   //builds container with dynamic amount of cards depending on user data
-  var containerContent = "<h3> My Achievements </h3>  ";
+  var achContent = "<h3> My Achievements </h3>  ";
   for (i = 0; i < user.userAch.length; i++) {
     var cardContent = createAchievement(user.userAch[i]);
-    containerContent += cardContent;
+    achContent += cardContent;
   }
-  var container = document.createElement("div");
-  container.classList.add("container");
-  container.innerHTML = containerContent;
 
-  var here = document.getElementById("achievements");
-  here.appendChild(container);
+  document.getElementById("achievements").innerHTML = achContent;
 }
 
 function displayPicture(user) {
   var pic_string = `<img
     id="profile-pic"
     width="500"
-    src="${user.userImg}"
+    src="${images[user.image_id]}"
   />`;
   console.log(pic_string);
 
