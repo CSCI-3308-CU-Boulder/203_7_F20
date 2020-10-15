@@ -35,8 +35,8 @@ const router = new Router()
 // })
 router.post('/', (req, res, next) => {
     console.log(req.body)
-    const { username, password, firstname, lastname, email, image_id, birthday } = req.body
-    if (!username || !password || !firstname || !lastname || !email) {
+    const { username, password, name, email, image_id, birthday } = req.body
+    if (!username || !password || !name || !email) {
         res.status(401).send("Invalid user input")
         return null
     }
@@ -46,10 +46,13 @@ router.post('/', (req, res, next) => {
         if (err) console.log(err)
         bcrypt.hash(password, salt, function(err, hash) {
             console.log(hash)
-            query('INSERT INTO users(username, password, firstname, lastname, email, image_id, birthday) VALUES ($1, $2, $3, $4, $5, $6, $7)', [username, hash, firstname, lastname, email, parseInt(image_id), birthday || null])
+            query('INSERT INTO users(username, password, name, email, image_id, num_bottles, birthday) VALUES ($1, $2, $3, $4, $5, $6, $7)', [username, hash, name, email, parseInt(image_id), 0, birthday || null])
             .then(result => {
-                req.json(result)
-            }).catch(err => res.send(err))
+                const { rows } = result;
+            }).catch(err => {
+                console.error(err)
+                res.json(err)
+            })
         })
     })
 });
