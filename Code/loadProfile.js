@@ -64,9 +64,10 @@ function createAchievement(ach) {
 
 function displayAchievements(user) {
   //builds container with dynamic amount of cards depending on user data
-  var achContent = "<h3> My Achievements </h3>  ";
+  var achContent = "</br> <h3> My Achievements </h3> ";
   for (i = 0; i < user.achievements.length; i++) {
     var cardContent = createAchievement(user.achievements[i]);
+    achContent += "</br>";
     achContent += cardContent;
   }
 
