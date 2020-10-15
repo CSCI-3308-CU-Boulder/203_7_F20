@@ -4,7 +4,7 @@ var friends = [{name:"Matthew Teta", level: 2, bottle_filled: 10, acheivements: 
         {name:"Charlie Koepke", level: 0, bottle_filled: 2, acheivements: "None"},
         {name:"Lakshya Jaishankar", level: 2, bottle_filled: 10, acheivements: "None"},
         {name:"Rebecca Coryell", level: 1, bottle_filled: 8, acheivements: "None"},
-        {name:"Brian Mayer", level: 2, bottle_filled: 12, acheivements: "None"},
+        {name:"Brian Mayers", level: 2, bottle_filled: 12, acheivements: "None"},
         {name:"Samuel Mast", level: 3, bottle_filled: 15, acheivements: "None"}];
 
 var add = [{name: "Surya Kanoria", level: 10, bottle_filled: 50, acheivements: "None"},

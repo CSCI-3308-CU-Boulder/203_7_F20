@@ -1,5 +1,6 @@
 var count = 0;
 var bottlesFilled = 0;
+var level = 0;
 
 function taskComplete() {
   count++;
@@ -16,6 +17,11 @@ function taskComplete() {
     document.getElementById("bottle").src = "./assets/waterBottle.jpg";
     bottlesFilled++;
     document.getElementById("bottle_count").innerHTML = bottlesFilled;
+    if (bottlesFilled % 5 == 0) {
+      alert("Congratulations you leved up!");
+      level++;
+    }
+    document.getElementById("level").innerHTML = level;
   }
 }
 
