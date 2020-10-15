@@ -1,13 +1,13 @@
 -- creates user profile table
 CREATE TABLE users (
     id SERIAL PRIMARY KEY, 
-    username VARCHAR NOT NULL, 
+    username VARCHAR NOT NULL UNIQUE, 
     password VARCHAR NOT NULL, 
-    firstname VARCHAR NOT NULL, 
-    lastname VARCHAR NOT NULL, 
-    email VARCHAR NOT NULL, 
+    name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL UNIQUE, 
     image_id INT,
-    birthday DATE, 
+    birthday DATE,
+    num_bottles INT NOT NULL,
     signupdate timestamp default current_timestamp
 );
 

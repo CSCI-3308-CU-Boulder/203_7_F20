@@ -3,7 +3,10 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const mountRoutes = require('./routes')
 const passport = require('passport')
+const query = require('./db')
 // pool = connection_pool
+
+require('./config/passport')(passport, query)
 
 const app = express()
 
