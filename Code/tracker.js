@@ -74,12 +74,13 @@ function loadBottles() {
 }
 
 function taskComplete() {
-  count = (count + 1) % 5;
+  count++;
   axios.post(baseUrl + "/users/mteets4/completeTask", {}).then((response) => {
     console.log(response);
   });
   if (count == 5) {
     level++;
+    count = 0
     alert("Congratulations you leved up!");
   }
   setImage()
@@ -87,15 +88,15 @@ function taskComplete() {
 
 function setImage() {
   if (count == 0) {
-    document.getElementById("bottle").src = "./assets/waterBottle1.jpg";
-  } else if (count == 1) {
-    document.getElementById("bottle").src = "./assets/waterBottle2.jpg";
-  } else if (count == 2) {
-    document.getElementById("bottle").src = "./assets/waterBottle3.jpg";
-  } else if (count == 3) {
-    document.getElementById("bottle").src = "./assets/waterBottle4.jpg";
-  } else if (count == 4) {
     document.getElementById("bottle").src = "./assets/waterBottle.jpg";
+  } else if (count == 1) {
+    document.getElementById("bottle").src = "./assets/waterBottle1.jpg";
+  } else if (count == 2) {
+    document.getElementById("bottle").src = "./assets/waterBottle2.jpg";
+  } else if (count == 3) {
+    document.getElementById("bottle").src = "./assets/waterBottle3.jpg";
+  } else if (count == 4) {
+    document.getElementById("bottle").src = "./assets/waterBottle4.jpg";
   }
   document.getElementById("bottle_count").innerHTML = count + 1;
   document.getElementById("level").innerHTML = level + 1;

@@ -177,7 +177,10 @@ function signup() {
       }
       axios.post(baseUrl + "/signup", payload).then((response) => {
         console.log(response)
-        window.location.pathname = "/203_7_F20/Code/userProfile.html#" + username;
+        if (!response.data.error) {
+          // Redirect with success
+          window.location.pathname = "/203_7_F20/Code/userProfile.html#" + username;
+        }
       }).catch((err) => {
         alert("Error signing up, please try again later.")
         console.error(err)
