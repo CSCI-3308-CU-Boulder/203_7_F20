@@ -38,6 +38,20 @@
       max-height: 90%;
     }
 
+    .column {
+      float: left;
+      width: 25%;
+      padding-left: 30px;
+      padding-right: 20px;
+      padding-top: 10px;
+    }
+
+    /* Style the images inside the grid */
+    .column img {
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
     .main {
       margin-left: 160px; /* Same as the width of the sidenav */
       font-size: 28px; /* Increased text to enable scrolling */
@@ -149,31 +163,12 @@
                 <!--Image loaded from files-->
                 <div class="p-image">
                   <i class="fa fa-camera" id="upload-button"></i>
-                  <input id="file-upload" type="file" accept="image/*" />
+                  <!-- <input id="file-upload" type="file" accept="image/*" /> -->
                 </div>
               </div>
             </div>
             <!-- </div> -->
           </div>
-          <!-- <div class="container" id="profile_picture">
-            <div class="card" style="width: 18rem">
-              <img
-              class="card-img-top"
-              id="profile-pic" alt="Profile picture"
-              src="./assets/profile_pic_placeholder.gif"
-              alt="click to change profile picture"
-              <input type="file" id="my-file" />
-              <br>
-              <input class="file-upload" type="file" accept="image/*"/>
-              />
-              <div class="card-body text-center">
-                <button type="button" class="btn btn-success">
-                  Update Profile
-                </button>
-              </div>
-            </div>
-          </div> -->
-
           <div class="col-6">
             <div class="container" id="basic_info">
               <div class="card-6">
@@ -211,6 +206,51 @@
                           &times;
                         </button>
                       </div>
+                      <!-- The grid: four columns -->
+                      <div class="row">
+                        <div class="column">
+                          <img src="./assets/colorEarth.jpg" id="1" alt="Earth" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/envi.png" id="2" alt="Envi" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/environmentalist.jpg" id="3" alt="Earth" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/flatirons.png" id="4" alt="Envi" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/flowers.jpg" id="5" alt="Earth" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/hydroflask.jpg" id="6" alt="Envi" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/ice.jpg" id="7" alt="Earth" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/mountains.png" id="8" alt="Envi" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/plant.jpg" id="9" alt="Earth" onclick="displayProfilePic(id)">
+                        </div>
+                        <div class="column">
+                          <img src="./assets/recycling.jpeg" id="10" alt="Envi" onclick="displayProfilePic(id)">
+                        </div>
+                      </div>
+
+                      <!-- The expanding image container -->
+                      <div class="container">
+                        <!-- Close the image -->
+                        <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+
+                        <!-- Expanded image -->
+                        <img id="expandedImg" style="width:100%">
+
+                        <!-- Image text -->
+                        <div id="imgtext"></div>
+                      </div>
                       <div class="modal-body">
                         <div class="form-group">
                           <input
@@ -242,10 +282,6 @@
                             required="required"
                           />
                         </div>
-                        <!-- <div class="form-group">
-                          <input id="cpsw" type="password" class="form-control" name="confirm password"
-                            placeholder="Confirm Password" required="required">
-                        </div> -->
                         <div class="form-group">
                           <button
                             type="button"
@@ -265,16 +301,6 @@
                           </button>
                         </div>
                       </div>
-                      <!-- <div class="modal-footer">
-                        <div id="message" style="display:block">
-                          <h3>Password must contain the following:</h3>
-                          <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                          <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                          <p id="number" class="invalid">A <b>number</b></p>
-                          <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                          <p id="match" class="invalid">Password and Confirm Password Match</p>
-                        </div>
-                      </div> -->
                     </div>
                   </div>
                 </div>

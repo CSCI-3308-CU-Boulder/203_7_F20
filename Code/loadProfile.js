@@ -102,6 +102,42 @@ function displayInfo(user) {
 
 }
 
+function displayProfilePic(id)
+{
+  // console.log("id=",id);
+  // console.log("src", document.getElementById("1").id);
+  if (id == document.getElementById("1").id) {
+    document.getElementById("profile-pic").src = "./assets/colorEarth.jpg";
+  }
+  if (id == document.getElementById("2").id) {
+    document.getElementById("profile-pic").src = "./assets/envi.png";
+  }
+  if (id == document.getElementById("3").id) {
+    document.getElementById("profile-pic").src = "./assets/environmentalist.jpg";
+  }
+  if (id == document.getElementById("4").id) {
+    document.getElementById("profile-pic").src = "./assets/flatirons.png";
+  }
+  if (id == document.getElementById("5").id) {
+    document.getElementById("profile-pic").src = "./assets/flowers.jpg";
+  }
+  if (id == document.getElementById("6").id) {
+    document.getElementById("profile-pic").src = "./assets/hydroflask.jpg";
+  }
+  if (id == document.getElementById("7").id) {
+    document.getElementById("profile-pic").src = "./assets/ice.jpg";
+  }
+  if (id == document.getElementById("8").id) {
+    document.getElementById("profile-pic").src = "./assets/mountains.png";
+  }
+  if (id == document.getElementById("9").id) {
+    document.getElementById("profile-pic").src = "./assets/plant.jpg";
+  }
+  if (id == document.getElementById("10").id) {
+    document.getElementById("profile-pic").src = "./assets/recycling.jpeg";
+  }
+}
+
 function updateInfo() {
   if (document.getElementById("modal_name").innerHTML != document.getElementById("name")) {
     document.getElementById("name").innerHTML = document.getElementById("modal_name").value;
