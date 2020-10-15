@@ -1,6 +1,22 @@
 var count = 0;
 var bottlesFilled = 0;
-var level = 0;
+
+function loadBottles() {
+  axios
+    .get("/users/:mteets4")
+    .then(function (response) {
+      // handle success
+      console.log(response);
+      count = response.data.num_bottles;
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+}
 
 function taskComplete() {
   count++;
@@ -20,6 +36,7 @@ function taskComplete() {
     if (bottlesFilled % 5 == 0) {
       alert("Congratulations you leved up!");
       level++;
+      axios.post("/users/:mteets4/completeTask");
     }
     document.getElementById("level").innerHTML = level;
   }

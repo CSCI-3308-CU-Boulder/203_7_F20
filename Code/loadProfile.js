@@ -93,9 +93,9 @@ function displayInfo(user) {
 
 function loadProfile() {
   //get user data from test server
-  /*
+
   axios
-    .get("http://localhost:5000/achievementsTest")
+    .get("/users/:mteets4")
     .then(function (response) {
       // handle success
       console.log(response);
@@ -111,11 +111,12 @@ function loadProfile() {
     .then(function () {
       // always executed
     });
-    */
 
+  /*
   //RUN HARDCODED EXAMPLE (NO SERVER CALL)
   //comment out above code and uncomment this section to see example
   displayPicture(exUser);
   displayAchievements(exUser);
   displayInfo(exUser);
+  */
 }

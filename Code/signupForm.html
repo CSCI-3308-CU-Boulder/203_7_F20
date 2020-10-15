@@ -28,73 +28,84 @@
     </nav>
   </head>
   <body>
-    <form action="userProfile.html">
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <input
-          onkeyup="enableButton()"
-          type="email"
-          class="form-control"
-          id="email"
-          placeholder="Enter email"
-        />
-      </div>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input
-          onkeyup="enableButton()"
-          type="name"
-          class="form-control"
-          id="name"
-          placeholder="Enter name"
-        />
-        <small id="passwordHelp" class="form-text text-muted"
-          >This is the name that will be displayed on your profile.</small
+    <div class="container">
+      <p>
+        <h6>Welcome to Envi! Please fill out the information below to create your
+        account.</h6>
+      </p>
+      <form action="userProfile.html">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input
+            onkeyup="enableButton()"
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            onkeyup="enableButton()"
+            type="name"
+            class="form-control"
+            id="name"
+            placeholder="Enter name"
+          />
+          <small id="passwordHelp" class="form-text text-muted"
+            >This is the name that will be displayed on your profile.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            onkeyup="enableButton()"
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+            aria-describedby="passwordHelp"
+          />
+          <small id="passwordHelp" class="form-text text-muted"
+            >Enter a password with at least eight characters, one uppercase
+            letter, one lowercase letter, and one number.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="conf_password">Confirm Password</label>
+          <input
+            onkeyup="enableButton()"
+            type="conf_password"
+            class="form-control"
+            id="conf_password"
+            placeholder="Password"
+            aria-describedby="confHelp"
+          />
+          <small id="confHelp" class="form-text text-muted"
+            >Must match password entered above.</small
+          >
+        </div>
+        <div class="form-group form-check">
+          <input
+            onclick="enableButton()"
+            type="checkbox"
+            class="form-check-input"
+            id="checkbox"
+          />
+          <label class="form-check-label" for="checkbox"
+            >I have read over the <a href="#">Terms and Conditions</a></label
+          >
+        </div>
+        <button
+          id="submit_button"
+          type="submit"
+          class="btn btn-primary"
+          disabled
         >
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          onkeyup="enableButton()"
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="Password"
-          aria-describedby="passwordHelp"
-        />
-        <small id="passwordHelp" class="form-text text-muted"
-          >Enter a password with at least eight characters, one uppercase
-          letter, one lowercase letter, and one number.</small
-        >
-      </div>
-      <div class="form-group">
-        <label for="conf_password">Confirm Password</label>
-        <input
-          onkeyup="enableButton()"
-          type="conf_password"
-          class="form-control"
-          id="conf_password"
-          placeholder="Password"
-          aria-describedby="confHelp"
-        />
-        <small id="confHelp" class="form-text text-muted"
-          >Must match password entered above.</small
-        >
-      </div>
-      <div class="form-group form-check">
-        <input
-          onclick="enableButton()"
-          type="checkbox"
-          class="form-check-input"
-          id="checkbox"
-        />
-        <label class="form-check-label" for="checkbox"
-          >I have read over the <a href="#">Terms and Conditions</a></label
-        >
-      </div>
-      <button id="submit_button" type="submit" class="btn btn-primary" disabled>
-        Submit
-      </button>
-    </form>
+          Submit
+        </button>
+      </form>
+    </div>
   </body>
 </html>
