@@ -42,5 +42,24 @@ function displayAdd() {
 
 function addFriend(index) {
 	// Loop through and see if the friend is already there
-	
+ 	var include = false;
+	for (var i = 0; i < friends.length; i++) {
+		if (add[index] == friends[i]) {
+			include = true;
+		}
+	}
+
+	if (include) {
+		alert("You've already added this friend!");
+	}
+	else if (!include) {
+		friends.push(add[index]);
+		alert("You've added a new friend!");
+		var addon = document.getElementById("friendDisplay").innerHTML;
+		addon += '<div class="row"><div class="column" style="margin-right: auto; margin-left: auto"><div class="card"><h5 class="card-header" >';
+		addon += add[index].name;
+		addon += '</h5><button type="button" class="card-footer btn btn-primary" onclick="friendProfile(' + (friends.length - 1) + ')" data-toggle="modal" data-target="#friendProfile">Open Profile</button></div></div></div>'
+		document.getElementById("friendDisplay").innerHTML = addon;
+	}
+
 }
