@@ -1,0 +1,22 @@
+{
+  "name": "203_7_f20",
+  "version": "1.0.0",
+  "description": "envi app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSCI-3308-CU-Boulder/203_7_F20.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSCI-3308-CU-Boulder/203_7_F20/issues"
+  },
+  "homepage": "https://github.com/CSCI-3308-CU-Boulder/203_7_F20#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
