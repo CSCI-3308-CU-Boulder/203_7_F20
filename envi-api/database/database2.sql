@@ -6,7 +6,8 @@ CREATE TABLE users (
     firstname VARCHAR NOT NULL, 
     lastname VARCHAR NOT NULL, 
     email VARCHAR NOT NULL, 
-    birthday VARCHAR, 
+    image_id INT,
+    birthday DATE, 
     signupdate timestamp default current_timestamp
 );
 
