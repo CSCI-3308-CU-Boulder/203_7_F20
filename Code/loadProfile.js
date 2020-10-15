@@ -19,9 +19,9 @@ var exAch = [
 
 var exUser = {
   username: "username",
-  firstname: "Example",
-  lastname: "User",
+  name: "Example User",
   level: 1,
+  bottles_filled: 1,
   achievements: exAch,
   image_id: 3,
 };
@@ -83,11 +83,47 @@ function displayPicture(user) {
   document.getElementById("profile_picture").innerHTML = pic_string;
 }
 
+// function displayChangedInfo(user) {
+//   document.getElementById("name").innerHTML = user.name;
+//   var modalName = document.getElementById("modal_name").value;
+
+//   if (profileName != modalName) {
+//     document.getElementById("modal_name").innerHTML = profileName;
+//   }
+// }
+
 function displayInfo(user) {
   document.getElementById("username").innerHTML = user.username;
   document.getElementById("level").innerHTML = "Level: " + user.level;
-  document.getElementById("name").innerHTML =
-    user.firstname + " " + user.lastname;
+  document.getElementById("bottles_filled").innerHTML = "Bottles Filled: " + user.bottles_filled;
+  document.getElementById("name").innerHTML = user.name;
+  // document.getElementById("modal_name").innerHTML;
+
+}
+
+function updateInfo() {
+  if (document.getElementById("modal_name").innerHTML != document.getElementById("name")) {
+    document.getElementById("name").innerHTML = document.getElementById("modal_name").value;
+  }
+
+  if (document.getElementById("modal_username").innerHTML != document.getElementById("username")) {
+    document.getElementById("username").innerHTML = document.getElementById("modal_username").value;
+  }
+}
+// function displayInfo(user) {
+//   document.getElementById("username").innerHTML = user.username;
+//   document.getElementById("level").innerHTML = "Level: " + user.level;
+//   document.getElementById("name").innerHTML = user.name;
+//   // document.getElementById("modal_name").innerHTML;
+
+//   if (user.name != document.getElementById("modal_name").value) {
+//     document.getElementById("modal_name").innerHTML = user.name;
+//   }
+// }
+
+function onClick() {
+  updateProfile();
+  displayInfo(user);
 }
 
 function loadProfile() {
