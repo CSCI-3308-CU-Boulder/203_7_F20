@@ -179,7 +179,8 @@ function signup() {
         console.log(response)
         if (!response.data.error) {
           // Redirect with success
-          window.location.pathname = "/203_7_F20/Code/userProfile.html#" + username;
+          document.cookie = "username=" + username;
+          window.location.pathname = "/203_7_F20/Code/userProfile.html";
         }
       }).catch((err) => {
         alert("Error signing up, please try again later.")

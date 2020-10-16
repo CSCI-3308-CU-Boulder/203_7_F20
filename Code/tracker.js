@@ -53,30 +53,34 @@ var count = 0;
 var level = 0
 var bottles_filled = 0;
 var baseUrl = "http://localhost:5000"
+var username = "mteets4"
 
 $(document).ready(function () {
   loadBottles()
 })
 
 function loadBottles() {
-  axios
-    .get(baseUrl + "/users/mteets4")
-    .then(function (response) {
-      // handle success
-      console.log(response.data);
-      level = Math.floor(response.data.num_bottles / 5);
-      count = response.data.num_bottles % 5;
-      setImage()
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
+  if (document.cookie.length > 0) {
+    username = document.cookie.split('=')[1]
+    axios
+      .get(baseUrl + "/users/" + username)
+      .then(function (response) {
+        // handle success
+        console.log(response.data);
+        level = Math.floor(response.data.num_bottles / 5);
+        count = response.data.num_bottles % 5;
+        setImage()
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+  }
 }
 
 function taskComplete() {
   count++;
-  axios.post(baseUrl + "/users/mteets4/completeTask", {}).then((response) => {
+  axios.post(baseUrl + "/users/" + username + "/completeTask", {}).then((response) => {
     console.log(response);
   });
   if (count % 5 == 0) {
@@ -100,6 +104,6 @@ function setImage() {
   } else if (count == 4) {
     document.getElementById("bottle").src = "./assets/waterBottle4.jpg";
   }
-  document.getElementById("bottle_count").innerHTML = count + 1;
-  document.getElementById("level").innerHTML = level;
+  document.getElementById("bottle_count").innerHTML = count;
+  document.getElementById("level").innerHTML = level + 1;
 }

@@ -6,6 +6,25 @@ const query = require('../db')
 // it allows you to use async functions as route handlers
 const router = new Router()
 
+const exAch = [
+    //hardcoded user achievements
+    {
+        name: "Demo Achievement 1",
+        description: "demo description text 1",
+        image: "./assets/envi.png",
+    },
+    {
+        name: "Demo Achievement 2",
+        description: "demo description text 2",
+        image: "./assets/envi.png",
+    },
+    {
+        name: "Demo Achievement 3",
+        description: "demo description text 3",
+        image: "./assets/envi.png",
+    },
+];
+
 // Get user from either user id or username
 router.use('/:id', async (req, res, next) => {
     let { id } = req.params
@@ -20,7 +39,8 @@ router.use('/:id', async (req, res, next) => {
             name: name,
             image_id: image_id,
             email: email,
-            num_bottles: num_bottles
+            num_bottles: num_bottles,
+            achievements: exAch
         }
         next()
     } else {

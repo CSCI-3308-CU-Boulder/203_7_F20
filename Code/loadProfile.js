@@ -20,11 +20,9 @@ var exAch = [
 var exUser = {
   username: "username",
   name: "Example User",
-  level: 1,
-  bottles_filled: 1,
+  num_bottles: 1,
   achievements: exAch,
   image_id: 3,
-  bottles_filled: 30,
 };
 
 var images = [
@@ -87,8 +85,8 @@ function displayPicture(user) {
 
 function displayInfo(user) {
   document.getElementById("username").innerHTML = user.username;
-  document.getElementById("level").innerHTML = "Level: " + user.level;
-  document.getElementById("bottles_filled").innerHTML = "Bottles Filled: " + user.bottles_filled;
+  document.getElementById("level").innerHTML = "Level: " + (Math.floor(user.num_bottles / 5) + 1);
+  document.getElementById("bottles_filled").innerHTML = "Bottles Filled: " + user.num_bottles;
   document.getElementById("name").innerHTML = user.name;
   // document.getElementById("modal_name").innerHTML;
 
@@ -146,32 +144,34 @@ function onClick() {
 function loadProfile() {
 
   // get user data from test server
+  if (document.cookie.length > 0) {
+    // Get username from cookie
+    let username = document.cookie.split(';')[0].split('=')[1]
+    axios
+    .get("http://localhost:5000/users/" + username)
+    .then(function (response) {
+      // handle success
+      console.log(response);
+      var user = response.data;
+      displayPicture(user);
+      displayAchievements(user);
+      displayInfo(user);
+    })
+    .catch(function (error) {
+      loadExampleUser()
+      // handle error
+      console.log(error);
+    })
+  } else {
+    loadExampleUser()
+  }
+}
 
-  // axios
-  //   .get("http://localhost:5000/users/mteets4")
-
-  //   .then(function (response) {
-  //     // handle success
-  //     console.log(response);
-  //     var user = response.data;
-  //     displayPicture(user);
-  //     displayAchievements(user);
-  //     displayInfo(user);
-  //   })
-  //   .catch(function (error) {
-  //     // handle error
-  //     console.log(error);
-  //   })
-  //   .then(function () {
-  //     // always executed
-  //   });
-
-  
-
+function loadExampleUser() {
   //RUN HARDCODED EXAMPLE (NO SERVER CALL)
   //comment out above code and uncomment this section to see example
   displayPicture(exUser);
   displayAchievements(exUser);
   displayInfo(exUser);
-  
 }
+

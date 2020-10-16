@@ -14,7 +14,7 @@ var add = [{name: "Surya Kanoria", level: 10, bottle_filled: 50, acheivements: "
 window.onload = function displayFriends() {
   var load = "";
   for (var i = 0; i < friends.length; i++) {
-    load += ('<div class="row"><div class="column" style="margin-right: auto; margin-left: auto"><div class="card"><h5 class="card-header" >');
+    load += ('<div class="row"><div class="column col-sm-10" style="margin-right: auto; margin-left: auto"><div class="card"><h5 class="card-header" >');
     load += (friends[i].name);
     load += ('</h5><button type="button" class="btn btn-info" onclick="friendProfile(' + i + ')" data-toggle="modal" data-target="#friendProfile">Open Profile</button></div></div></div></br>');
   }
@@ -56,7 +56,7 @@ function addFriend(index) {
 		friends.push(add[index]);
 		alert("You've added a new friend!");
 		var addon = document.getElementById("friendDisplay").innerHTML;
-		addon += '<div class="row"><div class="column" style="margin-right: auto; margin-left: auto"><div class="card"><h5 class="card-header" >';
+		addon += '<div class="row"><div class="column col-sm-10" style="margin-right: auto; margin-left: auto"><div class="card"><h5 class="card-header" >';
 		addon += add[index].name;
 		addon += '</h5><button type="button" class="btn btn-info" onclick="friendProfile(' + (friends.length - 1) + ')" data-toggle="modal" data-target="#friendProfile">Open Profile</button></div></div></div></br>'
 		document.getElementById("friendDisplay").innerHTML = addon;
