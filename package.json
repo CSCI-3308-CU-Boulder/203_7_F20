@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
+  "keywords": [
+    "heroku"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CSCI-3308-CU-Boulder/203_7_F20.git"
@@ -19,5 +22,8 @@
   "homepage": "https://github.com/CSCI-3308-CU-Boulder/203_7_F20#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "10.19.0"
   }
 }
