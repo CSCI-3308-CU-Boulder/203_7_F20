@@ -6,7 +6,6 @@ var path = require('path');
 app.use(express.static(path.join(__dirname)));
 app.use("/Code", express.static(__dirname + '/Code'));
 app.use("/assets", express.static(__dirname + '/Code' + '/assets'));
-//app.use("/envi-app", express.static(__dirname + '/envi-app'));
 
 // viewed at based directory http://localhost:8080/
 app.get('/', function (req, res) {
