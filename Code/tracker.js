@@ -107,3 +107,52 @@ function setImage() {
   document.getElementById("bottle_count").innerHTML = count;
   document.getElementById("level").innerHTML = level + 1;
 }
+
+/**
+class task {
+  var name;
+  var description;
+  var type;
+  var bottlesWorth;
+  contructor(name, description, type, bottlesWorth) {
+    this.name = name;
+    this.description = description;
+    this.type = type;
+    this.bottlesWorth = bottlesWorth;
+  }
+  function getName() {
+    return name;
+  }
+  function getDescription() {
+    return description;
+  }
+  function getType() {
+    return type;
+  }
+  function getWorth() {
+    return bottlesWorth;
+  }
+}
+*/
+
+var task = [{name:'Brought reusable water bottle', description:'I brought a reusable water bottle instead of a plastic bottle.', type:'reuse', bottlesWorth:1}];
+
+function addTask() {
+  // Opens a modal that will intake the information and then add the task into a list of tasks that will display as cards
+  //.push() method
+
+
+}
+
+window.onload = function displayTasks() {
+  for (var i = 0; i < task.length; i++) {
+    document.getElementById("tasks").innerHTML += "<div class='card'><div class='card-title'><p>" + task[i].name + "</p></div><div class='card-body><p>" + task[i].description + "</p></div></div>";
+
+
+    // Add the bottles added and then delete and complete task buttons
+  }
+}
+
+function deleteTask() {
+
+}

@@ -86,7 +86,16 @@
       <!-- Page content -->
       <div class="main" style="margin-left: 150px">
         <div class="container">
-        <img id="bottle" src="./assets/waterBottle.jpg" alt="Water Bottle" />
+        <div class="row">
+          <img id="bottle" src="./assets/waterBottle.jpg" alt="Water Bottle" />
+          <div class="card" style="width: 45%;">
+            <div class="card-header text-center"><h5>My Progress</h5></div>
+            <div class="card-title text-right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTask" onclick="addTask()">Add Task</button></div>
+            <div class="card-body" id="tasks">
+              <!-- Function to add new cards for every new task added-->
+            </div>
+          </div>
+        </div>
         <p></p>
         <button class="btn btn-primary" onclick="taskComplete()">Complete Task</button>
         <button class="btn btn-primary" onclick="resetToEmpty()">Reset to Empty</button>
@@ -105,6 +114,22 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div id="addTask" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Add Task</h4>
+            </div>
+            <div class="modal-body">
+              
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
       </div>
     </div>
