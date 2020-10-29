@@ -1,0 +1,1 @@
+INSERT INTO users(username, password, name, email, image_id, birthday) values ('matthewteta', '$2b$10$XYf0qqXrtnt8wWukQDr2xOOxAZ6Iauk..MMMZWU4K94htBOLNJgti', 'Matthew', 'matthew.teta@colorado.edu', 0, 'Aug/13/2001');

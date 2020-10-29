@@ -66,5 +66,9 @@ router.get('/:id/', (req, res) => {
     res.json(req.userObj)
 })
 
+// Update profile info
+// Get friends
+// Add friend
+
 module.exports = router
 export {}
