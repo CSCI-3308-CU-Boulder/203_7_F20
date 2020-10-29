@@ -56,6 +56,9 @@ app.get('/search.js', function (req, res) {
 app.get('/tracker.js', function (req, res) {
   res.sendFile(path.join(__dirname + '/Code/tracker.js'));
 });
+app.get('/envi_style.css', function (req, res) {
+  res.sendFile(path.join(__dirname + '/Code/envi_style.css'));
+});
 
 
 //where the app is hosted
