@@ -83,13 +83,16 @@ function taskComplete() {
   axios.post(baseUrl + "/users/" + username + "/completeTask", {}).then((response) => {
     console.log(response);
   });
+
+  // Make the task card disappear
+
+
   if (count % 5 == 0) {
     level++;
-    count = 0
     alert("Congratulations you leved up!");
     count = 0;
   }
-  setImage()
+  setImage();
 }
 
 function setImage() {
@@ -135,7 +138,7 @@ class task {
 }
 */
 
-var task = [{name:'Brought reusable water bottle', description:'I brought a reusable water bottle instead of a plastic bottle.', type:'reuse', bottlesWorth:1}];
+var task = [{name:'Brought reusable water bottle', description:'I brought a reusable water bottle instead of a plastic bottle.', type:'reuse'}];
 
 function addTask() {
   // Opens a modal that will intake the information and then add the task into a list of tasks that will display as cards
@@ -146,7 +149,8 @@ function addTask() {
 
 window.onload = function displayTasks() {
   for (var i = 0; i < task.length; i++) {
-    document.getElementById("tasks").innerHTML += "<div class='card'><div class='card-title'><p>" + task[i].name + "</p></div><div class='card-body><p>" + task[i].description + "</p></div></div>";
+    document.getElementById("tasks").innerHTML += "<div class='card'><div class='card-title text-center'><h6>" + task[i].name + "</h6></div><div class='card-body><p>" + task[i].description + "</p></div>";
+    document.getElementById("tasks").innerHTML += "<div class='card-footer'><button class='btn-sm btn-primary' onclick='taskComplete()'>Complete Task</button></div>";
 
 
     // Add the bottles added and then delete and complete task buttons
