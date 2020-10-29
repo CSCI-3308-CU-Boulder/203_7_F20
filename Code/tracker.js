@@ -85,6 +85,7 @@ function taskComplete() {
   });
 
   // Make the task card disappear
+  // Call the deleteTask() function
 
 
   if (count % 5 == 0) {
@@ -136,13 +137,16 @@ function addTask() {
 
 window.onload = function displayTasks() {
   for (var i = 0; i < task.length; i++) {
-    document.getElementById("tasks").innerHTML += "<div class='card'><div class='card-title text-center'><h5>" + task[i].name + "</h5></div><div class='card-body' style='font-size: 12pt'><p>" + task[i].description + "</p></div>";
-    document.getElementById("tasks").innerHTML += "<div class='card-footer'><button class='btn-sm btn-primary' onclick='taskComplete()'>Complete Task</button></div>";
+    document.getElementById("tasks").innerHTML += "<div class='card' id='task" + i +"'><div class='card-title text-center'><h5>" + task[i].name + "</h5></div><div class='card-body' style='font-size: 12pt'><p>" + task[i].description + "</p></div>";
+    document.getElementById("tasks").innerHTML += "<div class='card-footer'><button class='btn-sm btn-primary float-left' onclick='taskComplete()'>Complete Task</button><button class='btn-sm btn-danger float-right' onclick='deleteTask(task" + i + ")'>Delete Task</button></div>";
 
     // Add the delete task button
   }
 }
 
-function deleteTask() {
+function deleteTask(taskid) {
+  // Delete the task number based on the taskid
+  var deletet = document.getElementById(taskid);
+  deletet.remove();
 
 }
