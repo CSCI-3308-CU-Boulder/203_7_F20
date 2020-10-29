@@ -8,6 +8,7 @@ CREATE TABLE users (
     image_id INT,
     birthday DATE,
     num_bottles INT NOT NULL,
+    level INT default = 0,
     signupdate timestamp default current_timestamp
 );
 
