@@ -41,7 +41,7 @@ var images = [
 function createAchievement(ach) {
   //builds string to insert card into html
   var cardStr =
-    '<div class = "card flex-row flex-wrap bg-lightblue" style="border: hidden; margin-bottom: 10px; border-radius: calc(0.75rem - 1px)">\
+    '<div class = "card flex-row flex-wrap theme-light" style="border: hidden; margin-bottom: 10px; border-radius: calc(0.75rem - 1px)">\
     <div class="card-header" style="background-color: transparent; padding-top: 0.5rem;\
     padding-right: 0.25rem;\
     padding-bottom: 0rem;\
