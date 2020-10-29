@@ -97,7 +97,6 @@
           </div>
         </div>
         <p></p>
-        <button class="btn btn-primary" onclick="taskComplete()">Complete Task</button>
         <button class="btn btn-primary" onclick="resetToEmpty()">Reset to Empty</button>
         <p></p>
         <table class="table">
@@ -123,7 +122,21 @@
               <h4 class="modal-title">Add Task</h4>
             </div>
             <div class="modal-body">
-              
+              <form>
+                <label for="taskName">Task Name</label><br>
+                <input type="text" id="taskName" name="taskName" required><br>
+                <label for="descr">Description (Optional)</label><br>
+                <input type="text" id="descr" name="descr"><br>
+                <label for="type">Type</label><br>
+                <select name="type" id="type" required>
+                  <option value="" disabled selected>Choose Type</option>
+                  <option value="reduce" id="reduce">Reduce</option>
+                  <option value="reuse" id="reuse">Reuse</option>
+                  <option value="recycle" id="recycle">Recycle</option>
+                </select>
+                <br><br>
+                <input type="submit" value="Submit" onclick="addTask()">
+              </form>
             </div>
           </div>
           <div class="modal-footer">
