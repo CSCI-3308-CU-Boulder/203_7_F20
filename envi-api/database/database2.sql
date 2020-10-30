@@ -28,7 +28,7 @@ CREATE TABLE actions_link (
 CREATE TABLE achievments (
     user_id INT NOT NULL, 
     achievments_id_array int[], 
-    FOREIGN KEY(user_id) REFERENCES users(id)
+    FOREIGN KEY(id) REFERENCES users(id)
 );
 
 CREATE TABLE  achievments_list (
@@ -39,5 +39,19 @@ CREATE TABLE  achievments_list (
 CREATE TABLE actions_list (
     actions_id INT NOT NULL, 
     action_name VARCHAR NOT NULL
+);
+
+CREATE TABLE company (
+    company_id INT PRIMARY KEY NOT NULL
+    company_name VARCHAR(100) NOT NULL,
+    description VARCHAR(1000),
+    url VARCHAR(100)
+);
+
+CREATE TABLE donations (
+    FOREIGN KEY(id) REFERENCES users(id),
+    FOREIGN KEY(company_id) REFERENCES company(company_id),
+    amount DECIMAL NOT NULL,
+    message VARCHAR(100)
 );
 
