@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>envi</title>
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon-32.png"/>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./signup.css">
+
+    <nav class="navbar bg-dark navbar-expand-lg">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="../home/">Home</a>
+        </li>
+      </ul>
+    </nav>
+  </head>
+  <body>
+    <div class="container">
+      <p>
+        <h6>Welcome to Envi! Please fill out the information below to create your
+        account.</h6>
+      </p>
+      <form action="#" onsubmit="signup()">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input
+            onkeyup="enableButton()"
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            onkeyup="enableButton()"
+            type="name"
+            class="form-control"
+            id="username"
+            placeholder="Choose a username"
+          />
+          <small id="passwordHelp" class="form-text text-muted"
+            >This is the name that will be displayed on your profile.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            onkeyup="enableButton()"
+            type="name"
+            class="form-control"
+            id="name"
+            placeholder="Enter name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            onkeyup="enableButton()"
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+            aria-describedby="passwordHelp"
+          />
+          <small id="passwordHelp" class="form-text text-muted"
+            >Enter a password with at least eight characters, one uppercase
+            letter, one lowercase letter, and one number.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="conf_password">Confirm Password</label>
+          <input
+            onkeyup="enableButton()"
+            type="password"
+            class="form-control"
+            id="conf_password"
+            placeholder="Password"
+            aria-describedby="confHelp"
+          />
+          <small id="confHelp" class="form-text text-muted"
+            >Must match password entered above.</small
+          >
+        </div>
+
+        <p>Please choose a profile picture:</p>
+        <div onclick="choosePicture()">
+        <div class="row">
+            <div class="col">
+              <img src="../assets/colorEarth.jpg" width="100" id="0">
+            </div>
+            <div class="col">
+              <img src="../assets/envi.png" width="100" id="1">
+            </div>
+            <div class="col" >
+              <img src="../assets/environmentalist.jpg" width="100" id="2">
+            </div>
+            <div class="col" >
+              <img src="../assets/flatirons.png" width="100" id="3">
+            </div>
+            <div class="col">
+              <img src="../assets/flowers.jpg" width="100" id="4">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <img src="../assets/hydroflask.jpg" width="100" id="5">
+            </div>
+            <div class="col">
+              <img src="../assets/ice.jpg" width="100" id="6">
+            </div>
+            <div class="col">
+              <img src="../assets/mountains.png" width="100" id="7">
+            </div>
+            <div class="col">
+              <img src="../assets/plant.jpg" width="100" id="8">
+            </div>
+            <div class="col">
+              <img src="../assets/recycling.jpeg" width="100" id="9">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group form-check">
+          <input
+            onclick="enableButton()"
+            type="checkbox"
+            class="form-check-input"
+            id="checkbox"
+          />
+          <label class="form-check-label" for="checkbox"
+            >I have read over the <a href="#">Terms and Conditions</a></label
+          >
+        </div>
+        <button
+          id="submit_button"
+          type="submit"
+          class="btn btn-primary"
+          disabled
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="./signupForm.js"></script>
+  </body>
+</html>

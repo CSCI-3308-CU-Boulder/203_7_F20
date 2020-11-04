@@ -15,3 +15,4 @@ module.exports = app => {
     app.use('/api/donate', donate)
     // etc..
 }
+export {}

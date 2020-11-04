@@ -1,6 +1,5 @@
 const Router = require('express-promise-router')
 const query = require('../db')
-var pgp = require('pg-promise')();
 
 // create a new express-promise-router
 // this has the same API as the normal express router except
@@ -12,13 +11,13 @@ const router = new Router()
 // post donate
 // donations by user
 // donation totals by user
-const dbConfig = {
-	host: 'localhost',
-	port: 5432,
-	database: 'envi_db',
-	user: 'postgres',
-	password: 'pwd'
-};
+// const dbConfig = {
+// 	host: 'localhost',
+// 	port: 5432,
+// 	database: 'envi_db',
+// 	user: 'postgres',
+// 	password: 'pwd'
+// };
 
 router.post('/donate', function(req, res) {
     var donationID = req.body.donate_id;
@@ -27,12 +26,11 @@ router.post('/donate', function(req, res) {
     var amount = req.body.donate_amount;
     var message = req.body.donate_message;
     var updateQuery = `INSERT INTO donations (donation_id, id, company_id, amount, message) VALUES ('${donationID}', '${userID}', '${companyID}', '${amount}', '${message}') )`;
-    db.query(updateQuery, function (error, results, fields) {
+    query(updateQuery, function (error, results, fields) {
         if (error) throw error;
         res.send(JSON.stringify(results));
     });
 })
-var db = pgp(dbConfig);
 
 module.exports = router
 export {}
