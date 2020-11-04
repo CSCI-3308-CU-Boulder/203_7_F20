@@ -42,12 +42,12 @@
 //   }
 // }
 
-// function resetToEmpty() {
-//   count = 0;
-//   bottlesFilled = 0;
-//   document.getElementById("bottle").src = "./assets/waterBottle.jpg";
-//   document.getElementById("bottle_count").innerHTML = bottlesFilled;
-// }
+function resetToEmpty() {
+   count = 0;
+   bottlesFilled = 0;
+   document.getElementById("bottle").src = "../assets/waterBottle.jpg";
+   document.getElementById("bottle_count").innerHTML = bottlesFilled;
+ }
 
 var count = 0;
 var level = 0
