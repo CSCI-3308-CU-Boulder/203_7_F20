@@ -20,7 +20,7 @@ const dbConfig = {
 	password: 'pwd'
 };
 
-router.post('/users/:username/updateInfo', function(req, res) {
+router.post('/donate', function(req, res) {
     var donationID = req.body.donate_id;
     var companyID = req.body.company_id;
     var userID = req.body.user_id;

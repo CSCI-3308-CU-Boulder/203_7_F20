@@ -2,6 +2,7 @@
 const login = require('./login')
 const signup = require('./signup')
 const users = require('./user')
+const donate = require('./donate')
 
 
 module.exports = app => {
@@ -11,5 +12,6 @@ module.exports = app => {
     app.use('/login', login)
     app.use('/signup', signup)
     app.use('/users', users)
+    app.use('/donate', donate)
     // etc..
 }
