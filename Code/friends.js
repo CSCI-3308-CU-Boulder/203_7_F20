@@ -30,6 +30,8 @@ var exFriends = [
 
 function createAchievement(friendAch) {
     //builds string to insert card into html
+    // var v = true;
+    // var count = 0;
     var cardStr =
         '<div class = "card flex-row flex-wrap theme-light" style="border: hidden; margin-bottom: 10px; border-radius: calc(0.75rem - 1px)">\
       <div class="card-header" style="background-color: transparent; padding-top: 0.5rem;\
