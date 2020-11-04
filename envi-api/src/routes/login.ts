@@ -10,6 +10,8 @@ const router = new Router()
 // router.post('/', (req, res) => {
 //     res.send('test')
 // })
+
+// "/login/"
 router.post('/', (req, res, next) => {
     console.log(req.body)
     next()
@@ -27,7 +29,17 @@ router.post('/', (req, res, next) => {
       } else if (!user) {
         res.status(401).send(info);
       } else {
-        res.send("update plz")
+        let { id, username, name, email, image_id, birthday, num_bottles, signupdate } = user;
+        res.json({
+          id,
+          username,
+          name,
+          email,
+          image_id,
+          birthday,
+          num_bottles,
+          signupdate
+        })
       }
 
       res.status(401).send(info);

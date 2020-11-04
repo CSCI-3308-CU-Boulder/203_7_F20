@@ -1,5 +1,6 @@
 const Router = require('express-promise-router')
 const query = require('../db')
+const { forwardAuthenticated } = require('../config/auth');
 
 // create a new express-promise-router
 // this has the same API as the normal express router except
@@ -50,7 +51,7 @@ router.use('/:id', async (req, res, next) => {
     }
 })
 
-router.post('/:id/completeTask', async (req, res) => {
+router.post('/:id/completeTask', forwardAuthenticated, async (req, res) => {
     req.userObj.num_bottles++
     const response = await query("UPDATE users SET num_bottles = $1 WHERE id = $2", [req.userObj.num_bottles, req.userObj.id])
     if (response) {
@@ -63,7 +64,13 @@ router.post('/:id/completeTask', async (req, res) => {
 })
 
 router.get('/:id/', (req, res) => {
-    res.json(req.userObj)
+    console.log(req.user)
+    if (req.isAuthenticated()) {
+        res.json(req.user)
+    } else {
+        // Send a subset of user information if not authenticated
+        res.json({test:"test"})
+    }
 })
 
 // Update profile info
