@@ -117,7 +117,7 @@ img {
 
 .theme-dark {
   /*dark background and white text (as seen in username display*/
-  background-color: #699696 !important;
+  background-color: #699696 ;
   color: white;
 }
 
