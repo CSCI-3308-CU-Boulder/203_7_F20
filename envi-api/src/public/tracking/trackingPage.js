@@ -86,6 +86,7 @@ function taskComplete() {
 
   // Make the task card disappear
   // Call the deleteTask() function
+  deleteTask();
 
 
   if (count % 5 == 0) {
@@ -112,41 +113,42 @@ function setImage() {
   document.getElementById("level").innerHTML = level + 1;
 }
 
-var task = [{name:'Brought reusable water bottle', description:'I brought a reusable water bottle instead of a plastic bottle.', type:'reuse'}];
+var task = [{name:'a', description:'b', type:'reuse'}];
 
 function addTask() {
   // Opens a modal that will intake the information and then add the task into a list of tasks that will display as cards
   //.push() method
 
-  var typeName = "";
+  /**
+  task[task.length].name = document.getElementById("taskName").value;
+  task[task.length].description = document.getElementById("descr").value;
+  task[task.length].type = document.getElementById("type").value;
+  */
 
-  if (document.getElementById("type").value == "reduce") {
-    typeName = "reduce";
-  }
-  else if (document.getElementById("type").value == "reuse") {
-    typeName = "reuse";
-  }
-  else if (document.getElementById("type").value == "recycle") {
-    typeName = "recycle";
-  }
-
-  task.push({name: document.getElementById("taskName"), description: document.getElementById("descr"), type: typeName});
+  task.push({name: document.getElementById("taskName").value, description: document.getElementById("descr").value, type: document.getElementById("type").value});
 
   displayTasks();
 }
 
-window.onload = function displayTasks() {
+
+
+function displayTasks() {
+  // Displaying the tasks
+  var output = "";
+
   for (var i = 0; i < task.length; i++) {
-    document.getElementById("tasks").innerHTML += "<div class='card' id='task" + i +"'><div class='card-title text-center'><h5>" + task[i].name + "</h5></div><div class='card-body' style='font-size: 12pt'><p>" + task[i].description + "</p></div>";
-    document.getElementById("tasks").innerHTML += "<div class='card-footer'><button class='btn-sm btn-primary float-left' onclick='taskComplete()'>Complete Task</button><button class='btn-sm btn-danger float-right' onclick='deleteTask(task" + i + ")'>Delete Task</button></div>";
-
-    // Add the delete task button
+    output += "<div class='card'><div class='card-header'>" + task[i].name + "</div><div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + "</p></div></div><div class='card-footer'><button class='btn btn-primary' onclick='taskComplete()' style='float: left'>Complete Task</button><button class='btn btn-danger' onclick='deleteTask()' style='float: right'>Delete Task</button></div>";
   }
+
+  document.getElementById("tasks").innerHTML = output;
 }
 
-function deleteTask(taskid) {
+function deleteTask() {
   // Delete the task number based on the taskid
-  var deletet = document.getElementById(taskid);
-  deletet.remove();
+  // an int i that should represent where in the array the task is
+
+  // Setting the task to default
 
 }
+
+window.onload = displayTasks();
