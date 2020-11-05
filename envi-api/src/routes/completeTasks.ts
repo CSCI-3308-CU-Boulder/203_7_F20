@@ -14,8 +14,9 @@ const dbConfig = {
 router.get('/username/:completeTasks', async (req, res) =>
 {
     var actionsID = req.query.action_id; //example name
+    var actionName = req.query.action_name;
     var actionDescript = req.query.action_description;
-    var update = `INSERT INTO action_list (action_id, action_name) VALUES ('${actionsID}', '${actionDescript}')`;
+    var update = `INSERT INTO action_list (action_id, action_name, action_description) VALUES ('${actionsID}', '${actionName}' '${actionDescript}')`;
     db.query(update, function (error, results, fields) {
         if (error) throw error;
         res.send(JSON.stringify(results));
