@@ -29,10 +29,12 @@ module.exports = function(passport, query) {
     });
   
     passport.deserializeUser(function(id, done) {
-        query('SELECT id, username FROM users WHERE id = $1', [parseInt(id, 10)], (err, results) => {
-            console.log("yo")
-            return done(err, results.rows[0])
-        })
+        query('SELECT * FROM users WHERE id = $1', [parseInt(id, 10)])
+          .then(results => {
+            delete results.rows[0].password
+            done(null, results.rows[0])
+          })
+          .catch(err => done(err, null))
     });
   };
 

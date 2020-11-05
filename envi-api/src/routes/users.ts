@@ -1,6 +1,6 @@
 const Router = require('express-promise-router')
 const query = require('../db')
-const { forwardAuthenticated } = require('../config/auth');
+const { ensureAuthenticated } = require('../config/auth');
 
 // create a new express-promise-router
 // this has the same API as the normal express router except
@@ -27,50 +27,51 @@ const exAch = [
 ];
 
 // Get user from either user id or username
-router.use('/:id', async (req, res, next) => {
+router.use('/:id', (req, res, next) => {
     let { id } = req.params
-    let mode = isNaN(parseInt(id)) ? "username" : "id"
-    let { rows } = await query(`SELECT * FROM users WHERE ${mode} = $1`, [id])
-    if (rows && rows.length > 0) {
-        const userDoc = rows[0];
-        const { id, username, name, image_id, email, num_bottles } = userDoc;
-        req.userObj = {
-            id: id,
-            username: username,
-            name: name,
-            image_id: image_id,
-            email: email,
-            num_bottles: num_bottles,
-            achievements: exAch
+    req.mode = isNaN(parseInt(id)) ? "username" : "id"
+    if (req.isAuthenticated()) {
+        if (id == req.user.username || id == req.user.id) {
+            // accessing logged in user data
+            return next()
         }
-        next()
-    } else {
-        res.json({
-            error: "User not found"
-        })
     }
+
+    // If not getting user data for logged in user, return public fields for requested user
+    query(`SELECT * FROM users WHERE ${req.mode} = $1`, [id])
+        .then(results => {
+            let { rows } = results
+            if (rows && rows.length > 0) {
+                const userDoc = rows[0]
+                const { username, image_id, num_bottles } = userDoc;
+                res.json({
+                    username: username,
+                    image_id: image_id,
+                    num_bottles: num_bottles,
+                    achievements: exAch
+                })
+            } else {
+                res.json({
+                    error: "User not found"
+                })
+            }
+        }).catch(err => res.json({ error: err }))
 })
 
-router.post('/:id/completeTask', forwardAuthenticated, async (req, res) => {
-    req.userObj.num_bottles++
-    const response = await query("UPDATE users SET num_bottles = $1 WHERE id = $2", [req.userObj.num_bottles, req.userObj.id])
-    if (response) {
-        res.json(req.userObj)
-    } else {
-        res.json({
-            error: response
-        })
-    }
-})
+// router.post('/:id/completeTask', ensureAuthenticated, async (req, res) => {
+//     req.userObj.num_bottles++
+//     const response = await query("UPDATE users SET num_bottles = $1 WHERE id = $2", [req.userObj.num_bottles, req.userObj.id])
+//     if (response) {
+//         res.json(req.userObj)
+//     } else {
+//         res.json({
+//             error: response
+//         })
+//     }
+// })
 
 router.get('/:id/', (req, res) => {
-    console.log(req.user)
-    if (req.isAuthenticated()) {
-        res.json(req.user)
-    } else {
-        // Send a subset of user information if not authenticated
-        res.json({test:"test"})
-    }
+    res.json(req.user)
 })
 
 // Update profile info
