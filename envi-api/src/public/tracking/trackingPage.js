@@ -86,7 +86,7 @@ function taskComplete() {
 
   // Make the task card disappear
   // Call the deleteTask() function
-  deleteTask();
+  // deleteTask();
 
 
   if (count % 5 == 0) {
@@ -113,7 +113,16 @@ function setImage() {
   document.getElementById("level").innerHTML = level + 1;
 }
 
-var task = [{name:'a', description:'b', type:'reuse'}];
+var task = [{name: 'a', description: 'b', type: 'reuse'}];
+
+
+var taskName = document.getElementById("taskName").value;
+var taskDesc = document.getElementById("descr").value;
+var taskType = document.getElementById("type").value;
+// var task = [{name: taskName, description: taskDesc, type:taskType}];
+console.log("initial task length = ", task.length);
+
+
 
 function addTask() {
   // Opens a modal that will intake the information and then add the task into a list of tasks that will display as cards
@@ -125,30 +134,75 @@ function addTask() {
   task[task.length].type = document.getElementById("type").value;
   */
 
-  task.push({name: document.getElementById("taskName").value, description: document.getElementById("descr").value, type: document.getElementById("type").value});
+  var taskName = document.getElementById("taskName").value;
+  var taskDesc = document.getElementById("descr").value;
+  var taskType = document.getElementById("type").value;
+  var task = [{name: taskName, description: taskDesc, type:taskType}];
 
+
+  // task.push({name: document.getElementById("taskName").value, description: document.getElementById("descr").value, type: document.getElementById("type").value});
+  task.push({name: taskName, description: taskDesc, type: taskType});
+  console.log("task length = ", task.length);
   displayTasks();
 }
 
-
-
+var counter = 0;
 function displayTasks() {
+console.log("hi");
   // Displaying the tasks
-  var output = "";
+  var taskName = document.getElementById("taskName").value;
+  var taskDesc = document.getElementById("descr").value;
+  var taskType = document.getElementById("type").value;
+  var task = [{name: taskName, description: taskDesc, type:taskType}];
 
+  var output = "";
   for (var i = 0; i < task.length; i++) {
-    output += "<div class='card'><div class='card-header'>" + task[i].name + "</div><div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + "</p></div></div><div class='card-footer'><button class='btn btn-primary' onclick='taskComplete()' style='float: left'>Complete Task</button><button class='btn btn-danger' onclick='deleteTask()' style='float: right'>Delete Task</button></div>";
+    output = "<div class='card' id="+ counter +"><div class='card-header' >" + task[i].name + "\
+    <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + " - " + task[i].type +"</p></div>\
+    <div class='card-footer'><button class='btn btn-primary' onclick='taskComplete()' style='float: left'>Complete Task</button>\
+    <button class='btn btn-danger' onclick='deleteTask(\""+counter+"\")' style='float: right'>Delete Task</button></div></div>";
+    counter++;
+
+    // console.log("displayTask i=",i);  
+    document.getElementById("tasks").innerHTML += output;
   }
 
-  document.getElementById("tasks").innerHTML = output;
+  
 }
 
-function deleteTask() {
+
+// function displayTasks() {
+
+//   // addTask();
+
+//   // Displaying the tasks
+//   var output = "";
+
+//   for (var i = 0; i < task.length; i++) {
+//     output = "<div class='card'><div class='card-header'>" + task[i].name + "</div>\
+//     <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + "</p></div></div>\
+//     <div class='card-footer'><button class='btn btn-primary' onclick='taskComplete()' style='float: left'>Complete Task</button>\
+//     <button type='button' class='btn btn-circle btn-sm btn-danger text-right' style=margin-right: 10px style=margin-top: 10px onclick='deleteTask()' style='float: right'></button></div>";
+
+//     document.getElementById("tasks").innerHTML += output;
+//     console.log("out = ", output);
+// }
+//}
+
+function deleteTask(i) {
   // Delete the task number based on the taskid
   // an int i that should represent where in the array the task is
 
   // Setting the task to default
 
+  console.log("delete Task being called");
+
+  
+  // console.log("task length = ", task.length);
+
+  document.getElementById(i).remove();
+
 }
+
 
 window.onload = displayTasks();
