@@ -78,7 +78,7 @@ function loadBottles() {
   }
 }
 
-function taskComplete() {
+function taskComplete(i) {
   count++;
   axios.post(baseUrl + "/api/users/" + username + "/completeTask", {}).then((response) => {
     console.log(response);
@@ -86,7 +86,7 @@ function taskComplete() {
 
   // Make the task card disappear
   // Call the deleteTask() function
-  // deleteTask();
+  deleteTask(i);
 
 
   if (count % 5 == 0) {
@@ -159,15 +159,15 @@ console.log("hi");
   for (var i = 0; i < task.length; i++) {
     output = "<div class='card' id="+ counter +"><div class='card-header' >" + task[i].name + "\
     <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + " - " + task[i].type +"</p></div>\
-    <div class='card-footer'><button class='btn btn-primary' onclick='taskComplete()' style='float: left'>Complete Task</button>\
+    <div class='card-footer'><button class='btn btn-primary' onclick='taskComplete(\""+counter+"\")' style='float: left'>Complete Task</button>\
     <button class='btn btn-danger' onclick='deleteTask(\""+counter+"\")' style='float: right'>Delete Task</button></div></div>";
     counter++;
 
-    // console.log("displayTask i=",i);  
+    // console.log("displayTask i=",i);
     document.getElementById("tasks").innerHTML += output;
   }
 
-  
+
 }
 
 
@@ -197,7 +197,7 @@ function deleteTask(i) {
 
   console.log("delete Task being called");
 
-  
+
   // console.log("task length = ", task.length);
 
   document.getElementById(i).remove();
