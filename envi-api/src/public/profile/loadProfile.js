@@ -129,24 +129,25 @@ function displayProfilePic(id) {
   }
 }
 
-function updateInfo() {
-  if (
-    document.getElementById("modal_name").innerHTML !=
-    document.getElementById("name")
-  ) {
-    document.getElementById("name").innerHTML = document.getElementById(
-      "modal_name"
-    ).value;
+function updateInfo(user) {
+  document.getElementById("name").innerHTML = user.name;
+  document.getElementById("username").innerHTML = user.username;
+
+  if (document.getElementById("modal_name").innerHTML != user.name) {
+    user.name = document.getElementById("modal_name").value;
   }
 
-  if (
-    document.getElementById("modal_username").innerHTML !=
-    document.getElementById("username")
-  ) {
-    document.getElementById("username").innerHTML = document.getElementById(
-      "modal_username"
-    ).value;
+  if (document.getElementById("modal_username").innerHTML != user.username) {
+    user.username = document.getElementById("modal_username").value;
   }
+  
+  // if (document.getElementById("modal_name").innerHTML != document.getElementById("name")) {
+  //   document.getElementById("name").innerHTML = document.getElementById("modal_name").value;
+  // }
+
+  // if (document.getElementById("modal_username").innerHTML !=document.getElementById("username")) {
+  //   document.getElementById("username").innerHTML = document.getElementById("modal_username").value;
+  // }
 }
 
 function onClick() {
@@ -177,6 +178,23 @@ function loadProfile() {
   } else {
     loadExampleUser();
   }
+}
+
+//add onclick for update profile form when clicking submit (create function below with axios get request for update info)
+function updateProfileInfo() {
+  updateInfo();
+  axios.get("http://localhost:5000/" + window.location.hash + "/updateInfo")
+  .then(function (response) {
+    console.log(response);
+    var user = response.data;
+    displayPicture(user);
+    updateInfo(user);
+    displayInfo(user);
+
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 }
 
 function loadExampleUser() {
