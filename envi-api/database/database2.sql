@@ -13,10 +13,10 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 -- -- creates linking table to array of friends
-CREATE TABLE IF NOT EXISTS friend_link (
-    user_id INT NOT NULL, 
-    friends_id_array int[], 
-    FOREIGN KEY(user_id) REFERENCES users(id)
+CREATE TABLE IF NOT EXISTS friends (
+    friendship_id INT NOT NULL,
+    FOREIGN KEY(user_1) REFERENCES users(id)
+    FOREIGN KEY(user_2) REFERENCES users(id)
 );
 
 
