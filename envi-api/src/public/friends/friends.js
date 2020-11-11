@@ -1,19 +1,19 @@
 var exFriendAch = [
     //hardcoded user achievements
     {
-        username: "myfriend1",
+        username: "samuelmast",
         name: "Demo Achievement 1",
         description: "demo description text 1",
         image: "../assets/flatirons.png",
     },
     {
-        username: "myfriend2",
+        username: "brianmayers",
         name: "Demo Achievement 2",
         description: "demo description text 2",
         image: "../assets/mountains.png",
     },
     {
-        username: "myfriend3",
+        username: "rebeccacoryell",
         name: "Demo Achievement 3",
         description: "demo description text 3",
         image: "../assets/ice.jpg",
@@ -22,18 +22,38 @@ var exFriendAch = [
 
 var exFriends = [
     {
-        username: "myfriend1",
-        name: "Friend 1",
+        username: "matthewteta",
+        name: "Matthew Teta",
         image: "../assets/profile_pic_placeholder.gif"
     },
     {
-        username: "myfriend2",
-        name: "Friend 2",
+        username: "sarahzendle",
+        name: "Sarah Zendle",
         image: "../assets/profile_pic_placeholder.gif"
     },
     {
-        username: "myfriend2",
-        name: "Friend 2",
+        username: "charliekoepke",
+        name: "Charlie Koepke",
+        image: "../assets/profile_pic_placeholder.gif"
+    },
+    {
+        username: "lakshyajaishankar",
+        name: "Lakshya Jaishankar",
+        image: "../assets/profile_pic_placeholder.gif"
+    },
+    {
+        username: "rebeccacoryell",
+        name: "Rebecca Coryell",
+        image: "../assets/profile_pic_placeholder.gif"
+    },
+    {
+        username: "brianmayers",
+        name: "Brian Mayers",
+        image: "../assets/profile_pic_placeholder.gif"
+    },
+    {
+        username: "samuelmast",
+        name: "Samuel Mast",
         image: "../assets/profile_pic_placeholder.gif"
     }
 ]
@@ -69,15 +89,15 @@ function buildFeed(achArr) {
 function createFriend(friend) {
 
     var cardStr =
-        `<div class="card mb-3 theme-dark rounded-all d-flex align-items-center" style = "max-width: 540px; max-height: 50px; border: none; border-radius: calc(3rem - 1px)" >
+        `<div class="card mb-3 theme-dark" style = "max-width: 540px; max-height: 50px; border: none; border-radius: calc(3rem - 1px)" >
     <div class="row no-gutters">
             <div class="col-md-1 d-flex align-items-center">
                 <img src="${friend.image}" style="width: 40px; border-radius: 50%; margin-left: 5px"
                 class="card-img" alt="">
             </div>
-            <div class="col-md-11 d-flex align-items-center">
+            <div class="col-md-11">
                 <div class="card-body">
-                <p class="card-text"> <b> ${friend.name} </b>  ${friend.username}</p>
+                <p class="card-text"> <b> ${friend.name} </b> ${friend.username}</p>
                 </div> </div> </div> </div >`;
 
     return cardStr;
