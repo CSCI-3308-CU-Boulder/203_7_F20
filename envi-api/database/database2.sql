@@ -36,9 +36,12 @@ CREATE TABLE  IF NOT EXISTS achievments_list (
     achievment_name VARCHAR NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS actions_list (
-    actions_id INT NOT NULL, 
-    action_name VARCHAR NOT NULL
+CREATE TABLE IF NOT EXISTS task_list (
+    task_id INT NOT NULL PRIMARY KEY, 
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    task_name VARCHAR NOT NULL,
+    task_description VARCHAR(100),
+    task_type VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS company (
@@ -49,8 +52,6 @@ CREATE TABLE IF NOT EXISTS company (
 );
 
 CREATE TABLE IF NOT EXISTS donations (
-    user_id INT NOT NULL,
-    company_id INT NOT NULL,
     FOREIGN KEY(user_id) REFERENCES users(id),
     FOREIGN KEY(company_id) REFERENCES company(company_id),
     amount DECIMAL NOT NULL,
