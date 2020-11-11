@@ -75,7 +75,7 @@ router.get('/:id/', (req, res) => {
 })
 
 // Update profile info
-router.post('/:id/updateInfo', function(req, res) {
+router.post('/:id/updateInfo', ensureAuthenticated, function(req, res) {
     var newUsername = req.body.modal_username;
     var newName = req.body.modal_name;
     var newImage = req.body.modal_image_id;

@@ -129,24 +129,25 @@ function displayProfilePic(id) {
   }
 }
 
-function updateInfo() {
-  if (
-    document.getElementById("modal_name").innerHTML !=
-    document.getElementById("name")
-  ) {
-    document.getElementById("name").innerHTML = document.getElementById(
-      "modal_name"
-    ).value;
+function updateInfo(user) {
+  document.getElementById("name").innerHTML = user.name;
+  document.getElementById("username").innerHTML = user.username;
+
+  if (document.getElementById("modal_name").innerHTML != user.name) {
+    user.name = document.getElementById("modal_name").value;
   }
 
-  if (
-    document.getElementById("modal_username").innerHTML !=
-    document.getElementById("username")
-  ) {
-    document.getElementById("username").innerHTML = document.getElementById(
-      "modal_username"
-    ).value;
+  if (document.getElementById("modal_username").innerHTML != user.username) {
+    user.username = document.getElementById("modal_username").value;
   }
+  
+  // if (document.getElementById("modal_name").innerHTML != document.getElementById("name")) {
+  //   document.getElementById("name").innerHTML = document.getElementById("modal_name").value;
+  // }
+
+  // if (document.getElementById("modal_username").innerHTML !=document.getElementById("username")) {
+  //   document.getElementById("username").innerHTML = document.getElementById("modal_username").value;
+  // }
 }
 
 function onClick() {
@@ -156,15 +157,15 @@ function onClick() {
 
 function loadProfile() {
   // get user data from test server
-  if (document.cookie.length > 0) {
+  if (window.location.hash != "" && window.location.hash.length > 1) {
     // Get username from cookie
-    let username = document.cookie.split(";")[0].split("=")[1];
+    let username = window.location.hash.split('#')[1]
     axios
-      .get("http://localhost:5000/users/" + username)
+      .get("http://localhost:5000/api/users/" + username)
       .then(function (response) {
         // handle success
-        console.log(response);
-        var user = response.data;
+        let user = response.data;
+        console.log(user);
         displayPicture(user);
         displayAchievements(user);
         displayInfo(user);
@@ -179,6 +180,24 @@ function loadProfile() {
   }
 }
 
+//add onclick for update profile form when clicking submit (create function below with axios get request for update info)
+function updateProfileInfo() {
+  let username = window.location.hash.split('#')[1]
+  axios.get("http://localhost:5000/api/users/" + username+ "/updateInfo")
+  .then(function (response) {
+    console.log(response);
+    let user = response.data;
+    console.log(user)
+    displayPicture(user);
+    updateInfo(user);
+    displayInfo(user);
+
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
 function loadExampleUser() {
   //RUN HARDCODED EXAMPLE (NO SERVER CALL)
   //comment out above code and uncomment this section to see example
@@ -191,3 +210,7 @@ function resetName() {
   document.getElementById("modal_name").disabled = false;
   // document.getElementById("last_name").disabled = false;
 }
+
+// $(document).ready(function () {
+//   loadProfile()
+// })

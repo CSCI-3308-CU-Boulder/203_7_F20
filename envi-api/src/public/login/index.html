@@ -16,9 +16,10 @@
 </head>
 <body>
   <!-- <form action="action.php" style="border:1px solid #ccc"> -->
-  <div class="container">
+  <div class="container" id="loginForm" style="display: none;">
     <br>
     <p> Please input your login credentials.</p>
+    <div class="alert alert-danger" role="alert" id="loginError"></div>
     <div class="form-group">
       <label for="username">Username</label>
       <input
@@ -48,13 +49,17 @@
       id="submit_button"
       type="submit"
       class="btn btn-primary"
-      href="../profile/"
+      onclick="submitLogin()"
       disabled
     >Login</button>
     
     
     
     <!-- </form> -->
+  </div>
+
+  <div class="container" id="logoutForm" style="display: none;">
+    <div class="form-group"><button type="submit" onclick="submitLogout()">Logout</button></div>
   </div>
   
   <!-- jQuery library -->
@@ -65,6 +70,12 @@
   
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- JS-Cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
   
   <script src="./loginForm.js"></script>
 </body>
