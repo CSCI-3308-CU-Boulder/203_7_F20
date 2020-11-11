@@ -157,15 +157,15 @@ function onClick() {
 
 function loadProfile() {
   // get user data from test server
-  if (document.cookie.length > 0) {
+  if (window.location.hash != "" && window.location.hash.length > 1) {
     // Get username from cookie
-    let username = document.cookie.split(";")[0].split("=")[1];
+    let username = window.location.hash.split('#')[1]
     axios
-      .get("http://localhost:5000/users/" + username)
+      .get("http://localhost:5000/api/users/" + username)
       .then(function (response) {
         // handle success
-        console.log(response);
-        var user = response.data;
+        let user = response.data;
+        console.log(user);
         displayPicture(user);
         displayAchievements(user);
         displayInfo(user);
@@ -182,11 +182,12 @@ function loadProfile() {
 
 //add onclick for update profile form when clicking submit (create function below with axios get request for update info)
 function updateProfileInfo() {
-  updateInfo();
-  axios.get("http://localhost:5000/" + window.location.hash + "/updateInfo")
+  let username = window.location.hash.split('#')[1]
+  axios.get("http://localhost:5000/api/users/" + username+ "/updateInfo")
   .then(function (response) {
     console.log(response);
-    var user = response.data;
+    let user = response.data;
+    console.log(user)
     displayPicture(user);
     updateInfo(user);
     displayInfo(user);
@@ -209,3 +210,7 @@ function resetName() {
   document.getElementById("modal_name").disabled = false;
   // document.getElementById("last_name").disabled = false;
 }
+
+// $(document).ready(function () {
+//   loadProfile()
+// })
