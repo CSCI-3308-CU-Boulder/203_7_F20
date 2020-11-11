@@ -75,8 +75,56 @@ router.get('/:id/', (req, res) => {
 })
 
 // Update profile info
-// Get friends
-// Add friend
+router.post('/:id/updateInfo', function(req, res) {
+    var newUsername = req.body.modal_username;
+    var newName = req.body.modal_name;
+    var newImage = req.body.modal_image_id;
+    var newEmail = req.body.defaultForm_email;
+    var updateQuery = "UPDATE users SET username ='" +newUsername+ "', name ='" +newName+"', image_id =" +newImage+ ", email ='" +newEmail+ "' WHERE id =$1";
+    console.log(updateQuery);
+    console.log(req.params);
+    let { id } = req.params;
+    console.log(id);
+    query(updateQuery, [id], function (error, results, fields) {
+        if (error) throw error;
+        res.send(JSON.stringify(results));
+    });
+    // successfully updated the database, but didn't do much after that?
+})
+
+
+// Get friends -- NOT DONE
+router.get('/users/:id/getFriends', async (req, res) => {
+    var friendQuery = "SELECT username, name, image_id, level FROM users WHERE id =$1";
+    let { id } = req.params;
+    console.log(friendQuery);
+    console.log(req.params);
+    console.log(id);
+    query(friendQuery, [id], function (error, results, fields) {
+        if(results) {
+            res.send('/friends.html', {
+                username: results[0],
+                name: results[1],
+                image_id: results[2],
+                level: results[3],
+            })
+        }
+        else {
+            throw error;
+        }
+    });
+})
+
+// Add friend -- NOT DONE
+router.post('/:id1/addFriend/:id2', function(req,res) {
+    var updateQuery = "UPDATE friend_link SET ___ WHERE user_id=$1"; // add friend id to the array
+    let { id } = req.params;
+    console.log(id)
+    query(updateQuery, [], function(error, results, fields) {
+        if (error) throw error;
+        res.send(JSON.stringify(results));
+    });
+})
 
 module.exports = router
 export {}
