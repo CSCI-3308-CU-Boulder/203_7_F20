@@ -20,15 +20,36 @@ var exFriendAch = [
     },
 ];
 
+// Every 5 levels you get an acheivement
+
 var exFriends = [
     {
         username: "myfriend1",
         name: "Friend 1",
-        image: "../assets/"
-    }
+        image: "../assets/flatirons.png",
+        level: 5,
+        bottle_filled: 25,
+        acheivements: 1,
+    },
+    {
+        username: "myfriend2",
+        name: "Friend 2",
+        image: "../assets/mountains.png",
+        level: 10,
+        bottle_filled: 50,
+        acheivements: 2,
+    },
+    {
+        username: "myfriend3",
+        name: "Friend 3",
+        image: "../assets/ice.jpg",
+        level: 5,
+        bottle_filled: 28,
+        acheivements: 1,
+    },
 ]
 
-function createAchievement(friendAch) {
+function createAchievement(friendAch, i) {
     //builds string to insert card into html
     // var v = true;
     // var count = 0;
@@ -43,7 +64,7 @@ function createAchievement(friendAch) {
         '" alt="" />\
       </div>\
       <div class="card-block px-2 bac">\
-        <p class="card-title" style="padding-top: 12px"> <b>' + friendAch.username + "</b> has completed the " +
+        <p class="card-title" style="padding-top: 12px"> <b onclick="friendProfile(' + i + ')" data-toggle="modal" data-target="#friendProfile">' + friendAch.username + "</b> has completed the " +
         friendAch.name +
         " achievement! " +
         //friendAch.description +
@@ -58,7 +79,7 @@ function buildFeed(achArr) {
     //builds container with dynamic amount of cards depending on user data
     var achContent = '<div class="custom-header"> Recent Activity </div> ';
     for (i = 0; i < achArr.length; i++) {
-        var cardContent = createAchievement(achArr[i]);
+        var cardContent = createAchievement(achArr[i], i);
         achContent += cardContent;
     }
 
@@ -71,4 +92,11 @@ function createFriend(friend) {
 
 function loadExampleFriends() {
     buildFeed(exFriendAch);
+}
+
+function friendProfile(index) {
+  document.getElementById("showName").innerHTML = exFriends[index].name;
+  document.getElementById("level").innerHTML =exFriends[index].level;
+  document.getElementById("bottles").innerHTML = exFriends[index].bottle_filled;
+  document.getElementById("acheivements").innerHTML = exFriends[index].acheivements;
 }
