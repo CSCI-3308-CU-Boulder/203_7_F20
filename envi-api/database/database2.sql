@@ -19,21 +19,12 @@ CREATE TABLE IF NOT EXISTS friend_link (
     FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
-CREATE TABLE IF NOT EXISTS actions_link (
-    user_id INT NOT NULL, 
-    actions_id_array int[], 
-    FOREIGN KEY(user_id) REFERENCES users(id)
-);
 
-CREATE TABLE IF NOT EXISTS achievments (
-    user_id INT NOT NULL, 
-    achievments_id_array int[], 
-    FOREIGN KEY(user_id) REFERENCES users(id)
-);
 
 CREATE TABLE  IF NOT EXISTS achievments_list (
     achievments_id INT PRIMARY KEY NOT NULL, 
-    achievment_name VARCHAR NOT NULL
+    achievment_name VARCHAR NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES users(id)
 );
 
 CREATE TABLE IF NOT EXISTS task_list (
