@@ -138,6 +138,14 @@ img {
   border-radius: calc(0.75rem - 1px);
 }
 
+/*modal in top right (login/logout)*/
+.logout-modal {
+    position:fixed !important;
+    top:100px !important;
+    right:20px !important;
+    margin:0px !important;
+}
+
 /*NOTE: if any attribute isn't changing in the page, add !important to the end of the line. 
 I guess sometimes bootstrap attributes are prioritized over custom css */
 

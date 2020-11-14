@@ -3,7 +3,7 @@
 
 <head>
   <title>Profile</title>
-  <link rel="shortcut icon" type="image/png" href="../assets/favicon-32.png"/>
+  <link rel="shortcut icon" type="image/png" href="../assets/favicon-32.png" />
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../resources/css/envi_style.css" />
@@ -11,8 +11,12 @@
   <nav class="navbar navbar-light" style="background-color: #c5c3ba">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="../home/">Home</a>
+        <a class="nav-link" href="../home/index.html">Home</a>
       </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li style="text-align:right"><img onclick="clickNavPic()" class="pull-right"
+          src="../assets/profile_pic_placeholder.gif" width="12%" id="eye"></li>
     </ul>
   </nav>
 </head>
@@ -27,7 +31,7 @@
     <p>
       <a href="../home/index.html">
         <img src="../assets/envi.png" alt="envi logo" width="200px" height="200px"
-        style="margin-top: -100px; margin-left: 25px; margin-bottom: 20px" />
+          style="margin-top: -100px; margin-left: 25px; margin-bottom: 20px" />
       </a>
     </p>
     <a href="../profile/index.html" class="sidenav-button" style="margin-top: -10px">Profile</a>
@@ -45,15 +49,15 @@
             <div class="col-6">
               <!-- <div class="sm-12 md-2 lg-2 columns"> -->
 
-                <!-- User Profile Image -->
-                <div class="container" id="profile_picture"></div>
+              <!-- User Profile Image -->
+              <div class="container" id="profile_picture"></div>
 
-                <!-- </div> -->
-              </div>
-              <div class="col-6" style="padding-left: 0px">
-                <div class="container" id="basic_info">
-                  <div class="card-6 theme-light" style="border-radius: calc(0.75rem - 1px)">
-                    <div class="theme-dark card-header" style="
+              <!-- </div> -->
+            </div>
+            <div class="col-6" style="padding-left: 0px">
+              <div class="container" id="basic_info">
+                <div class="card-6 theme-light" style="border-radius: calc(0.75rem - 1px)">
+                  <div class="theme-dark card-header" style="
                     border-radius: calc(0.75rem - 1px) calc(0.75rem - 1px) 0
                     0;
                     ">
@@ -84,39 +88,40 @@
                         <div class="row">
                           <div class="column">
                             <img src="../assets/colorEarth.jpg" id="1" alt="Earth image"
-                            onclick="displayProfilePic(id)" />
+                              onclick="displayProfilePic(id)" />
                           </div>
                           <div class="column">
                             <img src="../assets/envi.png" id="2" alt="Envi image" onclick="displayProfilePic(id)" />
                           </div>
                           <div class="column">
                             <img src="../assets/environmentalist.jpg" id="3" alt="Environmentalist image"
-                            onclick="displayProfilePic(id)" />
+                              onclick="displayProfilePic(id)" />
                           </div>
                           <div class="column">
                             <img src="../assets/flatirons.png" id="4" alt="Flatirons image"
-                            onclick="displayProfilePic(id)" />
+                              onclick="displayProfilePic(id)" />
                           </div>
                           <div class="column">
-                            <img src="../assets/flowers.jpg" id="5" alt="Flower image" onclick="displayProfilePic(id)" />
+                            <img src="../assets/flowers.jpg" id="5" alt="Flower image"
+                              onclick="displayProfilePic(id)" />
                           </div>
                           <div class="column">
                             <img src="../assets/hydroflask.jpg" id="6" alt="Hydroflask image"
-                            onclick="displayProfilePic(id)" />
+                              onclick="displayProfilePic(id)" />
                           </div>
                           <div class="column">
                             <img src="../assets/ice.jpg" id="7" alt="Ice image" onclick="displayProfilePic(id)" />
                           </div>
                           <div class="column">
                             <img src="../assets/mountains.png" id="8" alt="Mountains image"
-                            onclick="displayProfilePic(id)" />
+                              onclick="displayProfilePic(id)" />
                           </div>
                           <div class="column">
                             <img src="../assets/plant.jpg" id="9" alt="Plant image" onclick="displayProfilePic(id)" />
                           </div>
                           <div class="column">
                             <img src="../assets/recycling.jpeg" id="10" alt="Recycling image"
-                            onclick="displayProfilePic(id)" />
+                              onclick="displayProfilePic(id)" />
                           </div>
                         </div>
 
@@ -134,15 +139,15 @@
                         <div class="modal-body">
                           <div class="form-group">
                             <input type="text" id="modal_username" class="form-control" name="username"
-                            placeholder="Username" required="required" />
+                              placeholder="Username" required="required" />
                           </div>
                           <div class="form-group">
                             <input type="text" id="modal_name" class="form-control" name="name" placeholder="Name"
-                            required="required" />
+                              required="required" />
                           </div>
                           <div class="form-group">
                             <input id="defaultForm-email" type="email" class="form-control validate" name="email"
-                            placeholder="Email Address" required="required" />
+                              placeholder="Email Address" required="required" />
                           </div>
                           <!-- <div class="form-group">
                             <input id="cpsw" type="password" class="form-control" name="confirm password"
@@ -150,16 +155,16 @@
                           </div> -->
                           <div class="form-group">
                             <button type="button" id="my_submit_button" class="btn btn-primary save"
-                            onclick="updateProfileInfo()">
-                            Update
-                          </button>
-                          <button type="button" id="my_reset_button" class="btn btn-primary save"
-                          onclick="resetName()">
-                          Change Name
-                        </button>
-                      </div>
-                    </div>
-                    <!-- <div class="modal-footer">
+                              onclick="updateProfileInfo()">
+                              Update
+                            </button>
+                            <button type="button" id="my_reset_button" class="btn btn-primary save"
+                              onclick="resetName()">
+                              Change Name
+                            </button>
+                          </div>
+                        </div>
+                        <!-- <div class="modal-footer">
                       <div id="message" style="display:block">
                         <h3>Password must contain the following:</h3>
                         <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
@@ -169,37 +174,38 @@
                         <p id="match" class="invalid">Password and Confirm Password Match</p>
                       </div>
                     </div> -->
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-12">
+              <div id="achievements"></div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <div id="achievements"></div>
-        </div>
+        <div class="col-5"></div>
       </div>
     </div>
-    <div class="col-5"></div>
   </div>
-</div>
-</div>
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<!-- Axios -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<script src="./loadProfile.js"></script>
+  <script src="./loadProfile.js"></script>
 
 </body>
+
 </html>
