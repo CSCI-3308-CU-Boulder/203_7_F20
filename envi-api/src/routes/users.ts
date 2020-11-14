@@ -75,7 +75,7 @@ router.get('/:id/', (req, res) => {
 })
 
 // Update profile info
-router.post('/:id/updateInfo', function(req, res) {
+router.post('/:id/updateInfo', ensureAuthenticated, function(req, res) {
     var newUsername = req.body.modal_username;
     var newName = req.body.modal_name;
     var newImage = req.body.modal_image_id;
@@ -89,40 +89,52 @@ router.post('/:id/updateInfo', function(req, res) {
         if (error) throw error;
         res.send(JSON.stringify(results));
     });
-    // successfully updated the database, but didn't do much after that?
+    // successfully updated the database
 })
 
 
-// Get friends -- NOT DONE
+// Get friends -- NOT TESTED
 router.get('/users/:id/getFriends', async (req, res) => {
-    var friendQuery = "SELECT username, name, image_id, level FROM users WHERE id =$1";
-    let { id } = req.params;
-    console.log(friendQuery);
-    console.log(req.params);
-    console.log(id);
-    query(friendQuery, [id], function (error, results, fields) {
-        if(results) {
-            res.send('/friends.html', {
-                username: results[0],
-                name: results[1],
-                image_id: results[2],
-                level: results[3],
-            })
-        }
-        else {
-            throw error;
-        }
+    var infoQuery = "SELECT username, name, image_id, level FROM users WHERE id =$1"; // to get info about the friend
+    var friendQuery = "SELECT friends_id_array FROM friends_link WHERE id =$1"; // get user's friends array
+    var numFriendQuery = "SELECT COUNT(*) FROM friends_link WHERE id =$1"; // get the number of friends
+    // console.log(friendQuery);
+    query(friendQuery, [req.userid], function (error, results, fields) { // query to get the friends list
+        query(numFriendQuery, function(error, numFriends) {  // query the number of friends
+            if(results) {
+                var i = 0;
+                for(i=0; i<numFriends; i++) { // loop through to get all friends
+                    query(infoQuery, [results[i]], function(error2, results2, fields) { // query to get the friend info
+                        if (error2) throw error2;
+                        // what is the best format to send this data? (a list of friend information)
+                        res.send('/friends.html', {
+                            username: results2[0],
+                            name: results2[1],
+                            image_id: results2[2],
+                            level: results2[3],
+                        })
+                    });
+                }
+            }
+            else {
+                throw error;
+            }
+        })
     });
 })
 
-// Add friend -- NOT DONE
+// Add friend -- NOT TESTED
 router.post('/:id1/addFriend/:id2', function(req,res) {
-    var updateQuery = "UPDATE friend_link SET ___ WHERE user_id=$1"; // add friend id to the array
     let { id } = req.params;
     console.log(id)
-    query(updateQuery, [], function(error, results, fields) {
+    var updateQuery = "UPDATE friend_link SET friends_id_array = [$1," +id+ "] WHERE user_id=$2"; // add friend id to the array
+    var friendListQuery = "SELECT friends_id_array FROM friend_link WHERE user_id=" + req.user.id; // to get the friends array from the user
+    query(friendListQuery, function(error, results, fields) {
         if (error) throw error;
-        res.send(JSON.stringify(results));
+        else query(updateQuery, [results[0], req.user.id], function(error, results, fields) {
+            if (error) throw error;
+            res.send(JSON.stringify(results));
+        });
     });
 })
 

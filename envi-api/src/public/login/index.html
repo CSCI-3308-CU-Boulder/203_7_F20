@@ -1,71 +1,70 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>envi</title>
-  <link rel="shortcut icon" type="image/png" href="../assets/favicon-32.png"/>
+  <link rel="shortcut icon" type="image/png" href="../assets/favicon-32.png" />
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  
-  <nav class="navbar bg-dark navbar-expand-lg">
+
+  <nav class="navbar navbar-light" style="background-color: #c5c3ba">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="../home/">Home</a>
+        <a class="nav-link" href="../home/index.html">Home</a>
       </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li style="text-align:right"><img onclick="clickNavPic()" class="pull-right"
+          src="../assets/profile_pic_placeholder.gif" width="12%" id="eye"></li>
     </ul>
   </nav>
 </head>
+
 <body>
   <!-- <form action="action.php" style="border:1px solid #ccc"> -->
-  <div class="container">
+  <div class="container" id="loginForm" style="display: none;">
     <br>
     <p> Please input your login credentials.</p>
+    <div class="alert alert-danger" role="alert" id="loginError"></div>
     <div class="form-group">
       <label for="username">Username</label>
-      <input
-        onkeyup="enableButton()"
-        type="name"
-        class="form-control"
-        id="username"
-        placeholder="Enter username"
-      />
+      <input onkeyup="enableButton()" type="name" class="form-control" id="username" placeholder="Enter username" />
       <small id="passwordHelp" class="form-text text-muted"></small>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input
-        onkeyup="enableButton()"
-        type="password"
-        class="form-control"
-        id="password"
-        placeholder="Enter Password"
-        name="psw"
-        aria-describedby="passwordHelp"
-      />
+      <input onkeyup="enableButton()" type="password" class="form-control" id="password" placeholder="Enter Password"
+        name="psw" aria-describedby="passwordHelp" />
     </div>
-    
+
     <br>
-    <button
-      id="submit_button"
-      type="submit"
-      class="btn btn-primary"
-      href="../profile/"
-      disabled
-    >Login</button>
-    
-    
-    
+    <button id="submit_button" type="submit" class="btn btn-primary" onclick="submitLogin()" disabled>Login</button>
+
+
+
     <!-- </form> -->
   </div>
-  
+
+  <div class="container" id="logoutForm" style="display: none;">
+    <div class="form-group"><button type="submit" onclick="submitLogout()">Logout</button></div>
+  </div>
+
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  
+
   <!-- Popper JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  
+
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
+
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- JS-Cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
   <script src="./loginForm.js"></script>
 </body>
+
 </html>

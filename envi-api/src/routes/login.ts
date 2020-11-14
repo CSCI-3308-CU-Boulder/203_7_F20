@@ -21,9 +21,9 @@ router.post('/', (req, res, next) => {
       // this will execute in any case, even if a passport strategy will find an error
 
       if (error) {
-        res.status(401).send(error);
+        res.status(401).json({ err: error });
       } else if (!user) {
-        res.status(401).send(info);
+        res.status(401).json({ err: info });
       } else {
         req.logIn(user, function(err) {
           if (err) { res.json({ error: err }); }
