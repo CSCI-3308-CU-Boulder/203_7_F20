@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html>
+<style>
+  img {
+    object-fit:contain;
+  }
+
+  table{
+    width:100%;
+  }
+
+</style>
 
 <head>
   <title>envi</title>
@@ -42,24 +52,57 @@
   <!-- Page content -->
   <div class="main" style="margin-left: 250px">
     <div class="container">
+      <br>
       <div class="row">
         <img id="bottle" src="../assets/waterBottle.jpg" alt="Water Bottle" />
-        <div class="card" style="width: 45%;">
+        <!-- <div class="card" style="width: 45%;">
           <div class="card-header text-center">
             <h5>My Progress</h5>
           </div>
           <div class="card-title text-right"><button type="button" class="btn btn-success" data-toggle="modal"
               data-target="#addTask">Add Task</button></div>
           <div class="card-body" id="tasks">
-            <!-- Function to add new cards for every new task added-->
+            Function to add new cards for every new task added-->
 
-          </div>
+          <!-- </div> -->
+        <!-- </div> -->
+       
+        <div class = "theme-light rounded-all card" style="margin-left: 70px;height:200px">
+          <table style="width: 600px; height: auto" class="table">
+            <thead>
+              <tr>
+                <th scope="col">Bottles Filled</th>
+                <th scope="col">Level</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="bottle_count">0</td>
+                <td id="level">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" style="width: 45%; border-radius: calc(0.75rem - 1px) calc(0.75rem - 1px) 0
+      0; background-color: #aca5904d;">
+        <div class="theme-dark card-header text-center" style="
+        border-radius: calc(0.75rem - 1px) calc(0.75rem - 1px) 0
+        0;
+        ">
+          <h5>My Progress</h5>
+        </div>
+        <div class="card-title text-right" style="margin-right: 20px; margin-top:10px;"><button type="button" class="button" data-toggle="modal"
+            data-target="#addTask">Add Task</button></div>
+        <div class="card-body" id="tasks">
+          <!-- Function to add new cards for every new task added-->
+
         </div>
       </div>
       <p></p>
-      <button class="btn btn-primary" onclick="resetToEmpty()">Reset to Empty</button>
+      <button class="button" onclick="resetToEmpty()">Reset to Empty</button>
       <p></p>
-      <table class="table">
+      <!-- <table class="table">
         <thead>
           <tr>
             <th scope="col">Bottles Filled</th>
@@ -72,35 +115,35 @@
             <td id="level">0</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
     </div>
 
     <div id="addTask" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Add Task</h4>
+          <div class="theme-dark modal-header">
+            <h4 class="modal-title text-center">Add Task</h4>
           </div>
           <div class="modal-body">
             <form>
               <label for="taskName">Task Name</label><br>
-              <input type="text" id="taskName" name="taskName" required><br>
+              <input type="theme-dark text" class="rounded-all" id="taskName" name="taskName" required><br>
               <label for="descr" id="taskDescription">Description (Optional)</label><br>
-              <input type="text" id="descr" name="descr"><br>
+              <input type="text" class="rounded-all" id="descr" name="descr"><br>
               <label for="type">Type</label><br>
-              <select name="type" id="type" required>
+              <select name="type" class="rounded-all" id="type" required>
                 <option value="" disabled selected>Choose Type</option>
                 <option value="reduce" id="reduce">Reduce</option>
                 <option value="reuse" id="reuse">Reuse</option>
                 <option value="recycle" id="recycle">Recycle</option>
               </select>
               <br><br>
-              <button type="button" value="Submit" onclick="addTask()">Submit</button>
+              <button type="button" class="button" value="Submit" onclick="addTask()">Submit</button>
             </form>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          <button type="button" class="button" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

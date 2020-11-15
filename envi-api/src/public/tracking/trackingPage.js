@@ -149,6 +149,7 @@ function addTask() {
 var counter = 0;
 function displayTasks() {
 console.log("hi");
+
   // Displaying the tasks
   var taskName = document.getElementById("taskName").value;
   var taskDesc = document.getElementById("descr").value;
@@ -156,16 +157,25 @@ console.log("hi");
   var task = [{name: taskName, description: taskDesc, type:taskType}];
 
   var output = "";
-  for (var i = 0; i < task.length; i++) {
-    output = "<div class='card' id="+ counter +"><div class='card-header' >" + task[i].name + "\
-    <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + " - " + task[i].type +"</p></div>\
-    <div class='card-footer'><button class='btn btn-primary' onclick='taskComplete(\""+counter+"\")' style='float: left'>Complete Task</button>\
-    <button class='btn btn-danger' onclick='deleteTask(\""+counter+"\")' style='float: right'>Delete Task</button></div></div>";
-    counter++;
 
-    // console.log("displayTask i=",i);
-    document.getElementById("tasks").innerHTML += output;
+  for (var i = 0; i < task.length; i++) {
+      output = "<div class='theme-dark rounded-all card' id="+ counter +"><div class='card-header' >" + task[i].name + "\
+      <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + " - " + task[i].type +"</p>\
+      <button class='button' onclick='taskComplete(\""+counter+"\")' style='float: left; margin-left:100px;'>Complete Task</button>\
+      <button class='button' onclick='deleteTask(\""+counter+"\")' style='float: right;'>Delete Task</button></div></div>";
+      counter++;
+
+      // console.log("displayTask i=",i);
+      document.getElementById("tasks").innerHTML += output;
+      
+    
+    // counter++;
   }
+
+  // "<div style='background-color: #699696 ;' class='rounded-all card' id="+ counter +"><div class='card-header' >" + task[i].name + "\
+  //   <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + " - " + task[i].type +"</p></div>\
+  //   <div class='card-footer'><button class='btn btn-primary' onclick='taskComplete(\""+counter+"\")' style='float: left'>Complete Task</button>\
+  //   <button class='btn btn-danger' onclick='deleteTask(\""+counter+"\")' style='float: right'>Delete Task</button></div></div>";
 
 
 }
