@@ -116,3 +116,14 @@ function loadExampleFriends() {
     buildFeed(exFriendAch);
     friendsList(exFriends);
 }
+
+// Search bar functions
+const searchBar = document.getElementById("searchBar");
+
+searchBar.addEventListener("keyup", e => {
+    const searchString = e.target.value;
+    const filteredNames = exFriends.filter(friend => {
+        friend.name.toLowerCase().includes(searchString);
+    });
+    // Display the names
+});
