@@ -140,10 +140,16 @@ img {
 
 /*modal in top right (login/logout)*/
 .logout-modal {
-    position:fixed !important;
-    top:100px !important;
-    right:20px !important;
-    margin:0px !important;
+  position: absolute !important;
+  top: 55px !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 80% !important;
+  z-index: 10040 !important;
+  overflow: auto !important;
+  overflow-y: auto !important;
+  max-width: 20%;
+  backdrop: false;
 }
 
 /*NOTE: if any attribute isn't changing in the page, add !important to the end of the line. 
