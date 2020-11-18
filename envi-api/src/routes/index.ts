@@ -5,6 +5,7 @@ const loggedIn = require('./loggedIn')
 const signup = require('./signup')
 const users = require('./users')
 const donate = require('./donate')
+const search = require('./search')
 
 
 module.exports = app => {
@@ -17,6 +18,7 @@ module.exports = app => {
     app.use('/api/signup', signup)
     app.use('/api/users', users)
     app.use('/api/donate', donate)
+    app.use('/api/search', search)
     // etc..
 }
 export {}
