@@ -19,7 +19,7 @@ const router = new Router()
 // 	password: 'pwd'
 // };
 
-router.post('/donate', function(req, res) {
+router.post('/', function(req, res) {
     var donationID = req.body.donate_id;
     var companyID = req.body.company_id;
     var userID = req.body.user_id;
