@@ -140,7 +140,7 @@ function updateInfo(user) {
   if (document.getElementById("modal_username").innerHTML != user.username) {
     user.username = document.getElementById("modal_username").value;
   }
-  
+
   // if (document.getElementById("modal_name").innerHTML != document.getElementById("name")) {
   //   document.getElementById("name").innerHTML = document.getElementById("modal_name").value;
   // }
@@ -167,7 +167,7 @@ function loadProfile() {
         let user = response.data;
         console.log(user);
         displayPicture(user);
-        displayAchievements(user);
+        //displayAchievements(user);
         displayInfo(user);
       })
       .catch(function (error) {
@@ -183,19 +183,19 @@ function loadProfile() {
 //add onclick for update profile form when clicking submit (create function below with axios get request for update info)
 function updateProfileInfo() {
   let username = window.location.hash.split('#')[1]
-  axios.get("http://localhost:5000/api/users/" + username+ "/updateInfo")
-  .then(function (response) {
-    console.log(response);
-    let user = response.data;
-    console.log(user)
-    displayPicture(user);
-    updateInfo(user);
-    displayInfo(user);
+  axios.get("http://localhost:5000/api/users/" + username + "/updateInfo")
+    .then(function (response) {
+      console.log(response);
+      let user = response.data;
+      console.log(user)
+      displayPicture(user);
+      updateInfo(user);
+      displayInfo(user);
 
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 
 function loadExampleUser() {
