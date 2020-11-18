@@ -1,3 +1,9 @@
+/**
+ * TO DO:
+ * Add function to display friends from database
+ */
+
+
 var exFriendAch = [
     //hardcoded user achievements
     {
