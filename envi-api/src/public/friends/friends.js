@@ -117,24 +117,20 @@ function loadExampleFriends() {
     friendsList(exFriends);
 }
 
-function loadAddFriends() {
-    var output = "";
-    for (var i = 0; i < exFriends.length; i++) {
-        output += "<tr>";
-        output += "<td>" + exFriends[i].name + "</td>";
-        output += "<td><button class='btn btn-primary' onclick=''>Add</button></td>";
-        output += "</tr>";
-    }
-}
-
 // Search bar functions
 
-const searchBar = document.getElementById("searchBar");
+function searchBar() {
+    let input = document.getElementById("searchBar").value;
+    input = input.toLowerCase();
+    let x = document.getElementsByClassName("friends");
 
-searchBar.addEventListener("keyup", e => {
-    const searchString = e.target.value;
-    const filteredNames = exFriends.filter(friend => {
-        friend.name.toLowerCase().includes(searchString);
-    });
-    // Display the names
-});
+    for (var i = 0; i < x.length; i++) {
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display = "none";
+        }
+        else {
+            x[i].style.display = "list-item";
+        } 
+
+    }
+}
