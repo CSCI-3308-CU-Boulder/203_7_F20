@@ -117,7 +117,18 @@ function loadExampleFriends() {
     friendsList(exFriends);
 }
 
+function loadAddFriends() {
+    var output = "";
+    for (var i = 0; i < exFriends.length; i++) {
+        output += "<tr>";
+        output += "<td>" + exFriends[i].name + "</td>";
+        output += "<td><button class='btn btn-primary' onclick=''>Add</button></td>";
+        output += "</tr>";
+    }
+}
+
 // Search bar functions
+
 const searchBar = document.getElementById("searchBar");
 
 searchBar.addEventListener("keyup", e => {
