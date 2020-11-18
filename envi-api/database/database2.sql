@@ -6,7 +6,7 @@
 -- CREATE USER envi_api_user;
 -- CREATE DATABASE envi WITH OWNER envi_api_user;
 
--- USE DATABASE envi;
+-- USE DATABASE envi;            /c envi
 
 -- creates user profile table
 DROP TABLE IF EXISTS users;
