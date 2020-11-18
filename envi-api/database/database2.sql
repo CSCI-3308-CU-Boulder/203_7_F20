@@ -1,12 +1,12 @@
 -- WARNING: THIS FILE WILL ERASE ALL DATABASE CONTENTS --
 
+-- RUN THE FOLLOWING COMMANDS BEFORE RUNNING THIS SCRIPT
+
 -- DROP DATABASE IF EXISTS envi;
 -- DROP USER IF EXISTS envi_api_user;
-
--- CREATE USER envi_api_user;
+-- CREATE USER envi_api_user WITH PASSWORD 'password';
 -- CREATE DATABASE envi WITH OWNER envi_api_user;
-
--- USE DATABASE envi;            /c envi
+-- \c envi;
 
 -- creates user profile table
 DROP TABLE IF EXISTS users;

@@ -1,10 +1,4 @@
-
-
-
-function loggedIn() {
-    //function to check if user is logged in
-    return true; //TEMPORARY
-}
+import { loggedIn } from 'utilities.js'
 
 function loadLogoutModal(user) {//function to be applied ON LOAD
     if (loggedIn()) {//if logged in, build modal to allow user to log out
@@ -30,11 +24,7 @@ function loadLogoutModal(user) {//function to be applied ON LOAD
     }
     else {//if not logged in, return error
         console.log("user not logged in")
-    }
-}
-
-function loadLoginModal() {
-    document.getElementById("logout_modal").innerHTML = `
+        document.getElementById("logout_modal").innerHTML = `
     <div role="document">
       <div class="modal-content">
         <div class="modal-header" id="modal_header"
@@ -54,6 +44,7 @@ function loadLoginModal() {
         </div>
       </div>
     </div>`
+    }
 }
 
 function clickNavPic() {

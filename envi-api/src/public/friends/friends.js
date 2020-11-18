@@ -3,6 +3,8 @@
  * Add function to display friends from database
  */
 
+import { loadLogoutModal } from '../resources/js/navbar.js'
+import { isLoggedIn } from '../resources/js/utilities.js'
 
 var exFriendAch = [
     //hardcoded user achievements
@@ -121,6 +123,7 @@ function friendsList(friendArr) {
 function loadExampleFriends() {
     buildFeed(exFriendAch);
     friendsList(exFriends);
+    loadLogoutModal
 }
 
 // Search bar functions

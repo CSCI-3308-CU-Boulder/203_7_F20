@@ -29,13 +29,11 @@ const validatePassword = (password) => {
 // it allows you to use async functions as route handlers
 const router = new Router()
 
-// export our router to be mounted by the parent application
-// router.post('/', (req, res) => {
-//     res.send('test')
-// })
+// Route for creating new users: req.body = { username, password, name, email, image_id }
+// POST '/api/signup/'
 router.post('/', (req, res, next) => {
-    console.log(req.body)
-    const { username, password, name, email, image_id, birthday } = req.body
+    console.log('signup')
+    const { username, password, name, email, image_id } = req.body
     if (!username || !password || !name || !email) {
         res.status(401).send("Invalid user input")
         return null
@@ -45,7 +43,6 @@ router.post('/', (req, res, next) => {
     bcrypt.genSalt(saltRounds, (err, salt) => {
         if (err) console.log(err)
         bcrypt.hash(password, salt, function(err, hash) {
-            console.log(hash)
             query(`INSERT INTO users(
                 username,
                 password,
@@ -53,21 +50,54 @@ router.post('/', (req, res, next) => {
                 name,
                 image_id
             ) VALUES ($1, $2, $3, $4, $5)`, [
-                username,
+                username.toLowerCase(),
                 hash,
-                email,
+                email.toLowerCase(),
                 name,
                 parseInt(image_id)
             ])
             .then(result => {
                 const { rows } = result;
+                res.json({ success: true, user: rows[0] });
             }).catch(err => {
                 console.error(err)
                 res.json(err)
             })
         })
     })
-});
+})
+
+// Returns success if req.query.username is valid (I.E not yet taken in database)
+// GET '/api/signup/validateUsername?username='
+router.get('/validateUsername', (req, res) => {
+    let { username } = req.query;
+    if (!username || username == "") return res.json({ err: "No username specified" })
+    username = username.toLowerCase()
+    let userCountQuery = `SELECT COUNT(*) FROM users WHERE username = '${username}';`
+    query(userCountQuery)
+    .then(results => {
+        let { count } = results.rows[0]
+        if (count > 0) res.json({ valid: false })
+        else res.json({ valid: true })
+    })
+    .catch(err => res.json({ err: err }))
+})
+
+// Returns success if req.query.email is valid (I.E not yet taken in database)
+// GET '/api/signup/validateEmail?email='
+router.get('/validateEmail', (req, res) => {
+    let { email } = req.query;
+    if (!email || email == "") return res.json({ err: "No email specified" })
+    email = email.toLowerCase()
+    let userCountQuery = `SELECT COUNT(*) FROM users WHERE email = '${email}';`
+    query(userCountQuery)
+    .then(results => {
+        let { count } = results.rows[0]
+        if (count > 0) res.json({ valid: false })
+        else res.json({ valid: true })
+    })
+    .catch(err => res.json({ err: err }))
+})
 
 module.exports = router
 export {}

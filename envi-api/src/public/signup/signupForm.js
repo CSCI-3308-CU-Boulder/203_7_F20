@@ -1,6 +1,10 @@
 var baseUrl = "http://localhost:5000"
 var image_id = 0;
 
+document.getElementById("submit_button").addEventListener("click", function (event) {
+  event.preventDefault()
+});
+
 var images = [
   "../assets/colorEarth.jpg",
   "../assets/envi.png",
