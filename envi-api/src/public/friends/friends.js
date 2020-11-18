@@ -118,7 +118,7 @@ function loadExampleFriends() {
 }
 
 // Search bar functions
-
+// Only works if the friends are in a List
 function searchBar() {
     let input = document.getElementById("searchBar").value;
     input = input.toLowerCase();
@@ -130,7 +130,6 @@ function searchBar() {
         }
         else {
             x[i].style.display = "list-item";
-        } 
-
+        }
     }
 }
