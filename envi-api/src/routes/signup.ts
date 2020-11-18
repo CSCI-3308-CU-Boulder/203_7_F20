@@ -46,7 +46,19 @@ router.post('/', (req, res, next) => {
         if (err) console.log(err)
         bcrypt.hash(password, salt, function(err, hash) {
             console.log(hash)
-            query('INSERT INTO users(username, password, name, email, image_id, num_bottles, birthday) VALUES ($1, $2, $3, $4, $5, $6, $7)', [username, hash, name, email, parseInt(image_id), 0, birthday || null])
+            query(`INSERT INTO users(
+                username,
+                password,
+                email,
+                name,
+                image_id
+            ) VALUES ($1, $2, $3, $4, $5)`, [
+                username,
+                hash,
+                email,
+                name,
+                parseInt(image_id)
+            ])
             .then(result => {
                 const { rows } = result;
             }).catch(err => {

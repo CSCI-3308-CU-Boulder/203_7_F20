@@ -177,7 +177,7 @@ function signup() {
       }
       axios.post(baseUrl + "/api/signup", payload).then((response) => {
         console.log(response)
-        if (!response.data.error) {
+        if (!response.data.err) {
           // Redirect with success
           // document.cookie = "username=" + username;
           window.location.replace("/login/");
