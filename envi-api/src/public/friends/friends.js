@@ -1,3 +1,9 @@
+/**
+ * TO DO:
+ * Add function to display friends from database
+ */
+
+
 var exFriendAch = [
     //hardcoded user achievements
     {
@@ -118,12 +124,18 @@ function loadExampleFriends() {
 }
 
 // Search bar functions
-const searchBar = document.getElementById("searchBar");
+// Only works if the friends are in a List
+function searchBar() {
+    let input = document.getElementById("searchBar").value;
+    input = input.toLowerCase();
+    let x = document.getElementsByClassName("friends");
 
-searchBar.addEventListener("keyup", e => {
-    const searchString = e.target.value;
-    const filteredNames = exFriends.filter(friend => {
-        friend.name.toLowerCase().includes(searchString);
-    });
-    // Display the names
-});
+    for (var i = 0; i < x.length; i++) {
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display = "none";
+        }
+        else {
+            x[i].style.display = "list-item";
+        }
+    }
+}
