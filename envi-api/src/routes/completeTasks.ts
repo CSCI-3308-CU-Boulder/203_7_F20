@@ -1,27 +1,22 @@
 const Router = require('express-promise-router')
 const query = require('../db')
-var pgp = require('pg-promise')();
+const { ensureAuthenticated } = require('../config/auth');
 
 const router = new Router()
-const dbConfig = {
-	host: 'localhost',
-	port: 5432,
-	database: 'envi_db',
-	user: 'postgres',
-	password: 'pwd'
-};
 
-router.get('/username/:completeTasks', async (req, res) =>
+router.use('/id:')
+
+router.post('/username/:completeTasks', async (req, res) =>
 {
-    var actionsID = req.query.action_id; //example name
-    var actionName = req.query.taskName;
-    var actionDescript = req.query.taskDescription;
-    var update = `INSERT INTO action_list (action_id, action_name, action_description) VALUES ('${actionsID}', '${actionName}' '${actionDescript}')`;
-    db.query(update, function (error, results, fields) {
+    var actionsID = req.body.action_id; //example name
+    var actionName = req.body.taskName;
+    var actionDescript = req.body.taskDescription;
+    var update = `INSERT INTO task_list (task_id, task_name, task_description) VALUES ('${actionsID}', '${actionName}' '${actionDescript}')`;
+    query(update, function (error, results, fields) {
         if (error) throw error;
         res.send(JSON.stringify(results));
     });
 })
-var db = pgp(dbConfig);
+
 module.exports = router
 export {}
