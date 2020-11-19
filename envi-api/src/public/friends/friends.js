@@ -126,6 +126,41 @@ function loadExampleFriends() {
     loadLogoutModal
 }
 
+var exAddFriends = [
+    {
+        username: "suryakanoria",
+        name: "Surya Kanoria",
+    },
+    {
+        username: "friend1",
+        name: "Example Friend 1",
+    },
+    {
+        username: "friend2",
+        name: "Example Friend 2",
+    },
+]
+
+// Load new friends into the add friends modal
+
+function createAddFriend(friend) {
+    var listStr = `<li class='friends' onclick=''> ${friend.username} </li>`;
+    return listStr;
+}
+
+function addFriendsList(friendArr) {
+    var friends = "";
+    for (i = 0; i < friendArr.length; i++) {
+        var cardContent = createAddFriend(friendArr[i]);
+        friends += cardContent;
+    }
+    document.getElementById("friendsList").innerHTML = friends;
+}
+
+function loadAddFriends() {
+    addFriendsList(exAddFriends);
+}
+
 // Search bar functions
 // Only works if the friends are in a List
 function searchBar() {
