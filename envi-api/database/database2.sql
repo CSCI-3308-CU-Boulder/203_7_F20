@@ -72,7 +72,7 @@ CREATE TABLE tasks (
     name VARCHAR(20) NOT NULL,
     description VARCHAR(100),
     impact TASK_IMPACT NOT NULL,
-    completed BOOLEAN NOT NULL DEFAULT FALSE,
+    times_completed INT NOT NULL DEFAULT 0,
 
     completion_date TIMESTAMP DEFAULT NULL,
     create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
