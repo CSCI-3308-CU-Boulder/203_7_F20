@@ -149,7 +149,6 @@ img {
   overflow: auto !important;
   overflow-y: auto !important;
   max-width: 20%;
-  backdrop: false;
 }
 
 /*NOTE: if any attribute isn't changing in the page, add !important to the end of the line. 

@@ -8,13 +8,15 @@ const query = require('./db')
 const session = require('express-session')
 // pool = connection_pool
 
+
+
 require('./config/passport')(passport, query)
 
 const app = express()
 
 app.use(express.json())
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
 // Express session
@@ -37,6 +39,5 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`)
 })
-  
-export {}
-  
+
+export { }

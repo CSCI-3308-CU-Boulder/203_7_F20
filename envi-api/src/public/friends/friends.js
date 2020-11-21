@@ -3,8 +3,6 @@
  * Add function to display friends from database
  */
 
-import { loadLogoutModal } from '../resources/js/navbar.js'
-import { isLoggedIn } from '../resources/js/utilities.js'
 
 var exFriendAch = [
     //hardcoded user achievements
@@ -66,6 +64,12 @@ var exFriends = [
     }
 ]
 
+var exUser = {
+    username: 'username',
+    name: 'Example User',
+    image_id: 1
+}
+
 function createAchievement(friendAch) {
     //builds string to insert card into html
     var cardStr =
@@ -123,7 +127,36 @@ function friendsList(friendArr) {
 function loadExampleFriends() {
     buildFeed(exFriendAch);
     friendsList(exFriends);
-    loadLogoutModal
+    $(document).ready(function () {
+        loadLogoutModal(exUser);
+    })
+}
+
+function loadFriends() {
+    //GET COOKIE
+    var username = Cookies.get('username');
+    axios
+        .get("http://localhost:5000/api/users/" + username)
+        .then(function (response) {
+            // handle success
+            let user = response.data;
+            console.log(user);
+        })
+        .catch(function (error) {
+            loadExampleUser();
+            // handle error
+            console.log(error);
+        });
+
+    axios
+        .get("/api/username/getFriends")
+        .then(function (response) {
+            let friends = response.data;
+            console.log(friends)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
 }
 
 var exAddFriends = [
