@@ -21,32 +21,33 @@
 </head>
 
 <body>
-  <!-- <form action="action.php" style="border:1px solid #ccc"> -->
   <div class="container" id="loginForm" style="display: none;">
-    <br>
-    <p> Please input your login credentials.</p>
-    <div class="alert alert-danger" role="alert" id="loginError"></div>
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input onkeyup="enableButton()" type="name" class="form-control" id="username" placeholder="Enter username" />
-      <small id="passwordHelp" class="form-text text-muted"></small>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input onkeyup="enableButton()" type="password" class="form-control" id="password" placeholder="Enter Password"
-        name="psw" aria-describedby="passwordHelp" />
-    </div>
+    <form>
+      <br>
+      <p> Please input your login credentials.</p>
+      <div class="alert alert-danger" role="alert" id="loginError" style="display: none;"></div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input onkeyup="enableButton()" type="name" class="form-control" id="username" placeholder="Enter username" />
+        <small id="passwordHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input onkeyup="enableButton()" type="password" class="form-control" id="password" placeholder="Enter Password"
+          name="psw" aria-describedby="passwordHelp" />
+      </div>
 
-    <br>
-    <button id="submit_button" type="submit" class="btn btn-primary" onclick="submitLogin()" disabled>Login</button>
-
-
-
-    <!-- </form> -->
+      <br>
+      <button id="submit_login" type="submit" class="btn btn-primary" onclick="submitLogin()" disabled>Login</button>
+    </form>
   </div>
 
   <div class="container" id="logoutForm" style="display: none;">
-    <div class="form-group"><button type="submit" onclick="submitLogout()">Logout</button></div>
+    <form>
+      <div class="form-group">
+        <button type="submit_logout" onclick="submitLogout()" class="btn btn-danger">Logout</button>
+      </div>
+    </form>
   </div>
 
   <!-- jQuery library -->
