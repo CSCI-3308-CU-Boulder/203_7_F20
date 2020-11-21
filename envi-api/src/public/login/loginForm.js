@@ -22,7 +22,7 @@ $(document).ready(function () {
 function enableButton() {
   var username = document.getElementById("username");
   var password = document.getElementById("password");
-  var button = document.getElementById("submit_button");
+  var button = document.getElementById("submit_login");
   button.disabled = true;
 
   if (username.value && password.value) {
@@ -46,7 +46,6 @@ function submitLogin() {
       if (response.data) {
         let { username } = response.data;
         // Set a cookie to remember the login on the frontend
-        Cookies.set('username', username);
         // Redirect to profile page
         window.location.replace(`/profile#${username}`)
       } else {
@@ -56,8 +55,10 @@ function submitLogin() {
       if (error.response) {
         console.log(error.response.data)
         let { err } = error.response.data
+        $('#loginError').show()
         $('#loginError').html(err || "Unknown error while logging in. Try again later")
       } else {
+        $('#loginError').show()
         $('#loginError').html("Unknown error while logging in. Try again later")
       }
     })
@@ -76,3 +77,11 @@ function submitLogout() {
       }
     }).catch(err => console.error(err))
 }
+
+$("#submit_login").on("click", function (event) {
+  event.preventDefault()
+})
+
+$("#submit_logout").on("click", function (event) {
+  event.preventDefault()
+})
