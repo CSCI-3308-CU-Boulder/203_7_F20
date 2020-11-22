@@ -181,17 +181,25 @@ router.post('/:id/addFriend/:friendUsername', function(req,res) {
 })
 
 // completeTasks 
-router.post('/:username/completeTasks', async (req, res) => { // json with user_id and task_id
-    const { user_id, task_id } = req.body;
+router.post('/:username/completeTask', async (req, res) => { // json with user_id and task_id
+    const { task_id } = req.body;
     var update = "UPDATE tasks SET times_completed = times_completed + 1 WHERE user_id = $1 AND id=$2;"; // updating the task as completed in db
     var points = "UPDATE users SET impact_points = impact_points + 1 WHERE id = $1;"; // adding impact points for the user
-    query(update, [user_id, task_id])
+    query(update, [req.user.id, task_id])
     .then(results => {
         console.log('Task updated')
-        query(points, [user_id])
+        query(points, [req.user.id])
         .then(results1 => {
             console.log('User points updated');
-            res.json({success: true});
+            userUtility.calculateNewAchievements(req.user)
+            .then(newAchievment => {
+                res.json({ success: true, newAchievment: newAchievment })
+            })
+            .catch(err => {
+                console.log(err)
+                res.json({ err: err })
+            })
+            // res.json({success: true});
         })
         .catch(err => res.json({ err: err }))
     })
@@ -216,7 +224,7 @@ router.post('/:id/addTask', function(req, res) { // parameters -- name, descript
 // for getting tasks added by a given user
 router.get('/:id/getTasks', function(req, res) {
     console.log('Getting tasks');
-    let { id } = req.params;
+    let { id } = req.user;
     console.log(id);
     var taskQuery = 'SELECT * FROM tasks WHERE user_id = $1;';
     query(taskQuery, [id])
@@ -276,12 +284,3 @@ router.get('/:id/numTasks', function(req, res) {
 
 module.exports = router
 export {}
-
-        // userUtility.calculateNewAchievements(req.user)
-        // .then(newAchievment => {
-        //     res.json(newAchievment)
-        // })
-        // .catch(err => {
-        //     console.log(err)
-        //     res.json({ err: err })
-        // })

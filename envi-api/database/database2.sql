@@ -52,8 +52,8 @@ CREATE TABLE achievements (
     user_id INT NOT NULL,
     FOREIGN KEY(user_id) REFERENCES users(id),
 
-    name VARCHAR(75) NOT NULL,
-    description VARCHAR(50),
+    name VARCHAR(40) NOT NULL,
+    description VARCHAR(100),
     image_id INT,
 
     create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

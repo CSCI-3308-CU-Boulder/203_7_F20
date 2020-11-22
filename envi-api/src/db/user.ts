@@ -18,7 +18,6 @@ module.exports = {
         let { id } = user
         query(`SELECT impact_points FROM users WHERE id = ${id};`)
         .then(results => {
-            console.log(results)
             let { impact_points } = results.rows[0]
 
             var newAchievement
@@ -49,8 +48,6 @@ module.exports = {
             if (!newAchievement && impact_points % 50 == 0 && impact_points != 0) {
                 newAchievement = { name: `${impact_points} impact points accumulated`, description: "Keep it up. Thank you for your impacts, from the whole world.", image_id: 6 }
             } 
-
-            console.log(newAchievement)
 
             if (newAchievement) {
                 insertAchievement(user, newAchievement)
