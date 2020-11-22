@@ -86,11 +86,16 @@ router.post('/:username/updateInfo', function(req, res) {
     console.log(req.params);
     let { username } = req.params;
     // console.log(username);
-    query(updateQuery, [username], function (error, results, fields) {
-        if (error) throw error;
-        res.send(JSON.stringify(results));
-    });
+    // query(updateQuery, [username], function (error, results, fields) {
+    //     if (error) throw error;
+    //     res.send(JSON.stringify(results));
+    // });
     // successfully updated the database
+    query(updateQuery, [username])
+    .then(results => {
+        res.json({success: true})
+    })
+    .catch(err => res.json({ err: err }))
 })
 
 
@@ -176,23 +181,25 @@ router.post('/:id/addFriend/:friendUsername', function(req,res) {
 })
 
 // completeTasks 
-router.post('/username/:completeTasks', async (req, res) => { // json with user_id and task_id
+router.post('/:username/completeTasks', async (req, res) => { // json with user_id and task_id
     const { user_id, task_id } = req.body;
-    var update = "UPDATE tasks SET completed = completed + 1 WHERE user_id = $1 AND id=$2;"; // updating the task as completed in db
+    var update = "UPDATE tasks SET times_completed = times_completed + 1 WHERE user_id = $1 AND id=$2;"; // updating the task as completed in db
     var points = "UPDATE users SET impact_points = impact_points + 1 WHERE id = $1;"; // adding impact points for the user
-    query(update, [user_id, task_id], function(error, results, fields) {
-        if (error) throw error;
-        console.log('Task updated');
-        query(points, [user_id], function(error1, results1, fields) {
-            if (error1) throw error1;
+    query(update, [user_id, task_id])
+    .then(results => {
+        console.log('Task updated')
+        query(points, [user_id])
+        .then(results1 => {
             console.log('User points updated');
             res.json({success: true});
-        });
-    });
+        })
+        .catch(err => res.json({ err: err }))
+    })
+    .catch(err => res.json({ err: err }))
 })
 
 
-// addTask -- used for non static requests (with two tables in database)
+// addTask -- used for non static requests
 router.post('/:id/addTask', function(req, res) { // parameters -- name, description, impact
     console.log('Adding task');
     const { name, description, impact } = req.body;
@@ -232,32 +239,39 @@ router.post('/:id/addAchievement', function(req, res) { // parameters -- name, i
     });
 })
 
-// getFriendAchievements (if we get to it)
+// getFriendAchievements 
 router.get('/:id/getFriendAchievements', function(req, res) {
-
+    let { id } = req.params;
+    console.log(id);
+    var achquery = "SELECT achievments.user_id, achievments.name, achievments.description, achievments.image_id FROM friends_link RIGHT JOIN achievments ON friends_link.friend_id = achievments.user_id WHERE friends_link.user_id = $1 ORDER BY achievments.create_date desc;";
+    query(achquery, [id])
+    .then(results => res.json({ friends: results.rows }))
+    .catch(err => res.json({ err: err }))
 })
 
-// numTasks -- used for statistics (if implemented)
+// numTasks -- used for statistics
 router.get('/:id/numTasks', function(req, res) {
     let { id } = req.params;
     console.log(id);
-    var reuseQuery = "SELECT COUNT(times_completed) FROM tasks WHERE user_id = $1 AND impact='reuse'";
-    var reduceQuery = "SELECT COUNT(times_completed) FROM tasks WHERE user_id = $1 AND impact='reduce'";
-    var recycleQuery = "SELECT COUNT(times_competed) FROM tasks WHERE user_id = $1 AND impact='recycle'";
-    query(reuseQuery, [id], function(error1, results1) {
-        if(error1) throw error1;
-        console.log(results1);
-        query(reduceQuery, function(error2, results2) {
-            if (error2) throw error2;
-            console.log(results2);
-            query(recycleQuery, function (error3, results3) {
-                if (error3) throw error3;
-                console.log(results3);
-                res.json({reuse: results1.rows, reduce: results2.rows, recycle: results3.rows}); // need to check on like actual results -- idk about the format
-                // res.send(JSON.stringify({reuse: results1, reduce: results2, recycle: results3})); // maybe this actually oop idk
+    var reuseQuery = "SELECT SUM(times_completed) FROM tasks WHERE user_id = $1 AND impact='reuse'";
+    var reduceQuery = "SELECT SUM(times_completed) FROM tasks WHERE user_id = $1 AND impact='reduce'";
+    var recycleQuery = "SELECT SUM(times_completed) FROM tasks WHERE user_id = $1 AND impact='recycle'";
+    query(reuseQuery, [id])
+    .then(reuseResults => {
+        console.log('reuse query done')
+        query(reduceQuery, [id])
+        .then(reduceResults => {
+            console.log('reduce query done')
+            query(recycleQuery, [id])
+            .then(recycleResults => {
+                console.log('recycle query done')
+                res.json({reuse: reuseResults.rows, reduce: reduceResults.rows, recycle: recycleResults.rows});
             })
-        });
-    });
+            .catch(err => res.json({ err: err }))
+        })
+        .catch(err => res.json({ err: err }))
+    })
+    .catch(err => res.json({ err: err }))
 })
 
 module.exports = router
