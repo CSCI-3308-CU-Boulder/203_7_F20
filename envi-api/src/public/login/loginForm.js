@@ -44,8 +44,11 @@ function submitLogin() {
   axios.post(loginUrl, body)
     .then(response => {
       if (response.data) {
+        console.log(response.data);
         let { username } = response.data;
         // Set a cookie to remember the login on the frontend
+        var inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
+        Cookies.set('username', username, { expires: inFifteenMinutes })
         // Redirect to profile page
         window.location.replace(`/profile#${username}`)
       } else {
