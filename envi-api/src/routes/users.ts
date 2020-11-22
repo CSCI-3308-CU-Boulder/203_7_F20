@@ -247,6 +247,18 @@ router.post('/:id/addAchievement', function(req, res) { // parameters -- name, i
     });
 })
 
+// get user achievements
+// '/api/users/:username/getAchievements'
+router.get('/:id/getAchievements', (req, res) => {
+    // query for ach's
+    query(`SELECT * FROM achievements WHERE user_id = ${req.user.id} ORDER BY create_date DESC;`)
+    .then(results => res.json({ achievements: results.rows }))
+    .catch(err => {
+        console.log(err)
+        res.json({ err: err })
+    })
+})
+
 // getFriendAchievements 
 router.get('/:id/getFriendAchievements', function(req, res) {
     let { id } = req.params;
