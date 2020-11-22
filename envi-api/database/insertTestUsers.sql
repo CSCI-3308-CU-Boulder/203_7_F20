@@ -1,0 +1,3 @@
+INSERT INTO users(username, password, email, name, image_id) VALUES ('mteets44', '$2b$10$Q.sT7LQH07XbmFItz7VbY.dZwH0UROBQT5NgYXZpQvHzMaXHdcXge', 'matthew.teta6@colorado.edu', 'MT', 5);
+INSERT INTO users(username, password, email, name, image_id) VALUES ('mteets55', '$2b$10$rQwk3ye6hwO3PRlLimUyPuS7.ggg6mXoglZHE9TMwx7hp3jaFaFxG', 'matthew.teta7@colorado.edu', 'MT', 0);
+INSERT INTO users(username, password, email, name, image_id) VALUES ('mteets66', '$2b$10$HmOtYX6JhDqwTr/ex2lk4eHIlMCgoo2XY6yeclMYws2RO4uxpA7nS', 'matthew.teta8@colorado.edu', 'MT', 2);

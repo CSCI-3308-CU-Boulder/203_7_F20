@@ -3,6 +3,7 @@ import { parse } from "path";
 const Router = require('express-promise-router')
 const query = require('../db')
 const { ensureAuthenticated } = require('../config/auth');
+const userUtility = require('../db/user')
 
 // create a new express-promise-router
 // this has the same API as the normal express router except
@@ -194,16 +195,15 @@ router.post('/username/:completeTasks', async (req, res) => { // json with user_
 // addTask -- used for non static requests (with two tables in database)
 router.post('/:id/addTask', function(req, res) { // parameters -- name, description, impact
     console.log('Adding task');
-    const { user_id, name, description, impact } = req.body;
-    if(!user_id || !name || !impact) {
+    const { name, description, impact } = req.body;
+    if(!name || !impact) {
         res.status(401).send("Invalid task input")
         return null
     }
     var taskQuery = "INSERT INTO tasks (user_id, name, description, impact, times_completed) VALUES ($1, $2, $3, $4, 0);"; // adding task to list
-    query(taskQuery, [user_id, name, description, impact], function(error, results) {
-        if (error) throw error;
-        res.json({success : true});
-    });
+    query(taskQuery, [req.user.id, name, description, impact])
+    .then(results => res.json({ success: true }))
+    .catch(err => res.json({ err: err }))
 })
 
 // for getting tasks added by a given user
@@ -262,3 +262,12 @@ router.get('/:id/numTasks', function(req, res) {
 
 module.exports = router
 export {}
+
+        // userUtility.calculateNewAchievements(req.user)
+        // .then(newAchievment => {
+        //     res.json(newAchievment)
+        // })
+        // .catch(err => {
+        //     console.log(err)
+        //     res.json({ err: err })
+        // })
