@@ -31,8 +31,8 @@ const exAch = [
 // GET '/users/' returns a list of all users in DB Limit 100
 router.get('/', (req, res) => {
     query(`SELECT id, username, image_id, impact_points FROM users ORDER BY impact_points DESC LIMIT 100;`)
-    .then(results => res.json({ users: results.rows }))
-    .catch(err => res.json({ err: err }))
+        .then(results => res.json({ users: results.rows }))
+        .catch(err => res.json({ err: err }))
 })
 
 // Get user from either user id or username
@@ -87,12 +87,12 @@ router.get('/:id/', (req, res) => {
 })
 
 // Update profile info
-router.post('/:id/updateInfo', ensureAuthenticated, function(req, res) {
+router.post('/:username/updateInfo', ensureAuthenticated, function (req, res) {
     var newUsername = req.body.modal_username.toLowerCase();
     var newName = req.body.modal_name;
     var newImage = req.body.modal_image_id;
     var newEmail = req.body.defaultForm_email.toLowerCase();
-    var updateQuery = "UPDATE users SET username ='" +newUsername+ "', name ='" +newName+"', image_id =" +newImage+ ", email ='" +newEmail+ "' WHERE id =$1";
+    var updateQuery = "UPDATE users SET username ='" + newUsername + "', name ='" + newName + "', image_id =" + newImage + ", email ='" + newEmail + "' WHERE username =$1";
     console.log(updateQuery);
     console.log(req.params);
     let { id } = req.params;
@@ -108,9 +108,9 @@ router.post('/:id/updateInfo', ensureAuthenticated, function(req, res) {
 // Get friends -- NOT TESTED
 router.get('/:id/getFriends', async (req, res) => {
     // Get all friends for user
-    query(`SELECT users.id, users.username, users.image_id, users.impact_points FROM friends_link RIGHT JOIN users ON friends_link.friend_id = users.id WHERE friends_link.user_id = ${req.user.id};`)
-    .then(results => res.json({ friends: results.rows }))
-    .catch(err => res.json({ err: err }))
+    query(`SELECT users.id, users.username, users.image_id, users.impact_points FROM friends_link RIGHT JOIN users ON friends_link.friend_id = users.id WHERE friends_link.id = ${req.user.id};`)
+        .then(results => res.json({ friends: results.rows }))
+        .catch(err => res.json({ err: err }))
 
     // var infoQuery = "SELECT username, name, image_id, level FROM users WHERE id =$1"; // to get info about the friend
     // var friendQuery = "SELECT friends_id_array FROM friends_link WHERE id =$1"; // get user's friends array
@@ -141,39 +141,39 @@ router.get('/:id/getFriends', async (req, res) => {
 })
 
 // Add friend -- NOT TESTED
-router.post('/:id/addFriend/:friendUsername', function(req,res) {
+router.post('/:id/addFriend/:friendUsername', function (req, res) {
     let { friendUsername } = req.params;
-    if (!friendUsername || friendUsername == "") return res.json({ err: "Invalid friend username"})
+    if (!friendUsername || friendUsername == "") return res.json({ err: "Invalid friend username" })
 
     // Find friend_id by username
     query(`SELECT id FROM users WHERE username = '${friendUsername}'`)
-    .then(friendIdResults => {
-        // Check that user exists with username = friendUsername
-        if (friendIdResults.rows.length < 1) return res.json({ err: "Invalid friend username" })
-        let friendId = friendIdResults.rows[0].id
-        // Check if user already has friend with username_id
-        query(`SELECT COUNT(*) FROM friends_link LEFT JOIN users ON friends_link.friend_id = users.id WHERE friends_link.user_id = ${req.user.id} AND friends_link.friend_id = ${friendId};`)
-        .then(results1 => {
-            let { count } = results1.rows[0]
-            if (count > 0) return res.json({ err: "You are already friends with this user" }) 
-            // Insert friend_link document
-            query(`INSERT INTO friends_link (user_id, friend_id) VALUES (${req.user.id}, ${friendId});`)
-            .then(results2 => res.json({ success: true }))
-            .catch(err => {
-                console.log(err)
-                res.json({ err: err })
-            })
+        .then(friendIdResults => {
+            // Check that user exists with username = friendUsername
+            if (friendIdResults.rows.length < 1) return res.json({ err: "Invalid friend username" })
+            let friendId = friendIdResults.rows[0].id
+            // Check if user already has friend with username_id
+            query(`SELECT COUNT(*) FROM friends_link LEFT JOIN users ON friends_link.friend_id = users.id WHERE friends_link.user_id = ${req.user.id} AND friends_link.friend_id = ${friendId};`)
+                .then(results1 => {
+                    let { count } = results1.rows[0]
+                    if (count > 0) return res.json({ err: "You are already friends with this user" })
+                    // Insert friend_link document
+                    query(`INSERT INTO friends_link (user_id, friend_id) VALUES (${req.user.id}, ${friendId});`)
+                        .then(results2 => res.json({ success: true }))
+                        .catch(err => {
+                            console.log(err)
+                            res.json({ err: err })
+                        })
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.json({ err: err })
+                })
         })
         .catch(err => {
             console.log(err)
             res.json({ err: err })
         })
-    })
-    .catch(err => {
-        console.log(err)
-        res.json({ err: err })
-    })
-    
+
 
     // var updateQuery = "UPDATE friend_link SET friends_id_array = [$1," +id+ "] WHERE user_id=$2"; // add friend id to the array
     // var friendListQuery = "SELECT friends_id_array FROM friend_link WHERE user_id=" + req.user.id; // to get the friends array from the user
@@ -186,8 +186,7 @@ router.post('/:id/addFriend/:friendUsername', function(req,res) {
     // });
 })
 
-router.post('/username/:completeTasks', async (req, res) =>
-{
+router.post('/username/:completeTasks', async (req, res) => {
     //var actionsID = req.body.action_id; Handled in database
     var user_id = req.params.id;
     var actionName = req.body.taskName;
@@ -201,4 +200,4 @@ router.post('/username/:completeTasks', async (req, res) =>
 })
 
 module.exports = router
-export {}
+export { }
