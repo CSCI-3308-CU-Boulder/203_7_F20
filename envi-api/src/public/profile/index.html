@@ -8,6 +8,30 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../resources/css/envi_style.css" />
 
+  <script src="./loadProfile.js"  type="module"></script>
+  <script src="./trackingPage.js" type="module"></script>
+
+  <script>
+    function loadBottles() {
+    if (document.cookie.length > 0) {
+      username = document.cookie.split('=')[1]
+      axios
+        .get(baseUrl + "/users/" + username)
+        .then(function (response) {
+          // handle success
+          console.log(response.data);
+          level = Math.floor(response.data.num_bottles / 5);
+          count = response.data.num_bottles % 5;
+          setImage()
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+    }
+  }
+  </script>
+
   <nav class="navbar navbar-light" style="background-color: #c5c3ba">
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -138,15 +162,15 @@
                         </div>
                         <div class="modal-body">
                           <div class="form-group">
-                            <input type="text" id="modal_username" class="form-control" name="username"
+                            <input type="text" id="modal_username" class="rounded-all form-control" name="username"
                               placeholder="Username" required="required" />
                           </div>
                           <div class="form-group">
-                            <input type="text" id="modal_name" class="form-control" name="name" placeholder="Name"
+                            <input type="text" id="modal_name" class="rounded-all form-control" name="name" placeholder="Name"
                               required="required" />
                           </div>
                           <div class="form-group">
-                            <input id="defaultForm-email" type="email" class="form-control validate" name="email"
+                            <input id="defaultForm-email" type="email" class="rounded-all form-control validate" name="email"
                               placeholder="Email Address" required="required" />
                           </div>
                           <!-- <div class="form-group">
@@ -154,11 +178,11 @@
                             placeholder="Confirm Password" required="required">
                           </div> -->
                           <div class="form-group">
-                            <button type="button" id="my_submit_button" class="btn btn-primary save"
+                            <button type="button" id="my_submit_button" class="button"
                               onclick="updateProfileInfo()">
                               Update
                             </button>
-                            <button type="button" id="my_reset_button" class="btn btn-primary save"
+                            <button type="button" id="my_reset_button" class="button"
                               onclick="resetName()">
                               Change Name
                             </button>
