@@ -9,7 +9,7 @@
 -- \c envi;
 
 -- creates user profile table
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users (
     id SERIAL PRIMARY KEY NOT NULL, 
     username VARCHAR NOT NULL UNIQUE, 
@@ -32,7 +32,7 @@ CREATE TABLE users (
 ALTER TABLE users OWNER TO envi_api_user;
 
 -- creates friends_link table which associates a user with another user (friend that they follow)
-DROP TABLE IF EXISTS friends_link;
+DROP TABLE IF EXISTS friends_link CASCADE;
 CREATE TABLE friends_link (
     id SERIAL PRIMARY KEY NOT NULL,
     user_id INT NOT NULL,
@@ -45,25 +45,26 @@ CREATE TABLE friends_link (
 ALTER TABLE friends_link OWNER TO envi_api_user;
 
 -- creates achievments table
-DROP TABLE IF EXISTS achievments;
-CREATE TABLE achievments (
+DROP TABLE IF EXISTS achievments CASCADE;
+DROP TABLE IF EXISTS achievements CASCADE;
+CREATE TABLE achievements (
     id SERIAL PRIMARY KEY NOT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY(user_id) REFERENCES users(id),
 
-    name VARCHAR(20) NOT NULL,
-    description VARCHAR(50),
+    name VARCHAR(40) NOT NULL,
+    description VARCHAR(100),
     image_id INT,
 
     create_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-ALTER TABLE achievments OWNER TO envi_api_user;
+ALTER TABLE achievements OWNER TO envi_api_user;
 
 -- create enum for task types
 CREATE TYPE TASK_IMPACT AS ENUM ('reduce', 'reuse', 'recycle');
 
 -- create tasks table
-DROP TABLE IF EXISTS tasks;
+DROP TABLE IF EXISTS tasks CASCADE;
 CREATE TABLE tasks (
     id SERIAL PRIMARY KEY NOT NULL, 
     user_id INT NOT NULL,
@@ -80,7 +81,7 @@ CREATE TABLE tasks (
 ALTER TABLE tasks OWNER TO envi_api_user;
 
 -- create companies table
-DROP TABLE IF EXISTS companies;
+DROP TABLE IF EXISTS companies CASCADE;
 CREATE TABLE companies (
     id SERIAL PRIMARY KEY NOT NULL,
 
@@ -92,7 +93,7 @@ CREATE TABLE companies (
 );
 ALTER TABLE companies OWNER TO envi_api_user;
 
-DROP TABLE IF EXISTS donations;
+DROP TABLE IF EXISTS donations CASCADE;
 CREATE TABLE donations (
     id SERIAL PRIMARY KEY NOT NULL,
     user_id INT NOT NULL,

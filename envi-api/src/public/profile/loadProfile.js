@@ -29,7 +29,7 @@ var exUser = {
 
 var images = [
   "../assets/colorEarth.jpg",
-  "../assets/recycling.jpg",
+  "../assets/recycling.jpeg",
   "../assets/environmentalist.jpg",
   "../assets/flatirons.png",
   "../assets/flowers.jpg",
@@ -158,10 +158,9 @@ function onClick() {
 }
 
 function loadProfile() {
-  // get user data from test server
   if (window.location.hash != "" && window.location.hash.length > 1) {
     // Get username from cookie
-    let username = window.location.hash.split('#')[1]
+    let username = Cookies.get('username')
     axios
       .get("http://localhost:5000/api/users/" + username)
       .then(function (response) {
@@ -185,11 +184,10 @@ function loadProfile() {
 //add onclick for update profile form when clicking submit (create function below with axios get request for update info)
 function updateProfileInfo() {
   let username = window.location.hash.split('#')[1]
-  axios.get("http://localhost:5000/api/users/" + username + "/updateInfo")
+  axios.post("http://localhost:5000/api/users/" + username + "/updateInfo")
     .then(function (response) {
       console.log(response);
       let user = response.data;
-      console.log(user)
       displayPicture(user);
       updateInfo(user);
       displayInfo(user);
@@ -208,10 +206,6 @@ function loadExampleUser() {
   displayInfo(exUser);
 }
 
-function resetName() {
-  document.getElementById("modal_name").disabled = false;
-  // document.getElementById("last_name").disabled = false;
-}
 
 // $(document).ready(function () {
 //   loadProfile()

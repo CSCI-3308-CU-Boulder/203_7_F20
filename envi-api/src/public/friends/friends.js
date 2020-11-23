@@ -4,6 +4,7 @@
  */
 
 
+
 var exFriendAch = [
     //hardcoded user achievements
     {
@@ -30,37 +31,37 @@ var exFriends = [
     {
         username: "matthewteta",
         name: "Matthew Teta",
-        image: "../assets/profile_pic_placeholder.gif"
+        image_id: 1
     },
     {
         username: "sarahzendle",
         name: "Sarah Zendle",
-        image: "../assets/profile_pic_placeholder.gif"
+        image_id: 3
     },
     {
         username: "charliekoepke",
         name: "Charlie Koepke",
-        image: "../assets/profile_pic_placeholder.gif"
+        image_id: 3
     },
     {
         username: "lakshyajaishankar",
         name: "Lakshya Jaishankar",
-        image: "../assets/profile_pic_placeholder.gif"
+        image_id: 3
     },
     {
         username: "rebeccacoryell",
         name: "Rebecca Coryell",
-        image: "../assets/profile_pic_placeholder.gif"
+        image_id: 3
     },
     {
         username: "brianmayers",
         name: "Brian Mayers",
-        image: "../assets/profile_pic_placeholder.gif"
+        image: 3
     },
     {
         username: "samuelmast",
         name: "Samuel Mast",
-        image: "../assets/profile_pic_placeholder.gif"
+        image_id: 3
     }
 ]
 
@@ -69,6 +70,19 @@ var exUser = {
     name: 'Example User',
     image_id: 1
 }
+
+var images = [
+    "../assets/colorEarth.jpg",
+    "../assets/recycling.jpeg",
+    "../assets/environmentalist.jpg",
+    "../assets/flatirons.png",
+    "../assets/flowers.jpg",
+    "../assets/hydroflask.jpg",
+    "../assets/ice.jpg",
+    "../assets/mountains.png",
+    "../assets/plant.jpg",
+    "../assets/flatirons.png",
+];
 
 function createAchievement(friendAch) {
     //builds string to insert card into html
@@ -104,7 +118,7 @@ function createFriend(friend) {
         `<div class="card mb-3 theme-dark" style = "max-width: 540px; max-height: 50px; border: none; border-radius: calc(3rem - 1px)" >
     <div class="row no-gutters">
             <div class="col-md-1 d-flex align-items-center">
-                <img src="${friend.image}" style="width: 40px; border-radius: 50%; margin-left: 5px"
+                <img src="${images[friend.image_id]}" style="width: 40px; border-radius: 50%; margin-left: 5px"
                 class="card-img" alt="">
             </div>
             <div class="col-md-11">
@@ -133,32 +147,33 @@ function loadExampleFriends() {
 }
 
 function loadFriends() {
-    //GET COOKIE
+    //get cookie
     var username = Cookies.get('username');
-    axios
+    console.log("username cookie: " + username);
+    axios //get user doc
         .get("http://localhost:5000/api/users/" + username)
         .then(function (response) {
             // handle success
             let user = response.data;
             console.log(user);
+            axios //get friends
+                .get(`/api/users/${username}/getFriends`)
+                .then(function (friendsRes) {
+                    let friends = friendsRes.data;
+                    console.log(friends)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
         })
         .catch(function (error) {
-            loadExampleUser();
+            loadExampleFriends();
             // handle error
             console.log(error);
         });
-
-    axios
-        .get("/api/username/getFriends")
-        .then(function (response) {
-            let friends = response.data;
-            console.log(friends)
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
 }
 
+/*
 var exAddFriends = [
     {
         username: "suryakanoria",
@@ -193,20 +208,75 @@ function addFriendsList(friendArr) {
 function loadAddFriends() {
     addFriendsList(exAddFriends);
 }
+*/
+function addFriend() {
+    //get friend username from js event
+    var toAdd = event.target.id;
+    console.log("adding " + toAdd);
+    //get current user from cookie
+    var user = Cookies.get('username')
+    //update html
+    if (user && toAdd) {
+        document.getElementById(toAdd).innerHTML = "";
+        //post new friend to db
+        axios
+            .post(`/api/users/${user}/addFriend/${toAdd}`)
+            .then(function (response) {
+                console.log(response.data)
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+    }
+}
+
+function createSearchCard(user) {
+    var cardStr = `
+    <div class="card mb-3 theme-dark"
+        style="max-width: 540px; max-height: 50px; border: none; border-radius: calc(3rem - 1px); margin-top: 10px">
+        <div class="row no-gutters">
+            <div class="col-md-1">
+            <img src="${images[user.image_id]}"
+                style="width: 40px; border-radius: 50%; margin-top: 8px; margin-left: 10px" class="card-img" alt="">
+            </div>
+            <div class="col-md-10" style="align-items: center;">
+            <div class="card-body">
+                <h5 class="card-text"> <b> ${user.name} </b> ${user.username} </h5>
+            </div>
+            </div>
+
+            <div class="col-md-1">
+            <h3 id="${user.username}" onClick = addFriend() style="margin-top: 8px; margin-right: 5px">+</h3>
+            </div>
+        </div>
+    </div>`
+
+    return cardStr;
+}
+
+function listResults(users) {
+    var listStr = "";
+    if (users) {
+        for (var i = 0; i < users.length; i++) {
+            listStr += createSearchCard(users[i]);
+        }
+    }
+    document.getElementById("search_results").innerHTML = listStr;
+}
 
 // Search bar functions
-// Only works if the friends are in a List
 function searchBar() {
     let input = document.getElementById("searchBar").value;
     input = input.toLowerCase();
-    let x = document.getElementsByClassName("friends");
-
-    for (var i = 0; i < x.length; i++) {
-        if (!x[i].innerHTML.toLowerCase().includes(input)) {
-            x[i].style.display = "none";
-        }
-        else {
-            x[i].style.display = "list-item";
-        }
-    }
+    axios
+        .get(`/api/search?term=${input}`)
+        .then(function (response) {
+            let searchResults = response.data.results;
+            console.log(searchResults)
+            listResults(searchResults)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
 }
+
