@@ -8,6 +8,16 @@
   table {
     width: 100%;
   }
+  #c1{
+   float:left;
+  }
+
+  #c2{
+    float:right;
+    /* background-position-x:absolute;
+    right:700px;
+    top  :10px; */
+  }
 </style>
 
 <head>
@@ -16,6 +26,7 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../resources/css/envi_style.css">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
@@ -50,83 +61,133 @@
 
   <!-- Page content -->
   <div class="main" style="margin-left: 250px">
-    <div class="container">
+    <div id="c1" class="container">
       <div class="row">
-        <div class="col col-5">
+        <div class="col col-6">
           <div class="row">
             <img id="bottle" src="../assets/waterBottle.jpg" alt="Water Bottle" />
           </div>
-          <div class="card-title text-right"><button type="button" class="btn btn-success" data-toggle="modal"
-              data-target="#addTask">Add Task</button></div>
+          <!-- <div class="card-title text-right"><button type="button" class="btn btn-success" data-toggle="modal"
+              data-target="#addTask">Add Task</button></div> -->
           <div class="card-body" id="tasks">
-            Function to add new cards for every new task added-->
+            <!-- Function to add new cards for every new task added-->
 
           <!-- </div> -->
-        <!-- </div> -->
-       
-        <div class = "theme-light rounded-all card" style="margin-left: 70px;height:200px">
-          <table style="width: 600px; height: auto" class="table">
-            <thead>
-              <tr>
-                <th scope="col">Impact Points</th>
-                <!-- <th scope="col">Level</th> -->
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td id="bottle_count">0</td>
-                <!-- <td id="level">0</td> -->
-              </tr>
-            </tbody>
-          </table>
         </div>
-        <div class="col col-7">
+        <div class= "col">
+          <div class = "theme-light rounded-all card" style="margin-left: 70px;height:200px">
+            <table style="width: 440px; height: auto" class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Bottles Filled</th>
+                  <th scope="col">Level</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td id="bottle_count">0</td>
+                  <td id="level">0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br>
+        <div class="col">
           <div class="container">
             <div class="row">
               <!-- Statistics -->
               <div class="col">
-                Impact Points Here!
+                <div class = "theme-light rounded-all card" style="margin-left: 70px;height:200px">
+                  <table style="width: 410px; height: auto" class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Impact Points</th>
+                        <!-- <th scope="col">Level</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td id="bottle_count">0</td>
+                        <!-- <td id="level">0</td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
               <div class="col">
-                Pie Chart Here!
+                <!-- Pie Chart Here! -->
+                <div id="piechart" style="width: 100%; height: 100%; margin-left: -80px;"></div>
+                <script type="text/javascript">
+                  // Load google charts
+                  google.charts.load('current', {'packages':['corechart']});
+                  google.charts.setOnLoadCallback(drawChart);
+                  
+                  // Draw the chart and set the chart values
+                  function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                    ['Task', 'Points'],
+                    ['Reduce', 8],
+                    ['Reuse', 2],
+                    ['Recycle', 2],
+                  ]);
+                  // Change the number of points to change the graph
+                  
+                    // Add a title and set the width and height of the chart
+                    // The colors will apply to the order of the data above
+                    var options = {'title':'Statistics', 'width':1000, 'height':500, 'colors':['lightblue', 'pink',  'orange']};
+                  
+                    // Display the chart inside the <div> element with id="piechart"
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                    chart.draw(data, options);
+                  }
+                </script>
               </div>
             </div>
-            <div class="row">
-              <div class="col col-6" style="max-width: none; width:auto">
+        </div>
+      </div>
+    </div>
+        <div id="c2" class="row">
+          <!-- <br> -->
+          <div class="col" style="max-width: 100%; width:100%">
+              <!-- <div style="width: 50%;" text-align="right"> -->
+                <!-- ooooooooooooooooooooooo0000000ooooooooo
+                im losing my MIND why is it doing this what is going on -->
+                <br>
+            <div class=" card theme-light rounded-all" style="width:170%; border: none;">
+              <div class=" card-header theme-dark rounded-top">
+                <h5>My Progress</h5>
+              </div>
+              <div class="card-title text-right">
+                <button type="button" class="button" style="margin-right: 10px; margin-top: 10px"
+                  data-toggle="modal" data-target="#addTask">Add Task</button></div>
+              <div class="card-body" id="tasks">
+                <!-- Function to add new cards for every new task added-->
+                <div class='theme-dark rounded-all card' id="counter" style="border: none">
+                  <div class='card-header'>task name
+                    <div class='card-body'>
+                      <p class='card-text' style='font-size: 12pt'> task description / type
+                      </p>
+                      <button class='button'>Complete Task</button>
 
-                ooooooooooooooooooooooo0000000ooooooooo
-                im losing my MIND why is it doing this what is going on
-                <div class="card theme-light rounded-all" style="width:100%; border: none;">
-                  <div class=" card-header theme-dark rounded-top">
-                    <h5>My Progress</h5>
-                  </div>
-                  <div class="card-title text-right">
-                    <button type="button" class="button" style="margin-right: 10px; margin-top: 10px"
-                      data-toggle="modal" data-target="#addTask">Add Task</button></div>
-                  <div class="card-body" id="tasks">
-                    <!-- Function to add new cards for every new task added-->
-                    <div class='theme-dark rounded-all card' id="counter" style="border: none">
-                      <div class='card-header'>task name
-                        <div class='card-body'>
-                          <p class='card-text' style='font-size: 12pt'> task description / type
-                          </p>
-                          <button class='button'>Complete Task</button>
-
-                        </div>
-                      </div>
                     </div>
                   </div>
-
                 </div>
-
               </div>
+
             </div>
           </div>
         </div>
+          
+
+              <!-- </div> -->
+            <!-- </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
       </div>
 
 
-    </div>
+    <!-- </div> -->
 
     <div id="addTask" class="modal fade" role="dialog">
       <div class="modal-dialog">

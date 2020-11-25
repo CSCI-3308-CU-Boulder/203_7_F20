@@ -134,7 +134,7 @@ function displayTasks() {
     // <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + " - " + task[i].type +"</p>\
     // <button class='button' onclick='taskComplete(\""+counter+"\")' style='float: left; margin-left:100px;'>Complete Task</button>\
     // <button class='button' onclick='deleteTask(\""+counter+"\")' style='float: right;'>Delete Task</button></div></div>";
-    output = "here!"
+    // output = "here!"
     counter++;
 
     // console.log("displayTask i=",i);
