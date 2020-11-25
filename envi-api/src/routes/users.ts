@@ -59,6 +59,7 @@ router.use('/:id', (req, res, next) => {
                 res.json({
                     id: id,
                     username: username,
+                    // name: name,
                     image_id: image_id,
                     impact_points: impact_points,
                     achievements: exAch

@@ -3,6 +3,11 @@
  *  Integrate new task layout with the database
  */
 
+// import './user.ts';
+// import { calculateNewAchievements } from './user.ts';
+
+// const result = calculateNewAchievements("laja3167");
+
 function resetToEmpty() {
    count = 0;
    bottlesFilled = 0;
@@ -11,7 +16,7 @@ function resetToEmpty() {
  }
 
 var count = 0;
-var level = 0
+// var level = 0
 var bottles_filled = 0;
 var baseUrl = "http://localhost:5000"
 var username = "mteets4"
@@ -28,7 +33,7 @@ function loadBottles() {
       .then(function (response) {
         // handle success
         console.log(response.data);
-        level = Math.floor(response.data.num_bottles / 5);
+        // level = Math.floor(response.data.num_bottles / 5);
         count = response.data.num_bottles % 5;
         setImage()
       })
@@ -44,17 +49,19 @@ function taskComplete(i) {
   axios.post(baseUrl + "/api/users/" + username + "/completeTask", {}).then((response) => {
     console.log(response);
   });
+  
+  // result.calculateNewAchievements('laja3167');
 
   // Make the task card disappear
   // Call the deleteTask() function
-  deleteTask(i);
+  // deleteTask(i);
 
 
-  if (count % 5 == 0) {
-    level++;
-    alert("Congratulations you leved up!");
-    count = 0;
-  }
+  // if (count % 5 == 0) {
+  //   // level++;
+  //   alert("Congratulations you leved up!");
+  //   count = 0;
+  // }
   setImage();
 }
 
@@ -71,7 +78,7 @@ function setImage() {
     document.getElementById("bottle").src = "../assets/waterBottle4.jpg";
   }
   document.getElementById("bottle_count").innerHTML = count;
-  document.getElementById("level").innerHTML = level + 1;
+  // document.getElementById("level").innerHTML = level + 1;
 }
 
 var task = [{name: 'a', description: 'b', type: 'reuse'}];
@@ -83,9 +90,12 @@ var taskType = document.getElementById("type").value;
 // var task = [{name: taskName, description: taskDesc, type:taskType}];
 console.log("initial task length = ", task.length);
 
+var task = [{name: taskName, description: taskDesc, type:taskType}];
+var exUser = {
+  taskCard: task,
+};
 
-
-function addTask() {
+function addTask(user) {
   // Opens a modal that will intake the information and then add the task into a list of tasks that will display as cards
   //.push() method
 
@@ -98,12 +108,12 @@ function addTask() {
   var taskName = document.getElementById("taskName").value;
   var taskDesc = document.getElementById("descr").value;
   var taskType = document.getElementById("type").value;
-  var task = [{name: taskName, description: taskDesc, type:taskType}];
+  user.taskCard = [{name: taskName, description: taskDesc, type:taskType}];
 
 
   // task.push({name: document.getElementById("taskName").value, description: document.getElementById("descr").value, type: document.getElementById("type").value});
-  task.push({name: taskName, description: taskDesc, type: taskType});
-  console.log("task length = ", task.length);
+  user.taskCard.push({name: taskName, description: taskDesc, type: taskType});
+  console.log("task length = ", user.taskCard.length);
   displayTasks();
 }
 
@@ -175,5 +185,20 @@ function deleteTask(i) {
 
 }
 
+// pass task id for a get task function 
+function loadTrackingInfo(){
+  let username = window.location.hash.split('#')[1]
+  axios.get("http://localhost:5000/api/users/" + username+ "/:completeTasks")
+  .then(function (response) {
+    console.log(response);
+    let user = response.data;
+    console.log(user)
+    addTask(user);
+
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
 
 window.onload = displayTasks();

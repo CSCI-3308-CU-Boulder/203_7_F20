@@ -22,7 +22,7 @@ var exAch = [
 var exUser = {
   username: "username",
   name: "Example User",
-  num_bottles: 1,
+  //num_bottles: 1,
   achievements: exAch,
   image_id: 2,
 };
@@ -89,12 +89,15 @@ function displayPicture(user) {
 
 function displayInfo(user) {
   document.getElementById("username").innerHTML = user.username;
-  document.getElementById("level").innerHTML =
-    "Level: " + (Math.floor(user.num_bottles / 5) + 1);
-  document.getElementById("bottles_filled").innerHTML =
-    "Bottles Filled: " + user.num_bottles;
+  // document.getElementById("level").innerHTML =
+  //   "Level: " + (Math.floor(user.num_bottles / 5) + 1);
+  // document.getElementById("bottles_filled").innerHTML =
+  //   "Bottles Filled: " + user.num_bottles;
+  document.getElementById("impact_points").innerHTML =
+    "Impact Points: " + user.num_bottles;
   document.getElementById("name").innerHTML = user.name;
   // document.getElementById("modal_name").innerHTML;
+  console.log("getting user info",user);
 }
 
 function displayProfilePic(id) {
@@ -158,6 +161,7 @@ function onClick() {
 }
 
 function loadProfile() {
+  loadAchievements();
   if (window.location.hash != "" && window.location.hash.length > 1) {
     // Get username from cookie
     let username = Cookies.get('username')
@@ -170,6 +174,7 @@ function loadProfile() {
         displayPicture(user);
         //displayAchievements(user);
         displayInfo(user);
+        
       })
       .catch(function (error) {
         loadExampleUser();
@@ -184,19 +189,47 @@ function loadProfile() {
 //add onclick for update profile form when clicking submit (create function below with axios get request for update info)
 function updateProfileInfo() {
   let username = window.location.hash.split('#')[1]
-  axios.post("http://localhost:5000/api/users/" + username + "/updateInfo")
+  axios.post("http://localhost:5000/api/users/:"  + username + "/updateInfo")
     .then(function (response) {
       console.log(response);
       let user = response.data;
       displayPicture(user);
       updateInfo(user);
       displayInfo(user);
+      axios.post("http://localhost:5000/api/users/" + username + "/getAchievements")
+        .then(function (response) {
+          console.log(response);
+          let user = response.data;
+          // module.exports.calculateNewAchievements(req.user);
+          displayAchievements(user);
+          // console.log(displayAchievements(user));
+
+        })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+function loadAchievements() {
+  let username = window.location.hash.split('#')[1]
+  axios.post("http://localhost:5000/api/users/" + username + "/getAchievements")
+    .then(function (response) {
+      console.log(response);
+      let user = response.data;
+      // module.exports.calculateNewAchievements(req.user);
+      displayAchievements(user);
+      // console.log(displayAchievements(user));
 
     })
     .catch(function (error) {
       console.log(error);
     });
 }
+
+// window.addEventListener('load', function() {
+//   loadAchievements();
+// }, false);
 
 function loadExampleUser() {
   //RUN HARDCODED EXAMPLE (NO SERVER CALL)
