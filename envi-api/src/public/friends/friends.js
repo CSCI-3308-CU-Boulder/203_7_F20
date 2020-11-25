@@ -3,7 +3,7 @@
  * Add function to display friends from database
  */
 
-
+var baseUrl = 'http://localhost:5000'
 
 var exFriendAch = [
     //hardcoded user achievements
@@ -84,18 +84,69 @@ var images = [
     "../assets/flatirons.png",
 ];
 
+var achievementImages = [
+    "../assets/colorEarth.jpg",
+    "../assets/recycling.jpeg",
+    "../assets/environmentalist.jpg",
+    "../assets/flatirons.png",
+    "../assets/flowers.jpg",
+    "../assets/hydroflask.jpg",
+    "../assets/ice.jpg",
+    "../assets/mountains.png",
+    "../assets/plant.jpg",
+    "../assets/flatirons.png",
+];
+
+function getUser(friendId) { // friendId is an object containing the id of the user you want, to get the users username
+    var friendUsername;
+    axios.get(baseUrl + '/api/users/' + friendId.id + '/getUser', friendId)
+        .then(function (userRes) {
+            // console.log(userRes)
+            friendUsername = userRes.data.username;
+            console.log("Username: " + friendUsername);
+            return friendUsername;
+        })
+        .catch(function (error) {
+            friendUsername = "Unknown";
+            console.log(error);
+            return friendUsername;
+        })
+}
+
 function createAchievement(friendAch) {
+    // var friendName = "Unknown User"
+    console.log("createAchievement Ach: ")
+    console.log(friendAch)
+    var friendId = { "id": friendAch.user_id };
+
+
+    // getUser route not working
+    // var friendUsername = getUser(friendId);
+    // console.log("createAchievement FriendUsername: ")
+    // console.log(friendUsername);
+
+    // axios.get(baseUrl + '/api/users/' +friendId.id+ '/getUser', friendId)
+    // .then(function (userRes) {
+    //     // console.log(userRes)
+    //     friendUsername = userRes.data.username;
+    //     console.log("Username: " + friendUsername);
+    // })
+    // .catch(function (error) {
+    //     friendUsername = "Unknown";
+    //     console.log(error);
+    // })
+
     //builds string to insert card into html
     var cardStr =
         `<div class="card mb-3 theme-light rounded-all" style = "max-width: 540px; border: none" >
     <div class="row no-gutters">
             <div class="col-md-2 d-flex align-items-center">
-                <img src="${friendAch.image}" style="width: 75px; border-radius: 50%; margin-left: 10px"
+                <img src="${achievementImages[friendAch.image_id]}" style="width: 75px; border-radius: 50%; margin-left: 10px"
                 class="card-img" alt="">
             </div>
             <div class="col-md-10 d-flex align-items-center">
                 <div class="card-body">
-                <p class="card-text"> <b> ${friendAch.username} </b> completed the ${friendAch.name} achievement!</p>
+                <p class="card-text"> <b> ` + friendAch.username + `</b> completed the ${friendAch.name} achievement!</p>
                 </div> </div> </div> </div >`;
     return cardStr;
 }
@@ -113,7 +164,6 @@ function buildFeed(achArr) {
 }
 
 function createFriend(friend) {
-
     var cardStr =
         `<div class="card mb-3 theme-dark" style = "max-width: 540px; max-height: 50px; border: none; border-radius: calc(3rem - 1px)" >
     <div class="row no-gutters">
@@ -150,27 +200,39 @@ function loadFriends() {
     //get cookie
     var username = Cookies.get('username');
     console.log("username cookie: " + username);
-    axios //get user doc
-        .get("http://localhost:5000/api/users/" + username)
-        .then(function (response) {
-            // handle success
-            let user = response.data;
-            console.log(user);
-            axios //get friends
-                .get(`/api/users/${username}/getFriends`)
-                .then(function (friendsRes) {
-                    let friends = friendsRes.data;
-                    console.log(friends)
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
+    // axios //get user doc
+    //     .get(baseUrl + "/api/users/" + username)
+    //     .then((response) => {
+    //         // handle success
+    //         let user = response.data;
+    //         console.log(user);
+    axios //get friends
+        .get(baseUrl + "/api/users/" + username + "/getFriends")
+        .then((friendsRes) => {
+            let friends = friendsRes.data.friends;
+            console.log(friends);
+            friendsList(friends);
         })
-        .catch(function (error) {
-            loadExampleFriends();
-            // handle error
+        .catch((error) => {
             console.log(error);
-        });
+        })
+    axios // load achievements
+        .get(baseUrl + "/api/users/" + username + "/getFriendAchievements")
+        .then((friendAchRes) => {
+            let friendsAch = friendAchRes.data.friends;
+            console.log("build feed: ")
+            console.log(friendAchRes.data.friends);
+            buildFeed(friendsAch);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    // })
+    // .catch(function (error) {
+    //     loadExampleFriends();
+    //     // handle error
+    //     console.log(error);
+    // });
 }
 
 /*

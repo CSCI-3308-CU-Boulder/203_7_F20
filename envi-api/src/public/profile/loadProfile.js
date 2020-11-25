@@ -171,10 +171,19 @@ function loadProfile() {
         // handle success
         let user = response.data;
         console.log(user);
+        //display info from user doc
         displayPicture(user);
-        //displayAchievements(user);
         displayInfo(user);
-        
+        //get user's achievements
+        axios
+          .get(`/api/users/${username}/getAchievements`)
+          .then(function (response) {
+            let { achievements } = response.data;
+            console.log(achievements);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
       })
       .catch(function (error) {
         loadExampleUser();
