@@ -10,13 +10,13 @@ let loggedIn = () => new Promise((resolve, reject) => {
         .then(response => {
             if (response.data) {
                 console.log(response.data)
-                let { loggedIn } = response.data
+                let { loggedIn, user } = response.data
                 if (loggedIn) {
                     console.log("User already logged in!")
-                    resolve(true);
+                    resolve(user);
                 } else {
                     console.log("No login")
-                    resolve(false);
+                    resolve(null);
                 }
             }
         }).catch(err => {

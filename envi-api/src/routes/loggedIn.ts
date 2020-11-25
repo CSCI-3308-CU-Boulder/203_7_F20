@@ -14,11 +14,13 @@ const router = new Router()
 router.get('/', function(req, res){
     if (req.isAuthenticated()) {
         res.json({
-            loggedIn: true
+            loggedIn: true,
+            user: req.user
         })
     } else {
         res.json({
-            loggedIn: false
+            loggedIn: false,
+            user: null
         })
     }
 });

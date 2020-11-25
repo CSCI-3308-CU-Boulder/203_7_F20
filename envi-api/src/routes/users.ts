@@ -98,11 +98,19 @@ router.post('/:username/updateInfo', function (req, res) {
         .catch(err => res.json({ err: err }))
 })
 
+// get public user info for a user
+router.get('/:id/getUser', (req, res) => {
+    let { user_id } = req.body;
+    var userQuery = "SELECT username, name, bio, birthday, image_id, impact_points FROM users WHERE id = $1";
+    query(userQuery, [user_id])
+    .then(results => res.json({friend: results.rows}))
+    .catch(err => res.json({err: err}))
+})
 
 // Get friends 
-router.get('/:id/getFriends', async (req, res) => {
+router.get('/:id/getFriends', (req, res) => {
     // Get all friends for user
-    query(`SELECT users.id, users.username, users.image_id, users.impact_points FROM friends_link RIGHT JOIN users ON friends_link.friend_id = users.id WHERE friends_link.id = ${req.user.id};`)
+    query(`SELECT users.name, users.id, users.username, users.image_id, users.impact_points FROM friends_link RIGHT JOIN users ON friends_link.friend_id = users.id WHERE friends_link.user_id = ${req.user.id};`)
         .then(results => res.json({ friends: results.rows }))
         .catch(err => res.json({ err: err }))
 
@@ -181,10 +189,17 @@ router.post('/:id/addFriend/:friendUsername', function (req, res) {
 })
 
 // completeTasks 
-router.post('/:username/completeTask', async (req, res) => { // json with user_id and task_id
+router.post('/:username/completeTask', async (req, res) => { // json with task_id and impact (impact type)
     const { task_id } = req.body;
+    const { impact } = req.body;
     var update = "UPDATE tasks SET times_completed = times_completed + 1 WHERE user_id = $1 AND id=$2;"; // updating the task as completed in db
-    var points = "UPDATE users SET impact_points = impact_points + 1 WHERE id = $1;"; // adding impact points for the user
+    var points = "UPDATE users SET impact_points = impact_points + 1 WHERE id = $1;"; // adding impact points for the user - 1 if recycle
+    if(impact == 'reuse') {
+        points = "UPDATE users SET impact_points = impact_points + 3 WHERE id = $1;"; // adding 3 impact points for reuse
+    }
+    else if(impact == 'reduce') {
+        points = "UPDATE users SET impact_points = impact_points + 2 WHERE id = $1;"; // adding 2 impact points for reduce
+    }
     query(update, [req.user.id, task_id])
         .then(results => {
             console.log('Task updated')
@@ -192,8 +207,8 @@ router.post('/:username/completeTask', async (req, res) => { // json with user_i
                 .then(results1 => {
                     console.log('User points updated');
                     userUtility.calculateNewAchievements(req.user)
-                        .then(newAchievment => {
-                            res.json({ success: true, newAchievment: newAchievment })
+                        .then(newAchievement => {
+                            res.json({ success: true, newAchievement: newAchievement })
                         })
                         .catch(err => {
                             console.log(err)
@@ -240,7 +255,7 @@ router.post('/:id/addAchievement', function (req, res) { // parameters -- name, 
         res.status(401).send("Invalid Achievement");
         return null;
     }
-    var achQuery = "INSERT INTO achievments (user_id, name, description, image_id) VALUES ($1, $2, $3, $4)";
+    var achQuery = "INSERT INTO achievements (user_id, name, description, image_id) VALUES ($1, $2, $3, $4)";
     query(achQuery, [user_id, name, description, image_id], function (error, results) {
         if (error) throw error;
         res.json({ success: true });
@@ -261,9 +276,8 @@ router.get('/:id/getAchievements', (req, res) => {
 
 // getFriendAchievements 
 router.get('/:id/getFriendAchievements', function (req, res) {
-    let { id } = req.params;
-    console.log(id);
-    var achquery = "SELECT achievments.user_id, achievments.name, achievments.description, achievments.image_id FROM friends_link RIGHT JOIN achievments ON friends_link.friend_id = achievments.user_id WHERE friends_link.user_id = $1 ORDER BY achievments.create_date desc;";
+    let id = req.user.id;
+    var achquery = "SELECT achievements.user_id, users.username, achievements.name, achievements.description, achievements.image_id FROM friends_link RIGHT JOIN achievements ON friends_link.friend_id = achievements.user_id LEFT JOIN users ON friends_link.friend_id = users.id WHERE friends_link.user_id = $1 ORDER BY achievements.create_date desc;";
     query(achquery, [id])
         .then(results => res.json({ friends: results.rows }))
         .catch(err => res.json({ err: err }))
