@@ -2,13 +2,12 @@
 <html>
 <style>
   img {
-    object-fit:contain;
+    object-fit: contain;
   }
 
-  table{
-    width:100%;
+  table {
+    width: 100%;
   }
-
 </style>
 
 <head>
@@ -52,70 +51,58 @@
   <!-- Page content -->
   <div class="main" style="margin-left: 250px">
     <div class="container">
-      <br>
       <div class="row">
-        <img id="bottle" src="../assets/waterBottle.jpg" alt="Water Bottle" />
-        <!-- <div class="card" style="width: 45%;">
-          <div class="card-header text-center">
-            <h5>My Progress</h5>
+        <div class="col col-5">
+          <div class="row">
+            <img id="bottle" src="../assets/waterBottle.jpg" alt="Water Bottle" />
           </div>
-          <div class="card-title text-right"><button type="button" class="btn btn-success" data-toggle="modal"
-              data-target="#addTask">Add Task</button></div>
-          <div class="card-body" id="tasks">
-            Function to add new cards for every new task added-->
+        </div>
+        <div class="col col-7">
+          <div class="container">
+            <div class="row">
+              <!-- Statistics -->
+              <div class="col">
+                Impact Points Here!
+              </div>
+              <div class="col">
+                Pie Chart Here!
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-6" style="max-width: none; width:auto">
 
-          <!-- </div> -->
-        <!-- </div> -->
-       
-        <div class = "theme-light rounded-all card" style="margin-left: 70px;height:200px">
-          <table style="width: 600px; height: auto" class="table">
-            <thead>
-              <tr>
-                <th scope="col">Bottles Filled</th>
-                <th scope="col">Level</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td id="bottle_count">0</td>
-                <td id="level">0</td>
-              </tr>
-            </tbody>
-          </table>
+                ooooooooooooooooooooooo0000000ooooooooo
+                im losing my MIND why is it doing this what is going on
+                <div class="card theme-light rounded-all" style="width:100%; border: none;">
+                  <div class=" card-header theme-dark rounded-top">
+                    <h5>My Progress</h5>
+                  </div>
+                  <div class="card-title text-right">
+                    <button type="button" class="button" style="margin-right: 10px; margin-top: 10px"
+                      data-toggle="modal" data-target="#addTask">Add Task</button></div>
+                  <div class="card-body" id="tasks">
+                    <!-- Function to add new cards for every new task added-->
+                    <div class='theme-dark rounded-all card' id="counter" style="border: none">
+                      <div class='card-header'>task name
+                        <div class='card-body'>
+                          <p class='card-text' style='font-size: 12pt'> task description / type
+                          </p>
+                          <button class='button'>Complete Task</button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="card" style="width: 45%; border-radius: calc(0.75rem - 1px) calc(0.75rem - 1px) 0
-      0; background-color: #aca5904d;">
-        <div class="theme-dark card-header text-center" style="
-        border-radius: calc(0.75rem - 1px) calc(0.75rem - 1px) 0
-        0;
-        ">
-          <h5>My Progress</h5>
-        </div>
-        <div class="card-title text-right" style="margin-right: 20px; margin-top:10px;"><button type="button" class="button" data-toggle="modal"
-            data-target="#addTask">Add Task</button></div>
-        <div class="card-body" id="tasks">
-          <!-- Function to add new cards for every new task added-->
 
-        </div>
-      </div>
-      <p></p>
-      <button class="button" onclick="resetToEmpty()">Reset to Empty</button>
-      <p></p>
-      <!-- <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Bottles Filled</th>
-            <th scope="col">Level</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td id="bottle_count">0</td>
-            <td id="level">0</td>
-          </tr>
-        </tbody>
-      </table> -->
+
     </div>
 
     <div id="addTask" class="modal fade" role="dialog">

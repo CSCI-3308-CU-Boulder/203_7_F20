@@ -113,7 +113,6 @@ function buildFeed(achArr) {
 }
 
 function createFriend(friend) {
-
     var cardStr =
         `<div class="card mb-3 theme-dark" style = "max-width: 540px; max-height: 50px; border: none; border-radius: calc(3rem - 1px)" >
     <div class="row no-gutters">
@@ -159,8 +158,9 @@ function loadFriends() {
             axios //get friends
                 .get(`/api/users/${username}/getFriends`)
                 .then(function (friendsRes) {
-                    let friends = friendsRes.data;
+                    let friends = friendsRes.data.friends;
                     console.log(friends)
+                    friendsList(friends)
                 })
                 .catch(function (error) {
                     console.log(error);

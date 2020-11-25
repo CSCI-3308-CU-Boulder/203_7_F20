@@ -4,11 +4,11 @@
  */
 
 function resetToEmpty() {
-   count = 0;
-   bottlesFilled = 0;
-   document.getElementById("bottle").src = "../assets/waterBottle.jpg";
-   document.getElementById("bottle_count").innerHTML = bottlesFilled;
- }
+  count = 0;
+  bottlesFilled = 0;
+  document.getElementById("bottle").src = "../assets/waterBottle.jpg";
+  document.getElementById("bottle_count").innerHTML = bottlesFilled;
+}
 
 var count = 0;
 var level = 0
@@ -74,7 +74,7 @@ function setImage() {
   document.getElementById("level").innerHTML = level + 1;
 }
 
-var task = [{name: 'a', description: 'b', type: 'reuse'}];
+var task = [{ name: 'a', description: 'b', type: 'reuse' }];
 
 
 var taskName = document.getElementById("taskName").value;
@@ -98,38 +98,39 @@ function addTask() {
   var taskName = document.getElementById("taskName").value;
   var taskDesc = document.getElementById("descr").value;
   var taskType = document.getElementById("type").value;
-  var task = [{name: taskName, description: taskDesc, type:taskType}];
+  var task = [{ name: taskName, description: taskDesc, type: taskType }];
 
 
   // task.push({name: document.getElementById("taskName").value, description: document.getElementById("descr").value, type: document.getElementById("type").value});
-  task.push({name: taskName, description: taskDesc, type: taskType});
+  task.push({ name: taskName, description: taskDesc, type: taskType });
   console.log("task length = ", task.length);
   displayTasks();
 }
 
 var counter = 0;
 function displayTasks() {
-console.log("hi");
+  console.log("hi");
 
   // Displaying the tasks
   var taskName = document.getElementById("taskName").value;
   var taskDesc = document.getElementById("descr").value;
   var taskType = document.getElementById("type").value;
-  var task = [{name: taskName, description: taskDesc, type:taskType}];
+  var task = [{ name: taskName, description: taskDesc, type: taskType }];
 
   var output = "";
 
   for (var i = 0; i < task.length; i++) {
-      output = "<div class='theme-dark rounded-all card' id="+ counter +"><div class='card-header' >" + task[i].name + "\
-      <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + " - " + task[i].type +"</p>\
-      <button class='button' onclick='taskComplete(\""+counter+"\")' style='float: left; margin-left:100px;'>Complete Task</button>\
-      <button class='button' onclick='deleteTask(\""+counter+"\")' style='float: right;'>Delete Task</button></div></div>";
-      counter++;
+    // output = "<div class='theme-dark rounded-all card' id="+ counter +"><div class='card-header' >" + task[i].name + "\
+    // <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + " - " + task[i].type +"</p>\
+    // <button class='button' onclick='taskComplete(\""+counter+"\")' style='float: left; margin-left:100px;'>Complete Task</button>\
+    // <button class='button' onclick='deleteTask(\""+counter+"\")' style='float: right;'>Delete Task</button></div></div>";
+    output = "here!"
+    counter++;
 
-      // console.log("displayTask i=",i);
-      document.getElementById("tasks").innerHTML += output;
-      
-    
+    // console.log("displayTask i=",i);
+    document.getElementById("tasks").innerHTML += output;
+
+
     // counter++;
   }
 
