@@ -71,19 +71,6 @@ var exUser = {
     image_id: 1
 }
 
-var images = [
-    "../assets/colorEarth.jpg",
-    "../assets/recycling.jpeg",
-    "../assets/environmentalist.jpg",
-    "../assets/flatirons.png",
-    "../assets/flowers.jpg",
-    "../assets/hydroflask.jpg",
-    "../assets/ice.jpg",
-    "../assets/mountains.png",
-    "../assets/plant.jpg",
-    "../assets/flatirons.png",
-];
-
 var achievementImages = [
     "../assets/colorEarth.jpg",
     "../assets/recycling.jpeg",
