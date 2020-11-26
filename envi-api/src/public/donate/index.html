@@ -39,6 +39,31 @@
     <a href="../donate/index.html" class="sidenav-button" style="margin-top: 10px">Donate</a>
   </div>
 
+  <!-- Logout Modal -->
+  <div id="logout_modal" class="modal logout-modal" style="backdrop-filter: none;">
+    <div role="document">
+      <div class="modal-content">
+        <div class="modal-header" id="modal_header"
+          style="max-height: 40px; display: flex; align-items: center; border: none;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="modal_body"
+          style="max-height: 70px; display: flex; align-items: center; border: none;">
+          <a style="color: #297562; font-size: large" id="logout_name">You are not logged in.</a>
+        </div>
+        <div class="modal-footer" id="lgout_buttons"
+          style="max-height: 70px; display: flex; align-items: center; border: none;">
+          <a href="../login/index.html">
+            <button type="button" class="button">Log In</button></a>
+          <a href="../signup/index.html">
+            <button type="button" class="button">Sign Up</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Page content -->
   <div class="main" style="margin-left: 250px">
     <div class="container">
@@ -137,6 +162,9 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script src="../resources/js/utilities.js"></script>
+  <script src="../resources/js/navbar.js"></script>
 </body>
 
 </html>

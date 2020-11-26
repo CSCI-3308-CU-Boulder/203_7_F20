@@ -176,40 +176,49 @@ function onClick() {
 }
 
 function loadProfile() {
-  // loadAchievements();
-  if (window.location.hash != "" && window.location.hash.length > 1) {
-    // Get username from cookie
-    let username = Cookies.get('username')
-    axios
-      .get(baseUrl + "/api/users/" + username)
-      .then(function (response) {
-        // handle success
-        let user = response.data;
-        console.log(user);
-        //display info from user doc
-        displayPicture(user);
-        displayInfo(user);
+  loggedIn()
+    .then(user => {
+      console.log(user)
+      loadLogoutModal(user)
+      if (user) {
+        let username = user.username;
+        //LOAD PAGE HERE
         axios
-        .get(baseUrl + "/api/users/" +username+ "/getAchievements")
-        .then(function (results) {
-          // get user achievements array
-          console.log("achievements");
-          console.log(results.data.achievements);
-          displayAchievements(results.data.achievements);
-        })
-        .catch(function (error) {
-          displayAchievements(exAch);
-          console.log(error);
-        })
-      })
-      .catch(function (error) {
-        loadExampleUser();
-        // handle error
-        console.log(error);
-      });
-  } else {
-    loadExampleUser();
-  }
+          .get(baseUrl + "/api/users/" + username)
+          .then(function (response) {
+            // handle success
+            let user = response.data;
+            console.log(user);
+            //display info from user doc
+            displayPicture(user);
+            displayInfo(user);
+            axios
+              .get(baseUrl + "/api/users/" + username + "/getAchievements")
+              .then(function (results) {
+                // get user achievements array
+                console.log("achievements");
+                console.log(results.data.achievements);
+                displayAchievements(results.data.achievements);
+              })
+              .catch(function (error) {
+                displayAchievements(exAch);
+                console.log(error);
+              })
+          })
+          .catch(function (error) {
+            loadExampleUser();
+            // handle error
+            console.log(error);
+          });
+      }
+      else {
+        alert("you are not logged in !")
+      }
+
+    })
+    .catch(error => {
+      console.log(error)
+    })
 }
 
 //add onclick for update profile form when clicking submit (create function below with axios get request for update info)

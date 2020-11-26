@@ -3,9 +3,10 @@
 
 async function loadLogoutModal(user) {//function to be applied ON LOAD
     loggedIn()
-    .then(logged_in => {//if logged in, build modal to allow user to log out
-        if (logged_in) {
-            document.getElementById("logout_modal").innerHTML = `
+        .then(logged_in => {//if logged in, build modal to allow user to log out
+            console.log(logged_in);
+            if (user) {
+                document.getElementById("logout_modal").innerHTML = `
                 <div role="document">
                 <div class="modal-content">
                     <div class="modal-header" id="modal_header"
@@ -24,10 +25,10 @@ async function loadLogoutModal(user) {//function to be applied ON LOAD
                     </div>
                 </div>
         </div>`
-        }
-    else {//if not logged in, build modal to allow user to log in/sign up
-    console.log("user not logged in")
-            document.getElementById("logout_modal").innerHTML = `
+            }
+            else {//if not logged in, build modal to allow user to log in/sign up
+                console.log("user not logged in")
+                document.getElementById("logout_modal").innerHTML = `
                 <div role="document">
                 <div class="modal-content">
                     <div class="modal-header" id="modal_header"
@@ -51,12 +52,12 @@ async function loadLogoutModal(user) {//function to be applied ON LOAD
                     </div>
                 </div>
         </div>`
-    }
-    })
-  .catch (err => { console.log(err) })
+            }
+        })
+        .catch(err => { console.log(err) })
 
-}   
-         
+}
+
 
 
 
