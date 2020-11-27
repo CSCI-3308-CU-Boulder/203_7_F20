@@ -1,10 +1,11 @@
 $(document).ready(function () {
-  // Check if user is already logged in
+  //Check if user is already logged in
   console.log("Checking login status")
   axios.get(loggedInUrl)
     .then(response => {
       if (response.data) {
         console.log(response.data)
+        loadLogoutModal(response.data.user)
         let { loggedIn } = response.data
         if (loggedIn) {
           console.log("User already logged in!")
@@ -18,6 +19,26 @@ $(document).ready(function () {
       console.error(err)
     })
 })
+
+// loggedIn()
+//   .then(user => {
+//     console.log(user)
+//     loadLogoutModal(user)
+//     if (user) {
+//       let username = user.username;
+//       //LOAD PAGE HERE
+//       console.log("User already logged in!")
+//       $('#logoutForm').show()
+//     }
+//     else {
+//       console.log("No login")
+//       $('#loginForm').show()
+//     }
+
+//   })
+//   .catch(error => {
+//     console.log(error)
+//   })
 
 function enableButton() {
   var username = document.getElementById("username");
@@ -46,9 +67,6 @@ function submitLogin() {
       if (response.data) {
         console.log(response.data);
         let { username } = response.data;
-        // Set a cookie to remember the login on the frontend
-        var inFifteenMinutes = new Date(new Date().getTime() + 15 * 60 * 1000);
-        Cookies.set('username', username, { expires: inFifteenMinutes })
         // Redirect to profile page
         window.location.replace(`/profile#${username}`)
       } else {

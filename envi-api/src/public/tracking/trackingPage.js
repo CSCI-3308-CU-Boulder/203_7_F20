@@ -49,7 +49,7 @@ function taskComplete(i) {
   axios.post(baseUrl + "/api/users/" + username + "/completeTask", {}).then((response) => {
     console.log(response);
   });
-  
+
   // result.calculateNewAchievements('laja3167');
 
   // Make the task card disappear
@@ -90,7 +90,7 @@ var taskType = document.getElementById("type").value;
 // var task = [{name: taskName, description: taskDesc, type:taskType}];
 console.log("initial task length = ", task.length);
 
-var task = [{name: taskName, description: taskDesc, type:taskType}];
+var task = [{ name: taskName, description: taskDesc, type: taskType }];
 var exUser = {
   taskCard: task,
 };
@@ -133,11 +133,17 @@ function displayTasks() {
   output = "<button class='button' onclick='loadTrackingInfo()' style='float: left; margin-left:100px;'>Complete Task</button>\;";
 
   for (var i = 0; i < task.length; i++) {
-    // output = "<div class='theme-dark rounded-all card' id="+ counter +"><div class='card-header' >" + task[i].name + "\
-    // <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + " - " + task[i].type +"</p>\
-    // <button class='button' onclick='taskComplete(\""+counter+"\")' style='float: left; margin-left:100px;'>Complete Task</button>\
-    // <button class='button' onclick='deleteTask(\""+counter+"\")' style='float: right;'>Delete Task</button></div></div>";
-    // output = "here!"
+    output = `
+    <div class='theme-dark rounded-all card' id="counter" style="border: none">
+                  <div class='card-header'>task name
+                    <div class='card-body'>
+                      <p class='card-text' style='font-size: 12pt'> task description / type
+                      </p>
+                      <button class='button'>Complete Task</button>
+
+                    </div>
+                  </div>
+                </div>`
     counter++;
 
     // console.log("displayTask i=",i);
@@ -183,32 +189,19 @@ function deleteTask(i) {
 }
 
 // pass task id for a get task function 
-function loadTrackingInfo(){
+function loadTrackingInfo() {
   let username = window.location.hash.split('#')[1]
-  //get task
-  // axios.get("http://localhost:5000/api/users/" + username+ "/completeTasks")
-  // .then(function (response) {
-  //   console.log(response);
-  //   let user = response.data;
-  //   console.log(user)
+  axios.get("http://localhost:5000/api/users/" + username + "/:completeTasks")
+    .then(function (response) {
+      console.log(response);
+      let user = response.data;
+      console.log(user)
+      addTask(user);
 
-  // })
-  // .catch(function (error) {
-  //   console.log(error);
-  // });
-
-  // complete task and calculate impact points
-  axios.get("http://localhost:5000/api/users/" + username+ "/completeTasks")
-  .then(function (response) {
-    console.log(response);
-    let taskInfo = response.data;
-    console.log("getting taskInfo object info",taskInfo);
-    // displayTasks()
-
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 
 window.onload = displayTasks();
