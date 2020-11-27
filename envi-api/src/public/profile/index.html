@@ -9,28 +9,8 @@
   <link rel="stylesheet" href="../resources/css/envi_style.css" />
 
   <script src="./loadProfile.js"  type="module"></script>
-  <script src="./trackingPage.js" type="module"></script>
+  <!-- <script src="./trackingPage.js" type="module"></script> -->
 
-  <script>
-    function loadBottles() {
-    if (document.cookie.length > 0) {
-      username = document.cookie.split('=')[1]
-      axios
-        .get(baseUrl + "/users/" + username)
-        .then(function (response) {
-          // handle success
-          console.log(response.data);
-          level = Math.floor(response.data.num_bottles / 5);
-          count = response.data.num_bottles % 5;
-          setImage()
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        })
-    }
-  }
-  </script>
 
   <nav class="navbar navbar-light" style="background-color: #c5c3ba">
     <ul class="navbar-nav">
@@ -89,8 +69,9 @@
                   </div>
                   <div class="card-body">
                     <h6 id="name">Example User</h6>
-                    <p class="card-title" id="level"></p>
-                    <p class="card-title" id="bottles_filled"></p>
+                    <p class="card-title" id="impact_points"></p>
+                    <!-- <p class="card-title" id="level"></p> -->
+                    <!-- <p class="card-title" id="bottles_filled"></p> -->
                   </div>
                   <div class="card-body text-center" style="padding-top: 0px">
                     <a href="#myModal" class="button" data-toggle="modal">Update Profile</a>
