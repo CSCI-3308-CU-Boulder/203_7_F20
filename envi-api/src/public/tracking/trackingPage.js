@@ -118,6 +118,7 @@ function addTask(user) {
 }
 
 var counter = 0;
+
 function displayTasks() {
   console.log("hi");
 
@@ -126,8 +127,10 @@ function displayTasks() {
   var taskDesc = document.getElementById("descr").value;
   var taskType = document.getElementById("type").value;
   var task = [{ name: taskName, description: taskDesc, type: taskType }];
+  
 
   var output = "";
+  output = "<button class='button' onclick='loadTrackingInfo()' style='float: left; margin-left:100px;'>Complete Task</button>\;";
 
   for (var i = 0; i < task.length; i++) {
     // output = "<div class='theme-dark rounded-all card' id="+ counter +"><div class='card-header' >" + task[i].name + "\
@@ -141,14 +144,7 @@ function displayTasks() {
     document.getElementById("tasks").innerHTML += output;
 
 
-    // counter++;
   }
-
-  // "<div style='background-color: #699696 ;' class='rounded-all card' id="+ counter +"><div class='card-header' >" + task[i].name + "\
-  //   <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + " - " + task[i].type +"</p></div>\
-  //   <div class='card-footer'><button class='btn btn-primary' onclick='taskComplete(\""+counter+"\")' style='float: left'>Complete Task</button>\
-  //   <button class='btn btn-danger' onclick='deleteTask(\""+counter+"\")' style='float: right'>Delete Task</button></div></div>";
-
 
 }
 
@@ -189,12 +185,25 @@ function deleteTask(i) {
 // pass task id for a get task function 
 function loadTrackingInfo(){
   let username = window.location.hash.split('#')[1]
-  axios.get("http://localhost:5000/api/users/" + username+ "/:completeTasks")
+  //get task
+  // axios.get("http://localhost:5000/api/users/" + username+ "/completeTasks")
+  // .then(function (response) {
+  //   console.log(response);
+  //   let user = response.data;
+  //   console.log(user)
+
+  // })
+  // .catch(function (error) {
+  //   console.log(error);
+  // });
+
+  // complete task and calculate impact points
+  axios.get("http://localhost:5000/api/users/" + username+ "/completeTasks")
   .then(function (response) {
     console.log(response);
-    let user = response.data;
-    console.log(user)
-    addTask(user);
+    let taskInfo = response.data;
+    console.log("getting taskInfo object info",taskInfo);
+    // displayTasks()
 
   })
   .catch(function (error) {
