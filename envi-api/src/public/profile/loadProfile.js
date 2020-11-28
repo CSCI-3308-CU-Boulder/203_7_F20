@@ -25,7 +25,8 @@ var exAch = [
 var exUser = {
   username: "username",
   name: "Example User",
-  num_bottles: 1,
+  // num_bottles: 1,
+  impact_points:0,
   achievements: exAch,
   image_id: 2,
 };
@@ -108,10 +109,12 @@ function displayPicture(user) {
 
 function displayInfo(user) {
   document.getElementById("username").innerHTML = user.username;
-  document.getElementById("level").innerHTML =
-    "Level: " + (Math.floor(user.num_bottles / 5) + 1);
-  document.getElementById("bottles_filled").innerHTML =
-    "Bottles Filled: " + user.num_bottles;
+  // document.getElementById("level").innerHTML =
+  //   "Level: " + (Math.floor(user.num_bottles / 5) + 1);
+  // document.getElementById("bottles_filled").innerHTML =
+  //   "Bottles Filled: " + user.num_bottles;
+  document.getElementById("impact_points").innerHTML =
+    "Impact Points: " + user.impact_points;
   document.getElementById("name").innerHTML = user.name;
   // document.getElementById("modal_name").innerHTML;
 }
