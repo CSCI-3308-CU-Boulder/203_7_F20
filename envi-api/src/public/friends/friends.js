@@ -280,22 +280,29 @@ function loadAddFriends() {
 function addFriend() {
     //get friend username from js event
     var toAdd = event.target.id;
-    console.log("adding " + toAdd);
-    //get current user from cookie
-    var user = Cookies.get('username')
-    //update html
-    if (user && toAdd) {
-        document.getElementById(toAdd).innerHTML = "";
-        //post new friend to db
-        axios
-            .post(`/api/users/${user}/addFriend/${toAdd}`)
-            .then(function (response) {
-                console.log(response.data)
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
-    }
+    loggedIn()
+        .then(user => {
+
+            console.log("adding " + toAdd);
+            console.log(user)
+            //get current user from cookie
+            //update html
+            if (user && toAdd) {
+                document.getElementById(toAdd).innerHTML = "";
+                //post new friend to db
+                axios
+                    .post(`/api/users/${user.username}/addFriend/${toAdd}`)
+                    .then(function (response) {
+                        console.log(response.data)
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
 }
 
 function createSearchCard(user) {
@@ -314,7 +321,7 @@ function createSearchCard(user) {
             </div>
 
             <div class="col-md-1">
-            <h3 id="${user.username}" onClick = addFriend() style="margin-top: 8px; margin-right: 5px">+</h3>
+            <h3 id="${user.username}" onClick = "addFriend()" style="margin-top: 8px; margin-right: 5px">+</h3>
             </div>
         </div>
     </div>`

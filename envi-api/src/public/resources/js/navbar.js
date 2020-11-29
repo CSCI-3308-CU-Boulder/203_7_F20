@@ -21,7 +21,7 @@ async function loadLogoutModal(user) {//function to be applied ON LOAD
                         </div>
                         <div class="modal-footer" id="lgout_buttons"
                         style="max-height: 70px; display: flex; align-items: center; border: none;">
-                        <button type="button" class="button">Log Out</button>
+                        <button type="button" onclick="logout()" class="button">Log Out</button>
                         </div>
                     </div>
                 </div>`
@@ -55,7 +55,20 @@ async function loadLogoutModal(user) {//function to be applied ON LOAD
             }
         })
         .catch(err => { console.log(err) })
+}
 
+function logout() {
+    axios.get(logoutUrl)
+        .then(response => {
+            if (response.data) {
+                let { success } = response.data
+                if (success) {
+                    window.location.replace('/home')
+                } else {
+                    console.log("Logout unsuccessful")
+                }
+            }
+        }).catch(err => console.error(err))
 }
 
 
