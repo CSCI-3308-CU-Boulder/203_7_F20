@@ -59,6 +59,7 @@ router.use('/:id', (req, res, next) => {
                 res.json({
                     id: id,
                     username: username,
+                    // name: name,
                     image_id: image_id,
                     impact_points: impact_points,
                     achievements: exAch
@@ -188,12 +189,27 @@ router.post('/:id/addFriend/:friendUsername', function (req, res) {
     // });
 })
 
-// completeTasks 
-router.post('/:username/completeTask', async (req, res) => { // json with user_id and task_id
-    const { task_id } = req.body;
-    var update = "UPDATE tasks SET times_completed = times_completed + 1 WHERE user_id = $1 AND id=$2;"; // updating the task as completed in db
-    var points = "UPDATE users SET impact_points = impact_points + 1 WHERE id = $1;"; // adding impact points for the user
-    query(update, [req.user.id, task_id])
+// // ------------completeTasks (made a few changes but the old ones are there, just commented)----------------------------------------------
+// increments impact points by 1 each time a task is completed 
+// and increments times_completed by 1 but for all tasks, not specific ones
+// needs to be fixed so that it updates by task_id
+
+router.post('/:username/completeTask', async (req, res) => { // json with task_id and impact (impact type)
+    // const { task_id } = req.body;
+    // const { impact } = req.body;
+    const { user_id, impact, completion_date } = req.body;
+
+    var update = "UPDATE tasks SET times_completed = times_completed + 1 WHERE user_id = $1;";// AND id=$2;"; // updating the task as completed in db
+    var points = "UPDATE users SET impact_points = impact_points + 1 WHERE id = $1;"; // adding impact points for the user - 1 if recycle
+    if(impact == 'reuse') {
+        points = "UPDATE users SET impact_points = impact_points + 3 WHERE id = $1;"; // adding 3 impact points for reuse
+    }
+    else if(impact == 'reduce') {
+        points = "UPDATE users SET impact_points = impact_points + 2 WHERE id = $1;"; // adding 2 impact points for reduce
+    }
+    
+    // query(update, [req.user.id, task_id])
+    query(update, [req.user.id])
         .then(results => {
             console.log('Task updated')
             query(points, [req.user.id])

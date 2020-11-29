@@ -24,25 +24,38 @@ let loggedIn = () => new Promise((resolve, reject) => {
         })
 })
 
-// function setCookie(name, value, minutes) {
-//     var d = new Date();
-//     d.setTime(d.getTime() + (minutes * 60 * 1000));
-//     var expires = "expires=" + d.toUTCString();
-//     document.cookie = name + "=" + value + ";" + expires + ";path=/";
-// }
+/*
+//skeleton to load page using loggedIn promise to get user doc
+//copy this into any page and add loading functionality where indicated
+function LOAD_FUNCTION_SKELETON() {
+    loggedIn()
+        .then(user => {
+            console.log(user)
+            loadLogoutModal(user)
+            if (user) {
+                let username = user.username;
+                //LOAD PAGE HERE
+            }
+            else {
+                alert("you are not logged in !")
+            }
 
-// function getCookie(name) {
-//     var cook = name + "=";
-//     var decodedCookie = decodeURIComponent(document.cookie);
-//     var ca = decodedCookie.split(';');
-//     for (var i = 0; i < ca.length; i++) {
-//         var c = ca[i];
-//         while (c.charAt(0) == ' ') {
-//             c = c.substring(1);
-//         }
-//         if (c.indexOf(cook) == 0) {
-//             return c.substring(cook.length, c.length);
-//         }
-//     }
-//     return "";
-// }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+}
+*/
+
+var images = [
+    "../assets/colorEarth.jpg",
+    "../assets/recycling.jpeg",
+    "../assets/environmentalist.jpg",
+    "../assets/flatirons.png",
+    "../assets/flowers.jpg",
+    "../assets/hydroflask.jpg",
+    "../assets/ice.jpg",
+    "../assets/mountains.png",
+    "../assets/plant.jpg",
+    "../assets/flatirons.png",
+];

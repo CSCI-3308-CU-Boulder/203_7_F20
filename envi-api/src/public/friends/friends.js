@@ -71,19 +71,6 @@ var exUser = {
     image_id: 1
 }
 
-var images = [
-    "../assets/colorEarth.jpg",
-    "../assets/recycling.jpeg",
-    "../assets/environmentalist.jpg",
-    "../assets/flatirons.png",
-    "../assets/flowers.jpg",
-    "../assets/hydroflask.jpg",
-    "../assets/ice.jpg",
-    "../assets/mountains.png",
-    "../assets/plant.jpg",
-    "../assets/flatirons.png",
-];
-
 var achievementImages = [
     "../assets/colorEarth.jpg",
     "../assets/recycling.jpeg",
@@ -99,26 +86,25 @@ var achievementImages = [
 
 function getUser(friendId) { // friendId is an object containing the id of the user you want, to get the users username
     var friendUsername;
-    axios.get(baseUrl + '/api/users/' +friendId.id+ '/getUser', friendId)
-    .then(function (userRes) {
-        // console.log(userRes)
-        friendUsername = userRes.data.username;
-        console.log("Username: " + friendUsername);
-        return friendUsername;
-    })
-    .catch(function (error) {
-        friendUsername = "Unknown";
-        console.log(error);
-        return friendUsername;
-    })
+    axios.get(baseUrl + '/api/users/' + friendId.id + '/getUser', friendId)
+        .then(function (userRes) {
+            // console.log(userRes)
+            friendUsername = userRes.data.username;
+            console.log("Username: " + friendUsername);
+            return friendUsername;
+        })
+        .catch(function (error) {
+            friendUsername = "Unknown";
+            console.log(error);
+            return friendUsername;
+        })
 }
 
 function createAchievement(friendAch) {
     // var friendName = "Unknown User"
     console.log("createAchievement Ach: ")
     console.log(friendAch)
-    var friendId = {"id": friendAch.user_id};
-    
+    var friendId = { "id": friendAch.user_id };
 
     // getUser route not working
     // var friendUsername = getUser(friendId);
@@ -146,7 +132,7 @@ function createAchievement(friendAch) {
             </div>
             <div class="col-md-10 d-flex align-items-center">
                 <div class="card-body">
-                <p class="card-text"> <b> ` +friendAch.username+ `</b> completed the ${friendAch.name} achievement!</p>
+                <p class="card-text"> <b> ` + friendAch.username + `</b> completed the ${friendAch.name} achievement!</p>
                 </div> </div> </div> </div >`;
     return cardStr;
 }
@@ -164,12 +150,11 @@ function buildFeed(achArr) {
 }
 
 function createFriend(friend) {
-
     var cardStr =
         `<div class="card mb-3 theme-dark" style = "max-width: 540px; max-height: 50px; border: none; border-radius: calc(3rem - 1px)" >
     <div class="row no-gutters">
             <div class="col-md-1 d-flex align-items-center">
-                <img src="${images[friend.image_id]}" style="width: 40px; border-radius: 50%; margin-left: 5px"
+                <img src="${images[friend.image_id]}" style="width: 40px; border-radius: 50%; margin-left: 10px; margin-bottom: 12px"
                 class="card-img" alt="">
             </div>
             <div class="col-md-11">
@@ -197,43 +182,63 @@ function loadExampleFriends() {
     })
 }
 
+var user = null; //global user variable
+var friends = null; //global friends variable
+
 function loadFriends() {
     //get cookie
-    var username = Cookies.get('username');
-    console.log("username cookie: " + username);
+    // var username = Cookies.get('username');
+    // console.log("username cookie: " + username);
+    loggedIn()
+        .then(user => {
+            console.log(user)
+            loadLogoutModal(user)
+            if (user) {
+                let username = user.username;
+                axios //get friends
+                    .get(baseUrl + "/api/users/" + username + "/getFriends")
+                    .then((friendsRes) => {
+                        friends = friendsRes.data.friends;
+                        console.log(friends);
+                        friendsList(friends);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+                axios // load achievements
+                    .get(baseUrl + "/api/users/" + username + "/getFriendAchievements")
+                    .then((friendAchRes) => {
+                        let friendsAch = friendAchRes.data.friends;
+                        console.log("build feed: ")
+                        console.log(friendAchRes.data.friends);
+                        buildFeed(friendsAch);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+            }
+            else {
+                alert("you are not logged in !")
+            }
+
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
     // axios //get user doc
     //     .get(baseUrl + "/api/users/" + username)
     //     .then((response) => {
     //         // handle success
     //         let user = response.data;
     //         console.log(user);
-            axios //get friends
-                .get(baseUrl + "/api/users/" +username+ "/getFriends")
-                .then((friendsRes) => {
-                    let friends = friendsRes.data.friends;
-                    console.log(friends);
-                    friendsList(friends);
-                })
-                .catch( (error) => {
-                    console.log(error);
-                })
-            axios // load achievements
-                .get(baseUrl + "/api/users/" +username+ "/getFriendAchievements")
-                .then( (friendAchRes) => {
-                    let friendsAch = friendAchRes.data.friends;
-                    console.log("build feed: ") 
-                    console.log(friendAchRes.data.friends);
-                    buildFeed(friendsAch);
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-        // })
-        // .catch(function (error) {
-        //     loadExampleFriends();
-        //     // handle error
-        //     console.log(error);
-        // });
+
+    // })
+    // .catch(function (error) {
+    //     loadExampleFriends();
+    //     // handle error
+    //     console.log(error);
+    // });
 }
 
 /*
@@ -317,17 +322,28 @@ function createSearchCard(user) {
     return cardStr;
 }
 
-function listResults(users) {
+function isFriend(username, list) {//helper function to check if object is in a list
+    //console.log("checking if " + username + " is in friends list")
+    for (var i = 0; i < list.length; i++) {
+        if (list[i].username == username) {
+            //console.log(username + " is in list!");
+            return true;
+        }
+    }
+    return false;
+}
+
+function listResults(users, friends) {//insert search results into html
     var listStr = "";
     if (users) {
         for (var i = 0; i < users.length; i++) {
-            listStr += createSearchCard(users[i]);
+            if (!(isFriend(users[i].username, friends))) //filter out user's current friends
+                listStr += createSearchCard(users[i]);
         }
     }
     document.getElementById("search_results").innerHTML = listStr;
 }
 
-// Search bar functions
 function searchBar() {
     let input = document.getElementById("searchBar").value;
     input = input.toLowerCase();
@@ -336,10 +352,11 @@ function searchBar() {
         .then(function (response) {
             let searchResults = response.data.results;
             console.log(searchResults)
-            listResults(searchResults)
+            listResults(searchResults, friends)
         })
         .catch(function (error) {
             console.log(error);
         })
 }
+
 

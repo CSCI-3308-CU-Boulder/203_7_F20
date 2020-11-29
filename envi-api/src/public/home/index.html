@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
+<style>
+  .flex-container {
+    justify-content: center
+  }
 
+  /* img {
+  float: right;
+} */
+</style>
 
 <head>
   <title>envi</title>
@@ -8,11 +16,52 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="../resources/css/envi_style.css">
-</head>
 
 <body id="cover">
   <nav class="navbar navbar-light" id="top-nav">
     <link rel="stylesheet" href="../resources/css/navbar.css">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="../home/index.html">Home</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li style="text-align:right">
+        <a href="#logout_modal" data-toggle="modal">
+          <img class="pull-right" src="../assets/profile_pic_placeholder.gif" id="navbar_profile" width="12%">
+        </a>
+      </li>
+    </ul>
+  </nav>
+</head>
+
+<body id="cover" onload="homePage()">
+  <!-- Logout Modal -->
+  <div id="logout_modal" class="modal logout-modal" style="backdrop-filter: none;">
+    <div role="document">
+      <div class="modal-content">
+        <div class="modal-header" id="modal_header"
+          style="max-height: 40px; display: flex; align-items: center; border: none;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="modal_body"
+          style="max-height: 70px; display: flex; align-items: center; border: none;">
+          <a style="color: #297562; font-size: large" id="logout_name">You are not logged in.</a>
+        </div>
+        <div class="modal-footer" id="lgout_buttons"
+          style="max-height: 70px; display: flex; align-items: center; border: none;">
+          <a href="../login/index.html">
+            <button type="button" class="button">Log In</button></a>
+          <a href="../signup/index.html">
+            <button type="button" class="button">Sign Up</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <nav class="navbar navbar-light" style="background-color: #c5c3ba">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="../home/index.html">Home</a>
@@ -61,111 +110,46 @@
     <a href="../tracking/index.html" class="sidenav-button" style="margin-top: 10px">Tracking</a>
     <a href="../friends/index.html" class="sidenav-button" style="margin-top: 10px">Friends</a>
     <a href="../donate/index.html" class="sidenav-button" style="margin-top: 10px">Donate</a>
-  </div>
-  <div id="main" style="margin-left: 250px">
-    <div class="container">
-      <h1 style="font-family:Jazz LET, fantasy; margin-left: 200px; margin-top: 50px;">Welcome to envi!</h1>
-      <!-- <h1 style="font-family:Jazz LET, fantasy; text-align:center; margin-top: 50px;">Welcome to envi!</h1> -->
-      <br>
-      <br>
-      <h5 class="text-dark" style="margin-left: 220px; width:350px; height:-20px;">Recycle ~ Conserve ~ Track ~ Connect
-      </h5>
-      <br>
-      <p class="text-dark" style="margin-left: 210px; width:400px; height:-20px;">envi is an environmental impact
-        tracking website that encourages users to practice environmentally friendly activities such as using reusable
-        water bottles and straws (save the turtles!), donating clothes, biking instead of driving, and
-        many more! Users can connect with friends and share their progress and achievements as well as donate to
-        organizations. Sign up to save our planet!
-      </p>
-      <br>
-      <div class="row">
-        <a class="button" href="../signup/index.html" role="button">Sign Up</a>
-        <a class="button" href="../login/index.html" role="button">Login</a>
+  </div> -->
+  <div id="main" style="margin-left: 450px; margin-top: 100px; margin-bottom: -10px;">
+    <div class="flex container">
+      <div class="flex-container theme-light card rounded-all" style="text-align: left; width: 40rem;">
+        <div class="container">
+          <br>
+          <div class="row no-gutters">
+            <div style="width: 50%; float:left">
+              <h1 class="custom-header card-title" style="text-align: left;">Welcome to envi!</h1>
+              <br>
+              <h6 class="theme-light" style="text-align: left;">Conserve & Connect
+              </h6>
+              <br>
+              <h6 class="text-block" style="text-align: left; width: 270px;">envi is an environmental impact
+                tracking website that encourages users to practice environmentally friendly activities such as using
+                reusable
+                water bottles and straws (save the turtles!), donating clothes, biking instead of driving, and
+                many more! Users can keep track of their activities, connect with friends, share their progress and
+                achievements as well as donate to
+                organizations. Sign up to save our planet!
+              </h6>
+              <br>
+              <div class="row" style="margin-bottom: 10px;">
+                <a class="button" href="../signup/index.html" role="button"
+                  style="margin-left:20px; margin-right: 10px;">Sign Up</a>
+                <a class="button" href="../login/index.html" role="button" style="margin-right:-10px;">Login</a>
+                <br>
+              </div>
+            </div>
+            <div style="width: 50%; float:right; margin-top:50px ;">
+              <img src="../assets/envi.png" alt="envi logo" width="350" height="250" style="text-align: right;">
+            </div>
+
+
+
+          </div>
+        </div>
       </div>
     </div>
-
-
-    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="./assets/envi_homepage.jpg" alt="envi, the environmental impact tracker">
-            <div class="card">
-              <div class="card-body">
-                <br>
-                <br>
-                <p class="text-dark">envi is an environmental impact tracking website that encourages users to practice environmentally friendly activities such as using reusable water bottles and straws (save the turtles!), donating clothes, biking instead of driving, and
-                  many more! Users can connect with friends and share their progress and achievements as well as donate to organizations. Sign up to start saving the planet!
-                </p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="mr-auto">
-                <a class="btn btn-success" href="signupForm.html" role="button" style="margin-left: 15px;" >Sign Up</a>
-              </div>
-              <div class="ml-auto">
-                <a class="btn btn-success" href="loginForm.html" role="button" style="margin-right: 970px;">Login</a>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="carousel-caption">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="text-dark"> random
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <img class="d-block w-100" src="./assets/flatirons.png" alt="Intruder Alarm System" style="width: 200px; height: 350px;">
-          </div>
-          <div class="carousel-item">
-            <div class="carousel-caption" >
-                <div class="card" style="width: -800px; height: 500px;">
-                    <div class="card-body">
-                        <p class="text-dark">envi is an environmental impact tracking website that encourages users to practice environmentally friendly activities such as using reusable water bottles and straws (save the turtles!), donating clothes, biking instead of driving, and
-                          many more! Users can connect with friends and share their progress and achievements as well as donate to organizations. Sign up to start saving the planet!
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <img class="d-block w-100" src="./assets/plant.jpg" alt="envi, the environmental impact tracker" style="margin-top: -40px; margin-left: 330px; width:430px; height: 430px;">
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div> -->
-
-    <!-- end of carousel -->
-
-    <!-- <img src="./assets/envi.png" alt="envi logo" style="margin-top: -40px; margin-left: 330px; width:430px; height: 430px;"> -->
   </div>
-  <!-- <div class="carousel-caption" style="margin-left: 80px;">
-      <div class="card">
-        <div class="card-body">
-            <p class="text-dark"> envi is an environmental impact tracking website that encourages users to practice environmentally friendly activities such as using reusable water bottles and straws (save the turtles!), donating clothes, biking instead of driving, and
-              many more! Users can connect with friends and share their progress and achievements as well as donate to organizations. Sign up to start saving the planet!
-            </p>
-        </div>
-      </div> -->
-  <!-- </div> -->
-  <!-- <div class="container">
-      <br>
-      <p>envi is an environmental impact tracking website that encourages users to practice environmentally friendly activities such as using reusable water bottles and straws (save the turtles!), donating clothes, biking instead of driving, and
-        many more! Users can connect with friends and share their progress and achievements as well as donate to organizations. Sign up to start saving the planet!
-      </p>
-    </div> -->
 
 
 
@@ -181,6 +165,12 @@
   <script src="../resources/js/utilities.js"></script>
   <script src="../resources/js/navbar.js"></script>
 
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script src="../resources/js/utilities.js"></script>
+  <script src="../resources/js/navbar.js"></script>
+  <script src="./home.js"></script>
 </body>
 
 </html>
