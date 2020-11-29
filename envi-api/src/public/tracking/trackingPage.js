@@ -3,12 +3,8 @@
  *  Integrate new task layout with the database
  */
 
-// const { networkInterfaces } = require("os");
 
-// import './user.ts';
-// import { calculateNewAchievements } from './user.ts';
 
-// const result = calculateNewAchievements("laja3167");
 
 // function resetToEmpty() {
 //   count = 0;
@@ -52,7 +48,6 @@ function taskComplete() {
     console.log(response);
   });
 
-  // result.calculateNewAchievements('laja3167');
 
   // Make the task card disappear
   // Call the deleteTask() function
@@ -135,7 +130,7 @@ function displayTasks() {
   
   // console.log("user is ",user);
   var output = "";
-  output = "<button class='button' onclick='loadTrackingInfo()' style='float: left; margin-left:100px;'>Complete Task</button>\;";
+  // output = "<button class='button' onclick='loadTrackingInfo()' style='float: left; margin-left:100px;'>Complete Task</button>\;";
 
   // for (var i = 0; i < task.length; i++) {
     output = `
@@ -144,7 +139,7 @@ function displayTasks() {
                     <div class='card-body'>
                       <p class='card-text' style='font-size: 12pt'> ${taskDesc + " " + taskType} 
                       </p>
-                      <button class='button'>Complete Task</button>
+                      <button class='button' onclick='completeTask()' >Complete Task</button>
 
                     </div>
                   </div>
@@ -156,7 +151,7 @@ function displayTasks() {
     
     loggedIn()
     .then(user => {
-      console.log(user)
+      // console.log(user)
       loadLogoutModal(user)
       if (user) {
         let username = user.username;
@@ -166,8 +161,6 @@ function displayTasks() {
           .then(function (response) {
             // handle success
             let user = response.data;
-            console.log("user try 1 is ",user);
-            // console.log("show name",taskName);
 
               axios({
                 method: 'post',
@@ -233,20 +226,49 @@ function deleteTask(i) {
 }
 
 // pass task id for a get task function 
-function loadTrackingInfo() {
-  taskComplete();
-  let username = window.location.hash.split('#')[1]
-  axios.get("http://localhost:5000/api/users/" + username + "/:completeTasks")
-    .then(function (response) {
-      console.log("response is ",response);
-      let user = response.data;
-      console.log("info", user)
-      addTask();
-
+function completeTask() {
+  loggedIn()
+    .then(user => {
+      // console.log(user)
+      loadLogoutModal(user)
+      if (user) {
+        let username = user.username;
+        //LOAD PAGE HERE
+        axios
+          .get(baseUrl + "/api/users/" + username)
+          .then(function (response) {
+            // handle success
+            let user = response.data;
+            
+            // axios
+            // .get(baseUrl + "/api/users/" + user.id + "/getTasks")
+            // .then(function (response1) {
+            //   // handle success
+            //   let task = response1.data;
+            //   console.log("task is ", task);
+            // })
+              
+              axios({
+                method: 'post',
+                url: 'http://localhost:5000/api/users/' + user.username + '/completeTask',
+                data: {
+                  user_id: user.id,
+                  impact: taskType,
+                  completion_date: Date.now()
+                }
+              });
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          });
+      }
+      
     })
-    .catch(function (error) {
-      console.log(error);
-    });
+    .catch(error => {
+      console.log(error)
+    })
+   
 }
 
 window.onload = displayTasks();
