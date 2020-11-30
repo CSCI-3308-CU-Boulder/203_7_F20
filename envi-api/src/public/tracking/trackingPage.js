@@ -329,15 +329,16 @@ function completeTask() {
           .get(baseUrl + "/api/users/" + username)
           .then(function (response) {
             // handle success
+            // displayTasks();
             let user = response.data;
 
-            // axios
-            // .get(baseUrl + "/api/users/" + user.id + "/getTasks")
-            // .then(function (response1) {
-            //   // handle success
-            //   let task = response1.data;
-            //   console.log("task is ", task);
-            // })
+            axios
+            .get(baseUrl + "/api/users/" + user.id + "/getTasks")
+            .then(function (response1) {
+              // handle success
+              let task = response1.data;
+              console.log("task is ", task);
+            })
 
             axios({
               method: 'post',
