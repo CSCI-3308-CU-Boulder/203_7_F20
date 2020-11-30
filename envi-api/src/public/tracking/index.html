@@ -90,165 +90,86 @@
 
   <!-- Page content -->
   <div class="main" style="margin-left: 250px">
-    <div id="c1" class="container">
-      <div class="row">
-        <div class="col col-6">
-          <div class="row">
-            <img id="bottle" src="../assets/waterBottle.jpg" alt="Water Bottle" />
-          </div>
-          <!-- <div class="card-title text-right"><button type="button" class="btn btn-success" data-toggle="modal"
-              data-target="#addTask">Add Task</button></div> -->
-          <div class="card-body" id="tasks">
-            <!-- Function to add new cards for every new task added-->
 
-            <!-- </div> -->
-          </div>
-          <div class="col">
-            <!-- <div class="theme-light rounded-all card" style="margin-left: 70px;height:200px">
-              <table style="width: 440px; height: auto" class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Bottles Filled</th>
-                    <th scope="col">Level</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td id="bottle_count">0</td>
-                    <td id="level">0</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> -->
-          </div>
-          <br>
-          <div class="col">
-            <div class="container">
-              <div class="row">
-                <!-- Statistics -->
-                <div class="col">
-                  <div class="theme-light rounded-all card" style="margin-left: 70px;height:200px">
-                    <table style="width: 410px; height: auto" class="table">
-                      <thead>
-                        <tr>
-                          <th scope="col">Impact Points</th>
-                          <!-- <th scope="col">Level</th> -->
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <!-- <td id="bottle_count">0</td> -->
-                          <td id="impact_points">0</td>
-                          <!-- <td id="level">0</td> -->
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="col">
-                  <!-- Pie Chart Here! -->
-                  <div id="piechart" style="width: 100%; height: 100%; margin-left: -80px;"></div>
-                  <script type="text/javascript">
-                    // Load google charts
-                    google.charts.load('current', { 'packages': ['corechart'] });
-                    google.charts.setOnLoadCallback(drawChart);
-
-                    // Draw the chart and set the chart values
-                    function drawChart() {
-                      var data = google.visualization.arrayToDataTable([
-                        ['Task', 'Points'],
-                        ['Reduce', 8],
-                        ['Reuse', 2],
-                        ['Recycle', 2],
-                      ]);
-                      // Change the number of points to change the graph
-
-                      // Add a title and set the width and height of the chart
-                      // The colors will apply to the order of the data above
-                      var options = { 'title': 'Statistics', 'width': 1000, 'height': 500, 'colors': ['lightblue', 'pink', 'orange'] };
-
-                      // Display the chart inside the <div> element with id="piechart"
-                      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-                      chart.draw(data, options);
-                    }
-                  </script>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="c2" class="row">
-          <!-- <br> -->
-          <div class="col" style="max-width: 100%; width:100%">
-            <!-- <div style="width: 50%;" text-align="right"> -->
-            <!-- ooooooooooooooooooooooo0000000ooooooooo
-                im losing my MIND why is it doing this what is going on -->
-            <br>
-            <div class=" card theme-light rounded-all" style="width:170%; border: none;">
-              <div class=" card-header theme-dark rounded-top">
-                <h5>My Progress</h5>
-              </div>
-              <div class="card-title text-right">
-                <button type="button" class="button" style="margin-right: 10px; margin-top: 10px" data-toggle="modal"
-                  data-target="#addTask">Add Task</button></div>
-              <div class="card-body" id="tasks">
-                <!-- Function to add new cards for every new task added-->
-                <div class='theme-dark rounded-all card' id="counter" style="border: none">
-                  <div class='card-header'>task name
-                    <div class='card-body'>
-                      <p class='card-text' style='font-size: 12pt'> task description / type
-                      </p>
-                      <button class='button'>Complete Task</button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-
-        <!-- </div> -->
-        <!-- </div> -->
-        <!-- </div> -->
-        <!-- </div> -->
+    <div class="row">
+      <div class="col-6">
+        <!-- Water Bottle -->
+        Water bottle here!
+        <img id="bottle" src="../assets/waterBottle.jpg" alt="Water Bottle" />
       </div>
-
-
-      <!-- </div> -->
-
-      <div id="addTask" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="theme-dark modal-header">
-              <h4 class="modal-title text-center">Add Task</h4>
-            </div>
-            <div class="modal-body">
-              <form>
-                <label for="taskName">Task Name</label><br>
-                <input type="theme-dark text" class="rounded-all" id="taskName" name="taskName" required><br>
-                <label for="descr" id="taskDescription">Description (Optional)</label><br>
-                <input type="text" class="rounded-all" id="descr" name="descr"><br>
-                <label for="type">Type</label><br>
-                <select name="type" class="rounded-all" id="type" required>
-                  <option value="" disabled selected>Choose Type</option>
-                  <option value="reduce" id="reduce">Reduce</option>
-                  <option value="reuse" id="reuse">Reuse</option>
-                  <option value="recycle" id="recycle">Recycle</option>
-                </select>
-                <br><br>
-                <button type="button" class="button" value="Submit" onclick="addTask()">Submit</button>
-              </form>
+      <div class="col-6">
+        <div id="username" style="color: #297562">username</div>
+        <div class="row" style="padding-right: 4%">
+          <!-- Impact Points -->
+          <div class="col" style="max-width: 40%">
+            <div class="card rounded-all" style="border: none; background-color: none;">
+              <div class="card-body" style="text-align: center; border: none; padding: 5%">
+                <p id="impact_points" style="font-size: 80px; margin: none">98</p>
+                <p style="font-size: 16px; margin: none">Impact Points</p>
+              </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="button" data-dismiss="modal">Close</button>
+          <div class="col">
+            <!-- Pie Chart -->
+            <div id="piechart" style="width: 100%"></div>
+            </script>
+          </div>
+          <div id="tasks" class=" card theme-light rounded-all" style="width:170%; border: none;">
+            <div class=" card-header theme-dark rounded-top">
+              <h5>My Progress</h5>
+            </div>
+            <div class="card-title text-right">
+              <button type="button" class="button" style="margin-right: 10px; margin-top: 10px" data-toggle="modal"
+                data-target="#addTask">Add Task</button></div>
+            <div class="card-body" id="tasks">
+              <!-- Function to add new cards for every new task added-->
+              <div class='theme-dark rounded-all card' id="counter" style="border: none">
+                <div class='card-header'>task name
+                  <div class='card-body'>
+                    <p class='card-text' style='font-size: 12pt'> task description / type
+                    </p>
+                    <button class='button'>Complete Task</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
+
+    <div id="addTask" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="theme-dark modal-header">
+            <h4 class="modal-title text-center">Add Task</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <label for="taskName">Task Name</label><br>
+              <input type="theme-dark text" class="rounded-all" id="taskName" name="taskName" required><br>
+              <label for="descr" id="taskDescription">Description (Optional)</label><br>
+              <input type="text" class="rounded-all" id="descr" name="descr"><br>
+              <label for="type">Type</label><br>
+              <select name="type" class="rounded-all" id="type" required>
+                <option value="" disabled selected>Choose Type</option>
+                <option value="reduce" id="reduce">Reduce</option>
+                <option value="reuse" id="reuse">Reuse</option>
+                <option value="recycle" id="recycle">Recycle</option>
+              </select>
+              <br><br>
+              <button type="button" class="button" value="Submit" onclick="addTask()">Submit</button>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -258,8 +179,12 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- Pie Chart -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <script src="../resources/js/utilities.js"></script>
   <script src="../resources/js/navbar.js"></script>
