@@ -26,7 +26,7 @@ var exUser = {
   username: "username",
   name: "Example User",
   // num_bottles: 1,
-  impact_points:0,
+  impact_points: 0,
   achievements: exAch,
   image_id: 2,
 };
@@ -119,64 +119,6 @@ function displayInfo(user) {
   // document.getElementById("modal_name").innerHTML;
 }
 
-function displayProfilePic(id) {
-  if (id == document.getElementById("1").id) {
-    document.getElementById("profile-pic").src = "../assets/colorEarth.jpg";
-  }
-  if (id == document.getElementById("2").id) {
-    document.getElementById("profile-pic").src = "../assets/recycling.jpg";
-  }
-  if (id == document.getElementById("3").id) {
-    document.getElementById("profile-pic").src = "../assets/environmentalist.jpg";
-  }
-  if (id == document.getElementById("4").id) {
-    document.getElementById("profile-pic").src = "../assets/flatirons.png";
-  }
-  if (id == document.getElementById("5").id) {
-    document.getElementById("profile-pic").src = "../assets/flowers.jpg";
-  }
-  if (id == document.getElementById("6").id) {
-    document.getElementById("profile-pic").src = "../assets/hydroflask.jpg";
-  }
-  if (id == document.getElementById("7").id) {
-    document.getElementById("profile-pic").src = "../assets/ice.jpg";
-  }
-  if (id == document.getElementById("8").id) {
-    document.getElementById("profile-pic").src = "../assets/mountains.png";
-  }
-  if (id == document.getElementById("9").id) {
-    document.getElementById("profile-pic").src = "../assets/plant.jpg";
-  }
-  if (id == document.getElementById("10").id) {
-    document.getElementById("profile-pic").src = "../assets/flatirons.png";
-  }
-}
-
-function updateInfo(user) {
-  document.getElementById("name").innerHTML = user.name;
-  document.getElementById("username").innerHTML = user.username;
-
-  if (document.getElementById("modal_name").innerHTML != user.name) {
-    user.name = document.getElementById("modal_name").value;
-  }
-
-  if (document.getElementById("modal_username").innerHTML != user.username) {
-    user.username = document.getElementById("modal_username").value;
-  }
-
-  // if (document.getElementById("modal_name").innerHTML != document.getElementById("name")) {
-  //   document.getElementById("name").innerHTML = document.getElementById("modal_name").value;
-  // }
-
-  // if (document.getElementById("modal_username").innerHTML !=document.getElementById("username")) {
-  //   document.getElementById("username").innerHTML = document.getElementById("modal_username").value;
-  // }
-}
-
-function onClick() {
-  updateProfile();
-  displayInfo(user);
-}
 
 function loadProfile() {
   loggedIn()
@@ -224,22 +166,6 @@ function loadProfile() {
     })
 }
 
-//add onclick for update profile form when clicking submit (create function below with axios get request for update info)
-function updateProfileInfo() {
-  let username = window.location.hash.split('#')[1]
-  axios.post(baseUrl + "/api/users/" + username + "/updateInfo")
-    .then(function (response) {
-      console.log(response);
-      let user = response.data;
-      displayPicture(user);
-      updateInfo(user);
-      displayInfo(user);
-
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
 
 function loadExampleUser() {
   //RUN HARDCODED EXAMPLE (NO SERVER CALL)
