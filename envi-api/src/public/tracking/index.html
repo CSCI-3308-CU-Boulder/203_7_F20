@@ -94,7 +94,8 @@
     <div class="row">
       <div class="col-6">
         <!-- Water Bottle -->
-        Water bottle here!
+        <!-- Water bottle here! -->
+        <h3 id="bottle_count" style="color: #297562"></h3>
         <img id="bottle" src="../assets/waterBottle.jpg" alt="Water Bottle" />
       </div>
       <div class="col-6">
@@ -104,7 +105,7 @@
           <div class="col" style="max-width: 40%">
             <div class="card rounded-all" style="border: none; background-color: none;">
               <div class="card-body" style="text-align: center; border: none; padding: 5%">
-                <p id="impact_points" style="font-size: 80px; margin: none">98</p>
+                <p id="impact_points" points=0 style="font-size: 80px; margin: none">?</p>
                 <p style="font-size: 16px; margin: none">Impact Points</p>
               </div>
             </div>
@@ -121,9 +122,9 @@
             <div class="card-title text-right">
               <button type="button" class="button" style="margin-right: 10px; margin-top: 10px" data-toggle="modal"
                 data-target="#addTask">Add Task</button></div>
-            <div class="card-body" id="tasks">
+            <div class="card-body" id="tasks_display">
               <!-- Function to add new cards for every new task added-->
-              <div class='theme-dark rounded-all card' id="counter" style="border: none">
+              <!-- <div class='theme-dark rounded-all card' id="counter" style="border: none">
                 <div class='card-header'>task name
                   <div class='card-body'>
                     <p class='card-text' style='font-size: 12pt'> task description / type
@@ -132,7 +133,7 @@
 
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
 
           </div>

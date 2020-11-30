@@ -4,16 +4,7 @@
  */
 
 
-
-
-// function resetToEmpty() {
-//   count = 0;
-//   bottlesFilled = 0;
-//   document.getElementById("bottle").src = "../assets/waterBottle.jpg";
-//   document.getElementById("bottle_count").innerHTML = bottlesFilled;
-// }
-
-var count = 0;
+// var count = 0;
 // var level = 0
 var bottles_filled = 0;
 var baseUrl = "http://localhost:5000"
@@ -76,7 +67,7 @@ function drawChart() {//create pie chart from axios request
       if (user) {
         let id = user.id;
         let username = user.username;
-        axios.get(`/api/users/${id}/numTasks`)
+        axios.get(baseUrl + `/api/users/${id}/numTasks`)
           .then(function (response) {
             console.log(response)
             // let reduce = response.data.reduce[0].sum
@@ -134,26 +125,8 @@ function drawChart() {//create pie chart from axios request
 
 }
 
-function taskComplete() {
-  count++;
-  axios.post(baseUrl + "/api/users/" + username + "/completeTask", {}).then((response) => {
-    console.log(response);
-  });
-
-  // Make the task card disappear
-  // Call the deleteTask() function
-  // deleteTask(i);
-
-
-  // if (count % 5 == 0) {
-  //   // level++;
-  //   alert("Congratulations you leved up!");
-  //   count = 0;
-  // }
-  setImage();
-}
-
-function setImage() {
+function setImage(points) {
+  var count = points%5;
   if (count == 0) {
     document.getElementById("bottle").src = "../assets/waterBottle.jpg";
   } else if (count == 1) {
@@ -165,7 +138,8 @@ function setImage() {
   } else if (count == 4) {
     document.getElementById("bottle").src = "../assets/waterBottle4.jpg";
   }
-  // document.getElementById("bottle_count").innerHTML = count;
+  var num_bottles = points/5;
+  document.getElementById("bottle_count").innerHTML = "You have filled up " +num_bottles+ " bottles! Good job!";
   // document.getElementById("level").innerHTML = level + 1;
 }
 
@@ -183,6 +157,25 @@ var exUser = {
   taskCard: task,
 };
 
+function createTaskDisplay(taskName, taskId, taskDesc, taskType, timesTaskComp) {
+  console.log("creating task");
+  var output = `
+    <div class='theme-dark rounded-all card' id="counter" style="border: none">
+      <div class='card-header'>${taskName}
+        <div class='card-body'>
+          <p class='card-text' style='font-size: 12pt'> <i>${taskType}</i> -- ${taskDesc} </p>
+          <p class='card-text' style='font-size: 12pt' id='times_completed' completed=${timesTaskComp}>Times Completed: ${timesTaskComp}</p>
+          <button class='button' onclick='completeTask(${taskId}, "${taskType}", ${timesTaskComp})'>Complete Task</button>
+        </div>
+      </div>
+    </div>
+    </br>`;
+
+  // console.log("displayTask i=",i);
+  return output;
+  // document.getElementById("tasks").innerHTML += output;
+}
+
 function addTask() {
   // Opens a modal that will intake the information and then add the task into a list of tasks that will display as cards
   //.push() method
@@ -196,49 +189,14 @@ function addTask() {
   var taskName = document.getElementById("taskName").value;
   var taskDesc = document.getElementById("descr").value;
   var taskType = document.getElementById("type").value;
-  var task = [{ name: taskName, description: taskDesc, type: taskType }];
-
+  var task = { name: taskName, description: taskDesc, impact: taskType };
+  console.log("new task:");
+  console.log(task);
 
   // task.push({name: document.getElementById("taskName").value, description: document.getElementById("descr").value, type: document.getElementById("type").value});
-  task.push({ name: taskName, description: taskDesc, type: taskType });
-  console.log("task length = ", task.length);
-  displayTasks();
-}
-
-var counter = 0;
-
-function displayTasks() {
-  // console.log("hi");
-
-  // Displaying the tasks
-  var taskName = document.getElementById("taskName").value;
-  var taskDesc = document.getElementById("descr").value;
-  var taskType = document.getElementById("type").value;
-
-  // console.log("show name",taskName);
-  // var task = [{ name: taskName, description: taskDesc, type: taskType }];
-
-
-  // console.log("user is ",user);
-  var output = "";
-  // output = "<button class='button' onclick='loadTrackingInfo()' style='float: left; margin-left:100px;'>Complete Task</button>\;";
-
-  // for (var i = 0; i < task.length; i++) {
-  output = `
-    <div class='theme-dark rounded-all card' id="counter" style="border: none">
-                  <div class='card-header'>${taskName}
-                    <div class='card-body'>
-                      <p class='card-text' style='font-size: 12pt'> ${taskDesc + " " + taskType} 
-                      </p>
-                      <button class='button' onclick='completeTask()' >Complete Task</button>
-
-                    </div>
-                  </div>
-                </div>`
-  counter++;
-
-  // console.log("displayTask i=",i);
-  document.getElementById("tasks").innerHTML += output;
+  // task.push({ name: taskName, description: taskDesc, type: taskType });
+  // console.log("task length = ", task.length);
+  // displayTasks();
 
   loggedIn()
     .then(user => {
@@ -252,20 +210,21 @@ function displayTasks() {
           .then(function (response) {
             // handle success
             let user = response.data;
-
-            axios({
-              method: 'post',
-              url: 'http://localhost:5000/api/users/' + user.id + '/addTask',
-              data: {
-                user_id: user.id,
-                name: taskName,
-                description: taskDesc,
-                impact: taskType,
-                times_completed: 0,
-                completion_date: null,
-                create_date: Date.now()
-              }
-            });
+            document.getElementById('impact_points').innerHTML = user.impact_points; // updating tracking page to display the correct number of impact points
+            document.getElementById('impact_points').points = `${user.impact_points}`; // also update value
+            // do a get request to get all info on tasks
+            axios
+              .post(baseUrl + "/api/users/" + username + '/addTask', task)
+              .then(function(results) {
+                console.log("results");
+                console.log(results.data.task[0]);
+                var addedTask = results.data.task[0];
+                document.getElementById("tasks_display").innerHTML += createTaskDisplay(addedTask.name, addedTask.id, addedTask.description, addedTask.impact, addedTask.times_completed);
+              })
+              .catch(function (error) {
+                // handle error
+                console.log(error);
+              })
           })
           .catch(function (error) {
             // handle error
@@ -278,28 +237,85 @@ function displayTasks() {
       console.log(error)
     })
 
-
 }
 
+// var counter = 0;
 
+function displayTasks() {
+  console.log("displayTasks()");
 
-// function displayTasks() {
+  // Displaying the tasks
+  // var taskName = document.getElementById("taskName").value;
+  // var taskDesc = document.getElementById("descr").value;
+  // var taskType = document.getElementById("type").value;
 
-//   // addTask();
+  // console.log("show name",taskName);
+  // var task = [{ name: taskName, description: taskDesc, type: taskType }];
 
-//   // Displaying the tasks
-//   var output = "";
+  var taskName; 
+  var taskDesc;
+  var taskType;
+  var taskId;
+  var timesTaskComp;
 
-//   for (var i = 0; i < task.length; i++) {
-//     output = "<div class='card'><div class='card-header'>" + task[i].name + "</div>\
-//     <div class='card-body'><p class='card-text' style='font-size: 12pt'>" + task[i].description + "</p></div></div>\
-//     <div class='card-footer'><button class='btn btn-primary' onclick='taskComplete()' style='float: left'>Complete Task</button>\
-//     <button type='button' class='btn btn-circle btn-sm btn-danger text-right' style=margin-right: 10px style=margin-top: 10px onclick='deleteTask()' style='float: right'></button></div>";
+  // console.log("user is ",user);
+  var output = "";
+  // output = "<button class='button' onclick='loadTrackingInfo()' style='float: left; margin-left:100px;'>Complete Task</button>\;";
 
-//     document.getElementById("tasks").innerHTML += output;
-//     console.log("out = ", output);
-// }
-//}
+  // for (var i = 0; i < task.length; i++) {
+
+  loggedIn()
+    .then(user => {
+      // console.log(user)
+      loadLogoutModal(user)
+      if (user) {
+        let username = user.username;
+        //LOAD PAGE HERE
+        axios
+          .get(baseUrl + "/api/users/" + username)
+          .then(function (response) {
+            // handle success
+            let user = response.data;
+            document.getElementById('impact_points').innerHTML = user.impact_points; // updating tracking page to display the correct number of impact points
+            document.getElementById('impact_points').points = `${user.impact_points}`; // also update value
+            document.getElementById('username').innerHTML = user.username;
+            setImage(user.impact_points);
+            // do a get request to get all info on tasks
+            axios
+              .get(baseUrl + "/api/users/" + username + '/getTasks')
+              .then(function(results) {
+                // gets an array of all the tasks -- load them in
+                console.log("TASKS");
+                console.log(results);
+                var tasks = results.data.tasks;
+                for(var i=0; i<results.data.tasks.length; i++) {
+                  taskName = tasks[i].name;
+                  taskDesc = tasks[i].description;
+                  taskType = tasks[i].impact;
+                  timesTaskComp = tasks[i].times_completed;
+                  taskId = tasks[i].id;
+                  output += createTaskDisplay(taskName, taskId, taskDesc, taskType, timesTaskComp);
+                }
+                // add tasks to webpage
+                document.getElementById("tasks_display").innerHTML = output;
+              })
+              .catch(function (error) {
+                // handle error
+                console.log(error);
+              })
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          });
+      }
+
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
+}
 
 function deleteTask(i) {
   // Delete the task number based on the taskid
@@ -317,7 +333,41 @@ function deleteTask(i) {
 }
 
 // pass task id for a get task function 
-function completeTask() {
+function completeTask(task_id, task_type, timesComp) {
+  // maybe pop up with an alert or something that the task was completed?
+  console.log("task type: ");
+  console.log(task_type);
+  console.log("task_id: ");
+  console.log(task_id);
+
+  // update inner html to have times completed be correct
+  timesComp++;
+  document.getElementById('times_completed').innerHTML = `Times completed: ${timesComp}`;
+  console.log("Times comp:" + timesComp);
+
+  // update inner html to have the correct impact points displayed -- IS WORKING FOR SOME REASON (don't understand why but it works)
+  if(task_type == 'reuse') {
+    var impactValue = parseInt(document.getElementById('impact_points').points) +3;
+    document.getElementById('impact_points').points = `${impactValue}`;
+    document.getElementById('impact_points').innerHTML = impactValue;
+    console.log("Impact value: " + impactValue);
+    setImage(impactValue);
+  }
+  else if(task_type == 'reduce') {
+    var impactValue = parseInt(document.getElementById('impact_points').points) +2;
+    document.getElementById('impact_points').points = `${impactValue}`;
+    document.getElementById('impact_points').innerHTML = impactValue;
+    console.log("Impact value: " + impactValue);
+    setImage(impactValue);
+  }
+  else if(task_type == 'recycle') {
+    var impactValue = parseInt(document.getElementById('impact_points').points) +1;
+    document.getElementById('impact_points').points = `${impactValue}`;
+    document.getElementById('impact_points').innerHTML = impactValue;
+    console.log("Impact value: " + impactValue);
+    setImage(impactValue);
+  }
+
   loggedIn()
     .then(user => {
       // console.log(user)
@@ -330,22 +380,13 @@ function completeTask() {
           .then(function (response) {
             // handle success
             let user = response.data;
-
-            // axios
-            // .get(baseUrl + "/api/users/" + user.id + "/getTasks")
-            // .then(function (response1) {
-            //   // handle success
-            //   let task = response1.data;
-            //   console.log("task is ", task);
-            // })
-
+            // post method to completeTask, sending task_id and task_type
             axios({
               method: 'post',
-              url: 'http://localhost:5000/api/users/' + user.username + '/completeTask',
+              url: baseUrl + '/api/users/' + user.username + '/completeTask',
               data: {
-                user_id: user.id,
-                impact: taskType,
-                completion_date: Date.now()
+                task_id: task_id,
+                impact: task_type
               }
             });
           })
