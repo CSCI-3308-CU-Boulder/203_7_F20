@@ -4,7 +4,7 @@
   "description": "Envi Backend",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon",
+    "start:dev": "nodemon -i public/",
     "build": "rimraf ./build && tsc",
     "start": "npm run build && node build/index.js"
   },
