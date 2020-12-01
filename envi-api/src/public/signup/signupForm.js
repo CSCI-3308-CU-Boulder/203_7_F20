@@ -5,18 +5,41 @@ document.getElementById("submit_button").addEventListener("click", function (eve
   event.preventDefault()
 });
 
-var images = [
-  "../assets/colorEarth.jpg",
-  "../assets/envi.png",
-  "../assets/environmentalist.jpg",
-  "../assets/flatirons.png",
-  "../assets/flowers.jpg",
-  "../assets/hydroflask.jpg",
-  "../assets/ice.jpg",
-  "../assets/mountains.png",
-  "../assets/plant.jpg",
-  "../assets/recycling.jpeg",
-];
+$(document).ready(function () {
+  //Check if user is already logged in
+  console.log("Checking login status")
+  axios.get(loggedInUrl)
+    .then(response => {
+      if (response.data) {
+        console.log(response.data)
+        loadLogoutModal(response.data.user)
+        let { loggedIn } = response.data
+        if (loggedIn) {
+          console.log("User already logged in!")
+          $('#logoutForm').show()
+        } else {
+          console.log("No login")
+          $('#signupForm').show()
+        }
+      }
+    }).catch(err => {
+      console.error(err)
+    })
+})
+
+function submitLogout() {
+  axios.get(logoutUrl)
+    .then(response => {
+      if (response.data) {
+        let { success } = response.data
+        if (success) {
+          window.location.replace('/home')
+        } else {
+          console.log("Logout unsuccessful")
+        }
+      }
+    }).catch(err => console.error(err))
+}
 
 function choosePicture() {
   //clear current selection

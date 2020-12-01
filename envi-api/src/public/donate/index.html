@@ -14,13 +14,41 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li style="text-align:right"><img onclick="clickNavPic()" class="pull-right"
-          src="../assets/profile_pic_placeholder.gif" width="12%" id="eye"></li>
+      <li style="text-align:right">
+        <a href="#logout_modal" data-toggle="modal">
+          <img class="pull-right" src="../assets/profile_pic_placeholder.gif" id="navbar_profile" width="12%">
+        </a>
+      </li>
     </ul>
   </nav>
 </head>
 
-<body>
+<body onload="loadDonate()">
+  <!-- Logout Modal -->
+  <div id="logout_modal" class="modal logout-modal" style="backdrop-filter: none;">
+    <div role="document">
+      <div class="modal-content">
+        <div class="modal-header" id="modal_header"
+          style="max-height: 40px; display: flex; align-items: center; border: none;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="modal_body"
+          style="max-height: 70px; display: flex; align-items: center; border: none;">
+          <a style="color: #297562; font-size: large" id="logout_name">You are not logged in.</a>
+        </div>
+        <div class="modal-footer" id="lgout_buttons"
+          style="max-height: 70px; display: flex; align-items: center; border: none;">
+          <a href="../login/index.html">
+            <button type="button" class="button">Log In</button></a>
+          <a href="../signup/index.html">
+            <button type="button" class="button">Sign Up</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Side navigation -->
   <div class="sidenav" style="width: 250px">
     <br />
@@ -163,8 +191,12 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
   <script src="../resources/js/utilities.js"></script>
   <script src="../resources/js/navbar.js"></script>
+  <script src="donate.js"></script>
 </body>
 
 </html>

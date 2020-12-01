@@ -78,11 +78,10 @@ router.get('/:id/', (req, res) => {
 
 // Update profile info
 router.post('/:username/updateInfo', function (req, res) {
-    var newUsername = (req.body.modal_username).toLowerCase();
-    var newName = req.body.modal_name;
-    var newImage = req.body.modal_image_id;
-    var newEmail = (req.body.defaultForm_email).toLowerCase();
-    var updateQuery = "UPDATE users SET username ='" + newUsername + "', name ='" + newName + "', image_id =" + newImage + ", email ='" + newEmail + "' WHERE username=$1";
+    var newUsername = (req.body.username).toLowerCase();
+    var newName = req.body.name;
+    var newImage = req.body.image_id;
+    var updateQuery = "UPDATE users SET username ='" + newUsername + "', name ='" + newName + "', image_id =" + newImage + " WHERE username=$1";
     console.log(updateQuery);
     console.log(req.params);
     let { username } = req.params;
@@ -104,8 +103,8 @@ router.get('/:id/getUser', (req, res) => {
     let { user_id } = req.body;
     var userQuery = "SELECT username, name, bio, birthday, image_id, impact_points FROM users WHERE id = $1";
     query(userQuery, [user_id])
-    .then(results => res.json({friend: results.rows}))
-    .catch(err => res.json({err: err}))
+        .then(results => res.json({ friend: results.rows }))
+        .catch(err => res.json({ err: err }))
 })
 
 // Get friends 
@@ -197,19 +196,18 @@ router.post('/:id/addFriend/:friendUsername', function (req, res) {
 router.post('/:username/completeTask', async (req, res) => { // json with task_id and impact (impact type)
     // const { task_id } = req.body;
     // const { impact } = req.body;
-    const { user_id, impact, completion_date } = req.body;
-
-    var update = "UPDATE tasks SET times_completed = times_completed + 1 WHERE user_id = $1;";// AND id=$2;"; // updating the task as completed in db
+    const { task_id, impact } = req.body;
+    var update = "UPDATE tasks SET times_completed = times_completed + 1 WHERE id = $1;"; // updating the task as completed in db
     var points = "UPDATE users SET impact_points = impact_points + 1 WHERE id = $1;"; // adding impact points for the user - 1 if recycle
-    if(impact == 'reuse') {
+    if (impact == 'reuse') {
         points = "UPDATE users SET impact_points = impact_points + 3 WHERE id = $1;"; // adding 3 impact points for reuse
     }
-    else if(impact == 'reduce') {
+    else if (impact == 'reduce') {
         points = "UPDATE users SET impact_points = impact_points + 2 WHERE id = $1;"; // adding 2 impact points for reduce
     }
-    
+
     // query(update, [req.user.id, task_id])
-    query(update, [req.user.id])
+    query(update, [task_id])
         .then(results => {
             console.log('Task updated')
             query(points, [req.user.id])
@@ -235,23 +233,29 @@ router.post('/:username/completeTask', async (req, res) => { // json with task_i
 router.post('/:id/addTask', function (req, res) { // parameters -- name, description, impact
     console.log('Adding task');
     const { name, description, impact } = req.body;
+    console.log(name, description, impact);
     if (!name || !impact) {
         res.status(401).send("Invalid task input")
         return null
     }
     var taskQuery = "INSERT INTO tasks (user_id, name, description, impact, times_completed) VALUES ($1, $2, $3, $4, 0);"; // adding task to list
+    var outputQuery = "SELECT * FROM tasks WHERE user_id=$1 AND name=$2 AND times_completed=0;";
     query(taskQuery, [req.user.id, name, description, impact])
-        .then(results => res.json({ success: true }))
+        .then(response => {
+            query(outputQuery, [req.user.id, name])
+            .then(results => res.json({ success: true, task: results.rows }))
+            .catch(err => res.json({ err: err }))
+        })
         .catch(err => res.json({ err: err }))
 })
 
 // for getting tasks added by a given user
 router.get('/:id/getTasks', function (req, res) {
     console.log('Getting tasks');
-    let { id } = req.user;
-    console.log(id);
+    // let { id } = req.user;
+    // console.log(id);
     var taskQuery = 'SELECT * FROM tasks WHERE user_id = $1;';
-    query(taskQuery, [id])
+    query(taskQuery, [req.user.id])
         .then(results => res.json({ tasks: results.rows }))
         .catch(err => res.json({ err: err }))
 })
@@ -276,11 +280,11 @@ router.post('/:id/addAchievement', function (req, res) { // parameters -- name, 
 router.get('/:id/getAchievements', (req, res) => {
     // query for ach's
     query(`SELECT * FROM achievements WHERE user_id = ${req.user.id} ORDER BY create_date DESC;`)
-    .then(results => res.json({ achievements: results.rows }))
-    .catch(err => {
-        console.log(err)
-        res.json({ err: err })
-    })
+        .then(results => res.json({ achievements: results.rows }))
+        .catch(err => {
+            console.log(err)
+            res.json({ err: err })
+        })
 })
 
 // getFriendAchievements 

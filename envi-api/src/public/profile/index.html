@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="../resources/css/envi_style.css" />
 
   <script src="./loadProfile.js" type="module"></script>
-  <script src="./trackingPage.js" type="module"></script>
 
   <script>
     function loadBottles() {
@@ -122,96 +121,76 @@
                     <!-- <p class="card-title" id="bottles_filled"></p> -->
                   </div>
                   <div class="card-body text-center" style="padding-top: 0px">
-                    <a href="#myModal" class="button" data-toggle="modal">Update Profile</a>
+                    <a href="#myModal" onclick=populateModal() class="button" data-toggle="modal">Update Profile</a>
                   </div>
                   <!-- Modal HTML -->
                   <div id="myModal" class="modal fade">
                     <div class="modal-dialog modal-login">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <div class="avatar">
-                            <img src="https://www.tutorialrepublic.com/examples/images/avatar.png" alt="Avatar" />
-                          </div>
                           <h4 class="modal-title">Update Info</h4>
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             &times;
                           </button>
                         </div>
                         <!-- The grid: four columns -->
-                        <div class="row">
-                          <div class="column">
-                            <img src="../assets/colorEarth.jpg" id="1" alt="Earth image"
-                              onclick="displayProfilePic(id)" />
+                        <a style="padding-left: 5%; padding-top: 5%"> Choose a new profile image: </a>
+                        <div onclick="choosePicture()" style="padding: 5%">
+                          <div class="row">
+                            <div class="col">
+                              <img src="../assets/colorEarth.jpg" width="100" id="0">
+                            </div>
+                            <div class="col">
+                              <img src="../assets/envi.png" width="100" id="1">
+                            </div>
+                            <div class="col">
+                              <img src="../assets/environmentalist.jpg" width="100" id="2">
+                            </div>
+                            <div class="col">
+                              <img src="../assets/flatirons.png" width="100" id="3">
+                            </div>
+                            <div class="col">
+                              <img src="../assets/flowers.jpg" width="100" id="4">
+                            </div>
                           </div>
-                          <div class="column">
-                            <img src="../assets/envi.png" id="2" alt="Envi image" onclick="displayProfilePic(id)" />
-                          </div>
-                          <div class="column">
-                            <img src="../assets/environmentalist.jpg" id="3" alt="Environmentalist image"
-                              onclick="displayProfilePic(id)" />
-                          </div>
-                          <div class="column">
-                            <img src="../assets/flatirons.png" id="4" alt="Flatirons image"
-                              onclick="displayProfilePic(id)" />
-                          </div>
-                          <div class="column">
-                            <img src="../assets/flowers.jpg" id="5" alt="Flower image"
-                              onclick="displayProfilePic(id)" />
-                          </div>
-                          <div class="column">
-                            <img src="../assets/hydroflask.jpg" id="6" alt="Hydroflask image"
-                              onclick="displayProfilePic(id)" />
-                          </div>
-                          <div class="column">
-                            <img src="../assets/ice.jpg" id="7" alt="Ice image" onclick="displayProfilePic(id)" />
-                          </div>
-                          <div class="column">
-                            <img src="../assets/mountains.png" id="8" alt="Mountains image"
-                              onclick="displayProfilePic(id)" />
-                          </div>
-                          <div class="column">
-                            <img src="../assets/plant.jpg" id="9" alt="Plant image" onclick="displayProfilePic(id)" />
-                          </div>
-                          <div class="column">
-                            <img src="../assets/recycling.jpeg" id="10" alt="Recycling image"
-                              onclick="displayProfilePic(id)" />
+                          <div class="row">
+                            <div class="col">
+                              <img src="../assets/hydroflask.jpg" width="100" id="5">
+                            </div>
+                            <div class="col">
+                              <img src="../assets/ice.jpg" width="100" id="6">
+                            </div>
+                            <div class="col">
+                              <img src="../assets/mountains.png" width="100" id="7">
+                            </div>
+                            <div class="col">
+                              <img src="../assets/plant.jpg" width="100" id="8">
+                            </div>
+                            <div class="col">
+                              <img src="../assets/recycling.jpeg" width="100" id="9">
+                            </div>
                           </div>
                         </div>
 
-                        <!-- The expanding image container -->
-                        <div class="container">
-                          <!-- Close the image -->
-                          <!--<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>-->
-
-                          <!-- Expanded image -->
-                          <img id="expandedImg" style="width: 100%" />
-
-                          <!-- Image text -->
-                          <div id="imgtext"></div>
-                        </div>
                         <div class="modal-body">
                           <div class="form-group">
-                            <input type="text" id="modal_username" class="rounded-all form-control" name="username"
-                              placeholder="Username" required="required" />
+                            Username:
+                            <input onkeyup=usernameValid() type="text" id="modal_username"
+                              class="rounded-all form-control" name="username" placeholder="Username"
+                              required="required" />
                           </div>
                           <div class="form-group">
+                            Name:
                             <input type="text" id="modal_name" class="rounded-all form-control" name="name"
                               placeholder="Name" required="required" />
-                          </div>
-                          <div class="form-group">
-                            <input id="defaultForm-email" type="email" class="rounded-all form-control validate"
-                              name="email" placeholder="Email Address" required="required" />
                           </div>
                           <!-- <div class="form-group">
                             <input id="cpsw" type="password" class="form-control" name="confirm password"
                             placeholder="Confirm Password" required="required">
                           </div> -->
-                          <div class="form-group">
+                          <div class="form-group text-center">
                             <button type="button" id="my_submit_button" class="button" onclick="updateProfileInfo()">
-                              Update
-                            </button>
-                            <button type="button" id="my_reset_button" class="button" onclick="resetName()">
-                              Change Name
+                              Update Profile
                             </button>
                           </div>
                         </div>
@@ -261,6 +240,7 @@
   <script src="../resources/js/utilities.js"></script>
   <script src="../resources/js/navbar.js"></script>
   <script src="./loadProfile.js"></script>
+  <script src="./updateProfile.js"></script>
 
 </body>
 
