@@ -49,7 +49,7 @@ function LOAD_FUNCTION_SKELETON() {
 
 var images = [
     "../assets/colorEarth.jpg",
-    "../assets/envi.png",
+    "../assets/water_bottleProfile.jpg",
     "../assets/environmentalist.jpg",
     "../assets/flatirons.png",
     "../assets/flowers.jpg",
@@ -59,3 +59,11 @@ var images = [
     "../assets/plant.jpg",
     "../assets/recycling.jpeg",
 ];
+
+var waterBottle = [
+    "../assets/water_bottle/lvl0.jpg",
+    "../assets/water_bottle/lvl2.jpg",
+    "../assets/water_bottle/lvl4.jpg",
+    "../assets/water_bottle/lvl6.jpg",
+    "../assets/water_bottle/lvl8.jpg"
+]

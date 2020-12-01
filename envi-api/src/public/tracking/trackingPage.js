@@ -70,12 +70,9 @@ function drawChart() {//create pie chart from axios request
         axios.get(baseUrl + `/api/users/${id}/numTasks`)
           .then(function (response) {
             console.log(response)
-            // let reduce = response.data.reduce[0].sum
-            // let reuse = response.data.reuse[0].sum
-            // let recycle = response.data.recycle[0].sum
-            let reduce = 8;
-            let reuse = 6;
-            let recycle = 12;
+            let reduce = response.data.reduce[0].sum
+            let reuse = response.data.reuse[0].sum
+            let recycle = response.data.recycle[0].sum
             console.log(reduce)
             if (reduce && reuse && recycle) {
               document.getElementById("piechart").innerHTML = ""
@@ -106,7 +103,7 @@ function drawChart() {//create pie chart from axios request
               chart.draw(data, options);
             }
             else {
-
+              document.getElementById("piechart").innerHTML = '<p style="font-size: small; text-align: center;">Insufficient information to create chart. Start tracking tasks to see your progress!</p>'
             }
           })
           .catch(function (error) {
@@ -126,20 +123,20 @@ function drawChart() {//create pie chart from axios request
 }
 
 function setImage(points) {
-  var count = points%5;
+  var count = points % 5;
   if (count == 0) {
-    document.getElementById("bottle").src = "../assets/waterBottle.jpg";
+    document.getElementById("bottle").src = waterBottle[0];
   } else if (count == 1) {
-    document.getElementById("bottle").src = "../assets/waterBottle1.jpg";
+    document.getElementById("bottle").src = waterBottle[1];
   } else if (count == 2) {
-    document.getElementById("bottle").src = "../assets/waterBottle2.jpg";
+    document.getElementById("bottle").src = waterBottle[2];
   } else if (count == 3) {
-    document.getElementById("bottle").src = "../assets/waterBottle3.jpg";
+    document.getElementById("bottle").src = waterBottle[3];
   } else if (count == 4) {
-    document.getElementById("bottle").src = "../assets/waterBottle4.jpg";
+    document.getElementById("bottle").src = waterBottle[4];
   }
-  var num_bottles = points/5;
-  document.getElementById("bottle_count").innerHTML = "You have filled up " +num_bottles+ " bottles! Good job!";
+  var num_bottles = points / 5;
+  document.getElementById("bottle_count").innerHTML = "You have filled up " + num_bottles + " bottles! Good job!";
   // document.getElementById("level").innerHTML = level + 1;
 }
 
@@ -215,11 +212,14 @@ function addTask() {
             // do a get request to get all info on tasks
             axios
               .post(baseUrl + "/api/users/" + username + '/addTask', task)
-              .then(function(results) {
+              .then(function (results) {
                 console.log("results");
-                console.log(results.data.task[0]);
-                var addedTask = results.data.task[0];
-                document.getElementById("tasks_display").innerHTML += createTaskDisplay(addedTask.name, addedTask.id, addedTask.description, addedTask.impact, addedTask.times_completed);
+                console.log(results)
+                if (results.data.task[0]) {
+                  console.log(results.data.task[0]);
+                  var addedTask = results.data.task[0];
+                  document.getElementById("tasks_display").innerHTML += createTaskDisplay(addedTask.name, addedTask.id, addedTask.description, addedTask.impact, addedTask.times_completed);
+                }
               })
               .catch(function (error) {
                 // handle error
@@ -252,7 +252,7 @@ function displayTasks() {
   // console.log("show name",taskName);
   // var task = [{ name: taskName, description: taskDesc, type: taskType }];
 
-  var taskName; 
+  var taskName;
   var taskDesc;
   var taskType;
   var taskId;
@@ -283,12 +283,12 @@ function displayTasks() {
             // do a get request to get all info on tasks
             axios
               .get(baseUrl + "/api/users/" + username + '/getTasks')
-              .then(function(results) {
+              .then(function (results) {
                 // gets an array of all the tasks -- load them in
                 console.log("TASKS");
                 console.log(results);
                 var tasks = results.data.tasks;
-                for(var i=0; i<results.data.tasks.length; i++) {
+                for (var i = 0; i < results.data.tasks.length; i++) {
                   taskName = tasks[i].name;
                   taskDesc = tasks[i].description;
                   taskType = tasks[i].impact;
@@ -346,22 +346,22 @@ function completeTask(task_id, task_type, timesComp) {
   console.log("Times comp:" + timesComp);
 
   // update inner html to have the correct impact points displayed -- IS WORKING FOR SOME REASON (don't understand why but it works)
-  if(task_type == 'reuse') {
-    var impactValue = parseInt(document.getElementById('impact_points').points) +3;
+  if (task_type == 'reuse') {
+    var impactValue = parseInt(document.getElementById('impact_points').points) + 3;
     document.getElementById('impact_points').points = `${impactValue}`;
     document.getElementById('impact_points').innerHTML = impactValue;
     console.log("Impact value: " + impactValue);
     setImage(impactValue);
   }
-  else if(task_type == 'reduce') {
-    var impactValue = parseInt(document.getElementById('impact_points').points) +2;
+  else if (task_type == 'reduce') {
+    var impactValue = parseInt(document.getElementById('impact_points').points) + 2;
     document.getElementById('impact_points').points = `${impactValue}`;
     document.getElementById('impact_points').innerHTML = impactValue;
     console.log("Impact value: " + impactValue);
     setImage(impactValue);
   }
-  else if(task_type == 'recycle') {
-    var impactValue = parseInt(document.getElementById('impact_points').points) +1;
+  else if (task_type == 'recycle') {
+    var impactValue = parseInt(document.getElementById('impact_points').points) + 1;
     document.getElementById('impact_points').points = `${impactValue}`;
     document.getElementById('impact_points').innerHTML = impactValue;
     console.log("Impact value: " + impactValue);
