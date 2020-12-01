@@ -254,7 +254,7 @@ router.get('/:id/getTasks', function (req, res) {
     console.log('Getting tasks');
     // let { id } = req.user;
     // console.log(id);
-    var taskQuery = 'SELECT * FROM tasks WHERE user_id = $1;';
+    var taskQuery = 'SELECT * FROM tasks WHERE user_id = $1 ORDER BY create_date DESC;';
     query(taskQuery, [req.user.id])
         .then(results => res.json({ tasks: results.rows }))
         .catch(err => res.json({ err: err }))

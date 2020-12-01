@@ -10,6 +10,8 @@ $(document).ready(function () {
         if (loggedIn) {
           console.log("User already logged in!")
           $('#logoutForm').show()
+          // Redirect to profile
+          window.location.pathname = '/profile'
         } else {
           console.log("No login")
           $('#loginForm').show()

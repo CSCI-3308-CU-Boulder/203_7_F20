@@ -139,6 +139,12 @@ img {
 }
 
 /*modal in top right (login/logout)*/
+#navbar_profile {
+  border-radius: 50%;
+  width: 36px;
+  heigh: 36px;
+}
+
 .logout-modal {
   position: absolute !important;
   top: 55px !important;

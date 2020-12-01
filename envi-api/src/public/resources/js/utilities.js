@@ -63,8 +63,12 @@ var images = [
 
 var waterBottle = [
     "../assets/water_bottle/lvl0.jpg",
+    "../assets/water_bottle/lvl1.jpg",
     "../assets/water_bottle/lvl2.jpg",
+    "../assets/water_bottle/lvl3.jpg",
     "../assets/water_bottle/lvl4.jpg",
+    "../assets/water_bottle/lvl5.jpg",
     "../assets/water_bottle/lvl6.jpg",
+    "../assets/water_bottle/lvl7.jpg",
     "../assets/water_bottle/lvl8.jpg"
 ]
