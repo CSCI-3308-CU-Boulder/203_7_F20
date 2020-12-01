@@ -13,11 +13,9 @@ let loggedIn = () => new Promise((resolve, reject) => {
                 console.log(response.data)
                 let { loggedIn, user } = response.data
                 if (loggedIn) {
-                    console.log("User already logged in!")
                     currentUser = user
                     resolve(user);
                 } else {
-                    console.log("No login")
                     currentUser = null
                     resolve(null);
                 }
