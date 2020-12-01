@@ -28,20 +28,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../resources/css/envi_style.css">
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <nav class="navbar navbar-light" style="background-color: #c5c3ba">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="../home/index.html">Home</a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li style="text-align:right">
-        <a href="#logout_modal" data-toggle="modal">
-          <img class="pull-right" src="../assets/profile_pic_placeholder.gif" id="navbar_profile" width="12%">
-        </a>
-      </li>
-    </ul>
-  </nav>
+
 
 </head>
 
@@ -88,8 +75,25 @@
     <a href="../donate/index.html" class="sidenav-button" style="margin-top: 10px">Donate</a>
   </div>
 
+  <!-- Top Navigation -->
+  <nav class="navbar navbar-light"
+    style="background-color: #c5c3ba; position:fixed; top:0; width:100%; overflow: hidden; z-index: 100;">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="../home/index.html">Home</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li style="text-align:right">
+        <a href="#logout_modal" data-toggle="modal">
+          <img class="pull-right" src="../assets/profile_pic_placeholder.gif" id="navbar_profile" width="12%">
+        </a>
+      </li>
+    </ul>
+  </nav>
+
   <!-- Page content -->
-  <div class="main" style="margin-left: 250px">
+  <div class="main" style="margin-left: 250px; margin-top: 56px">
 
     <div class="row">
       <div class="col-6">
@@ -143,7 +147,47 @@
       </div>
     </div>
 
-    <div id="addTask" class="modal fade" role="dialog">
+    <div id="addTask" class="modal fade rounded-all" style="border:none">
+      <div class="modal-dialog modal-login rounded-all">
+        <div class="modal-content rounded-all" style="border:none">
+          <div class="modal-header theme-dark">
+            <h4 class="modal-title">Add Task</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body" style="border: none">
+            <a id="error_msg" style="font-size: small; color: #d86b54"></a>
+            <div class="form-group">
+              <input onkeyup=enableButton() type="text" maxlength="20" id="taskName" class="rounded-all form-control"
+                name="name" placeholder="Task Name" required="required" />
+            </div>
+            <div class="form-group">
+              <input onkeyup=enableButton() type="text" maxlength="100" id="descr" class="rounded-all form-control"
+                name="description" placeholder="Task description (optional)" required="required" />
+            </div>
+            <div class="form-group">
+              <select onchange=enableButton() class="form-control rounded-all" id="type">
+                <option value="" disabled selected>Choose Type</option>
+                <option value="reduce">Reduce</option>
+                <option value="reuse">Reuse</option>
+                <option value="recycle">Recycle</option>
+              </select>
+            </div>
+            <div class="form-group text-center">
+              <button type="button" id="my_submit_button" class="button" disabled="true" onclick="addTask()">
+                Submit Task
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  <!-- <div id="addTask" class="modal fade rounded-all" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="theme-dark modal-header">
@@ -151,8 +195,9 @@
           </div>
           <div class="modal-body">
             <form>
-              <label for="taskName">Task Name</label><br>
-              <input type="theme-dark text" class="rounded-all" id="taskName" name="taskName" required><br>
+              <label for="taskName" style="font-size: small">Task Name</label><br>
+              <input onkeyup=usernameValid() type="text" id="taskName" class="rounded-all form-control" name="username"
+                placeholder="Username" required="required" />
               <label for="descr" id="taskDescription">Description (Optional)</label><br>
               <input type="text" class="rounded-all" id="descr" name="descr"><br>
               <label for="type">Type</label><br>
@@ -170,8 +215,10 @@
         <div class="modal-footer">
           <button type="button" class="button" data-dismiss="modal">Close</button>
         </div>
-      </div>
-    </div>
+      </div> -->
+  </div>
+
+
   </div>
   </div>
   <!-- jQuery library -->

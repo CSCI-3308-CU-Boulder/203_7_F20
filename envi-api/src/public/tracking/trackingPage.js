@@ -33,29 +33,6 @@ function loadBottles() {
   }
 }
 
-google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-
-  var data = google.visualization.arrayToDataTable([
-    ['Task', 'Hours per Day'],
-    ['Work', 11],
-    ['Eat', 2],
-    ['Commute', 2],
-    ['Watch TV', 2],
-    ['Sleep', 7]
-  ]);
-
-  var options = {
-    title: 'My Daily Activities'
-  };
-
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-  chart.draw(data, options);
-}
-
 //load pie chart package
 google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawChart);
@@ -404,3 +381,34 @@ function completeTask(task_id, task_type, timesComp) {
 }
 
 window.onload = displayTasks();
+
+
+function enableButton() {
+  var name = document.getElementById("taskName");
+  var description = document.getElementById("descr");
+  var type = document.getElementById("type");
+
+  var valid = false;
+  if (name.value && description.value && type.value) {
+    var valid = true
+  }
+  let username = currentUser.username;
+  axios.get(`/api/users/${username}/getTasks`)
+    .then(function (response) {
+      console.log(response);
+      let tasks = response.data.tasks;
+      for (var i = 0; i < tasks.length; i++) {
+        if (tasks[i].name == name.value) {
+          valid = false;
+          document.getElementById("error_msg").innerHTML = "You already have a task with this name."
+          break;
+        }
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  if (valid) {
+    document.getElementById("my_submit_button").disabled = "false";
+  }
+}
