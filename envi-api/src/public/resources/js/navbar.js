@@ -1,11 +1,12 @@
 
 
 
-async function loadLogoutModal(user) {//function to be applied ON LOAD
-    loggedIn()
-        .then(logged_in => {//if logged in, build modal to allow user to log out
-            console.log(logged_in);
+async function loadLogoutModal() {//function to be applied ON LOAD
+    return loggedIn()
+        .then(user => {//if logged in, build modal to allow user to log out
+            console.log(user);
             if (user) {
+                document.getElementById('navbar_profile').src = images[user.image_id]
                 document.getElementById("logout_modal").innerHTML = `
                 <div role="document">
                     <div class="modal-content">
@@ -17,7 +18,7 @@ async function loadLogoutModal(user) {//function to be applied ON LOAD
                         </div>
                         <div class="modal-body" id="modal_body"
                         style="max-height: 70px; display: flex; align-items: center; border: none;">
-                        <a href="../profile/index.html" style="color: #297562; font-size: large" id="logout_name">${user.name}</a>
+                        <a href="../profile" style="color: #297562; font-size: large" id="logout_name">${user.name}</a>
                         </div>
                         <div class="modal-footer" id="lgout_buttons"
                         style="max-height: 70px; display: flex; align-items: center; border: none;">
@@ -43,10 +44,10 @@ async function loadLogoutModal(user) {//function to be applied ON LOAD
                     </div>
                     <div class="modal-footer" id="lgout_buttons"
                     style="max-height: 70px; display: flex; align-items: center; border: none;">
-                    <a href = "../login/index.html">
+                    <a href = "../login">
                         <button type="button" class="button">Log In</button>
                     </a>
-                    <a href = "../signup/index.html">
+                    <a href = "../signup">
                         <button type="button" class="button">Sign Up</button>
                     </a>
                     </div>
@@ -72,5 +73,7 @@ function logout() {
 }
 
 
-
+function clickNavPic() {
+    loadLogoutModal()
+}
 

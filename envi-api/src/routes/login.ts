@@ -14,6 +14,7 @@ const router = new Router()
 // "/login/"
 router.post('/', (req, res, next) => {
     console.log(req.body)
+    if (req.body.username) req.body.username = req.body.username.toLowerCase()
     next()
 }, function (req, res, next) {
     // call passport authentication passing the "local" strategy name and a callback function

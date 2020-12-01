@@ -2,6 +2,7 @@ let loggedInUrl = "/api/loggedIn/"
 let loginUrl = "/api/login/"
 let logoutUrl = "/api/logout/"
 
+var currentUser = null
 
 //function to check if user is logged in
 let loggedIn = () => new Promise((resolve, reject) => {
@@ -12,10 +13,10 @@ let loggedIn = () => new Promise((resolve, reject) => {
                 console.log(response.data)
                 let { loggedIn, user } = response.data
                 if (loggedIn) {
-                    console.log("User already logged in!")
+                    currentUser = user
                     resolve(user);
                 } else {
-                    console.log("No login")
+                    currentUser = null
                     resolve(null);
                 }
             }
@@ -49,7 +50,7 @@ function LOAD_FUNCTION_SKELETON() {
 
 var images = [
     "../assets/colorEarth.jpg",
-    "../assets/envi.png",
+    "../assets/water_bottleProfile.jpg",
     "../assets/environmentalist.jpg",
     "../assets/flatirons.png",
     "../assets/flowers.jpg",
@@ -59,3 +60,15 @@ var images = [
     "../assets/plant.jpg",
     "../assets/recycling.jpeg",
 ];
+
+var waterBottle = [
+    "../assets/water_bottle/lvl0.jpg",
+    "../assets/water_bottle/lvl1.jpg",
+    "../assets/water_bottle/lvl2.jpg",
+    "../assets/water_bottle/lvl3.jpg",
+    "../assets/water_bottle/lvl4.jpg",
+    "../assets/water_bottle/lvl5.jpg",
+    "../assets/water_bottle/lvl6.jpg",
+    "../assets/water_bottle/lvl7.jpg",
+    "../assets/water_bottle/lvl8.jpg"
+]

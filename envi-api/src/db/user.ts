@@ -64,3 +64,13 @@ module.exports = {
     })
 }
 export {}
+
+
+// Use reuasable water bottle
+// reduce, use less water
+// recycle can or bottle
+// recycle batteries
+// recycle electronics
+// recycle plastic bags
+// use reusable bags
+// 

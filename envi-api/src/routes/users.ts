@@ -1,4 +1,4 @@
-import { parse } from "path";
+const bcrypt = require('bcrypt')
 
 const Router = require('express-promise-router')
 const query = require('../db')
@@ -96,6 +96,31 @@ router.post('/:username/updateInfo', function (req, res) {
             res.json({ success: true })
         })
         .catch(err => res.json({ err: err }))
+})
+
+// change password
+router.post('/:username/changePassword', (req, res) => {
+    let { oldPassword, newPassword } = req.body
+    bcrypt.compare(oldPassword, req.user.password, function(err, isMatch) {
+        if(err) throw err;
+        if (isMatch) {
+            // Update password
+            const saltRounds = 10
+            bcrypt.genSalt(saltRounds, (err, salt) => {
+                if (err) console.log(err)
+                bcrypt.hash(newPassword, salt, function(err, hash) {
+                    query(`UPDATE users SET password = $1 WHERE id = $2;`, [hash, req.user.id])
+                    .then(res.json({ success: true }))
+                    .catch(err => {
+                        console.error(err)
+                        res.json(err)
+                    })
+                })
+            })
+        } else {
+            res.json({ err: "Incorrect Old Password" })
+        }
+    })
 })
 
 // get public user info for a user
@@ -254,7 +279,7 @@ router.get('/:id/getTasks', function (req, res) {
     console.log('Getting tasks');
     // let { id } = req.user;
     // console.log(id);
-    var taskQuery = 'SELECT * FROM tasks WHERE user_id = $1;';
+    var taskQuery = 'SELECT * FROM tasks WHERE user_id = $1 ORDER BY create_date DESC;';
     query(taskQuery, [req.user.id])
         .then(results => res.json({ tasks: results.rows }))
         .catch(err => res.json({ err: err }))
