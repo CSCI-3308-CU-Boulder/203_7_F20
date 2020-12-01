@@ -3,6 +3,15 @@ body {
   background-color: white;
 }
 
+.navbar {
+  background-color: #c5c3ba;
+  position:fixed;
+  top:0;
+  width:100%;
+  overflow: hidden;
+  z-index: 100;
+}
+
 /* Sidenav */
 
 .sidenav {

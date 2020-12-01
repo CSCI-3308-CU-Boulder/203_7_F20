@@ -111,16 +111,24 @@ var exUser = {
 function createTaskDisplay(taskName, taskId, taskDesc, taskType, timesTaskComp) {
   console.log("creating task");
   var output = `
-  <div class='theme-dark rounded-all card' id="counter" style="border: none">
-  <div class='card-header'>${taskName}
-  <div class='card-body'>
-  <p class='card-text' style='font-size: 12pt'> <i>${taskType}</i> -- ${taskDesc} </p>
-  <p class='card-text' style='font-size: 12pt' id='times_completed' completed=${timesTaskComp}>Times Completed: ${timesTaskComp}</p>
-  <button class='button' onclick='completeTask(${taskId}, "${taskType}", ${timesTaskComp})'>Complete Task</button>
+  <div class="task-card">
+    <div class="left">
+        <div class="task-count">${timesTaskComp}</div>
+        <div class="task-type">${taskType}</div>
+    </div>
+    <div class="middle">
+        <div class="task-name">${taskName}</div>
+        <div class="task-description">${taskDesc}</div>
+    </div>
+    <div class="right" onclick="completeTask(${taskId}, ${taskType})">
+        <svg viewBox="0 0 16 16" class="bi bi-check-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+        </svg>
+    </div>
   </div>
-  </div>
-  </div>
-  </br>`;
+  <br>
+  `;
   
   // console.log("displayTask i=",i);
   return output;
@@ -247,7 +255,7 @@ function deleteTask(i) {
 }
 
 // pass task id for a get task function 
-function completeTask(task_id, task_type, timesComp) {
+function completeTask(task_id, task_type) {
   // maybe pop up with an alert or something that the task was completed?
   console.log("task type: ");
   console.log(task_type);
@@ -278,8 +286,7 @@ function redirectHome() {
 
 function onLoadFunc() {
   loadLogoutModal()
-  .then(() => console.log("DonE"))
-  .then(() => displayTasks())
+  .then(displayTasks)
   .catch(err => console.log(err))
 }
 
@@ -293,7 +300,7 @@ function enableButton() {
 
   var valid = false;
   if (name.value && description.value && type.value) {
-    var valid = true
+    valid = true
   }
   let username = currentUser.username;
   axios.get(`/api/users/${username}/getTasks`)
@@ -308,10 +315,13 @@ function enableButton() {
         }
       }
     })
-    .catch(function (error) {
-      console.log(error);
+    .then(() => {
+      if (valid) {
+        document.getElementById("my_submit_button").disabled = false;
+        document.getElementById("error_msg").innerHTML = ""
+      } else {
+        document.getElementById("my_submit_button").disabled = true;
+      }
     })
-  if (valid) {
-    document.getElementById("my_submit_button").disabled = "false";
-  }
+    .catch(err => console.log(err))
 }
