@@ -69,7 +69,7 @@ function drawChart() {//create pie chart from axios request
         let username = user.username;
         axios.get(baseUrl + `/api/users/${id}/numTasks`)
           .then(function (response) {
-            console.log(response)
+            console.log("this response is ",response)
             // let reduce = response.data.reduce[0].sum
             // let reuse = response.data.reuse[0].sum
             // let recycle = response.data.recycle[0].sum
