@@ -2,6 +2,7 @@ let loggedInUrl = "/api/loggedIn/"
 let loginUrl = "/api/login/"
 let logoutUrl = "/api/logout/"
 
+var currentUser = null
 
 //function to check if user is logged in
 let loggedIn = () => new Promise((resolve, reject) => {
@@ -12,10 +13,10 @@ let loggedIn = () => new Promise((resolve, reject) => {
                 console.log(response.data)
                 let { loggedIn, user } = response.data
                 if (loggedIn) {
-                    console.log("User already logged in!")
+                    currentUser = user
                     resolve(user);
                 } else {
-                    console.log("No login")
+                    currentUser = null
                     resolve(null);
                 }
             }
