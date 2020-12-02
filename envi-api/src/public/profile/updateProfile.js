@@ -26,6 +26,7 @@ function populateModal() {
             if (user) {
                 //select current profile image
                 this_user = user;
+                img_id = user.image_id;
                 document.getElementById(user.image_id).classList.add("border");
                 document.getElementById(user.image_id).classList.add("border-primary");
                 //fill fields with current user info

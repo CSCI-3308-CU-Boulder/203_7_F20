@@ -50,7 +50,7 @@ function LOAD_FUNCTION_SKELETON() {
 
 var images = [
     "../assets/colorEarth.jpg",
-    "../assets/water_bottleProfile.jpg",
+    "../assets/waterBottleProfile.jpg",
     "../assets/environmentalist.jpg",
     "../assets/flatirons.png",
     "../assets/flowers.jpg",
