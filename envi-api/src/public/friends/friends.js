@@ -298,6 +298,7 @@ function addFriend() {
                     .catch(function (error) {
                         console.log(error)
                     })
+                loadFriends();
             }
         })
         .catch(error => {
