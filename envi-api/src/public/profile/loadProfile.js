@@ -31,19 +31,6 @@ var exUser = {
   image_id: 2,
 };
 
-var images = [
-  "../assets/colorEarth.jpg",
-  "../assets/recycling.jpeg",
-  "../assets/environmentalist.jpg",
-  "../assets/flatirons.png",
-  "../assets/flowers.jpg",
-  "../assets/hydroflask.jpg",
-  "../assets/ice.jpg",
-  "../assets/mountains.png",
-  "../assets/plant.jpg",
-  "../assets/flatirons.png",
-];
-
 var achievementImages = [
   "../assets/colorEarth.jpg",
   "../assets/recycling.jpeg",
@@ -62,7 +49,7 @@ function createAchievement(ach) {
   // console.log("CreateAchievement Name: ");
   // console.log(ach.name);
   var cardStr =
-    `<div class="card mb-3 theme-light rounded-all" style = "max-width: 540px; border: none;" >
+    `<div class="card mb-3 theme-light rounded-all" style = "max-width: 100%; border: none;" >
     <div class="row no-gutters">
             <div class="col-md-2 d-flex align-items-center">
                 <img src="${achievementImages[ach.image_id || 0]}" style="width: 75px; border-radius: 50%; margin-left: 10px"

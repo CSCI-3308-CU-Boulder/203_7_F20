@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
   <title>envi</title>
   <link rel="shortcut icon" type="image/png" href="../assets/favicon-32.png" />
@@ -12,7 +13,7 @@
   <nav class="navbar navbar-light" style="background-color: #c5c3ba">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="../home">Home</a>
+        <a class="nav-link" href="../home/index.html">Home</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -42,19 +43,40 @@
         </div>
         <div class="modal-footer" id="lgout_buttons"
           style="max-height: 70px; display: flex; align-items: center; border: none;">
-          <a href="../login">
+          <a href="../login/index.html">
             <button type="button" class="button">Log In</button></a>
-          <a href="../signup">
+          <a href="../signup/index.html">
             <button type="button" class="button">Sign Up</button></a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="container" id="loginForm" style="display: none;">
-    <form>
+  <div class="container w-50 h-50" id="loginForm" style="display: none;">
+    <div class="theme-light rounded-all container p-3 my-4 border">
+      <form>
+        <br>
+        <p> Please input your login credentials</p>
+        <div class="alert alert-danger" role="alert" id="loginError" style="display: none;"></div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input onkeyup="enableButton()" type="name" class="form-control" id="username" placeholder="Enter username" />
+          <small id="passwordHelp" class="form-text text-muted"></small>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input onkeyup="enableButton()" type="password" class="form-control" id="password" placeholder="Enter Password"
+            name="psw" aria-describedby="passwordHelp" />
+        </div>
+  
+        <br>
+        <button id="submit_login" type="submit" class="button" onclick="submitLogin()" disabled>Login</button>
+      </form>
+    </div>
+  </div>
+    <!-- <form>
       <br>
-      <p> Please input your login credentials.</p>
+      <p> Please input your login credentials</p>
       <div class="alert alert-danger" role="alert" id="loginError" style="display: none;"></div>
       <div class="form-group">
         <label for="username">Username</label>
@@ -70,12 +92,12 @@
       <br>
       <button id="submit_login" type="submit" class="button" onclick="submitLogin()" disabled>Login</button>
     </form>
-  </div>
+  </div> -->
 
   <div class="container" id="logoutForm" style="display: none;">
     <form>
       <div class="form-group">
-        <button type="submit_logout" onclick="submitLogout()" class="btn btn-danger">Logout</button>
+        <button type="submit_logout" onclick="submitLogout()" class="button">Logout</button>
       </div>
     </form>
   </div>
