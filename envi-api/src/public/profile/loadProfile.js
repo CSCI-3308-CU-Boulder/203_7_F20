@@ -65,7 +65,7 @@ function createAchievement(ach) {
     `<div class="card mb-3 theme-light rounded-all" style = "max-width: 540px; border: none;" >
     <div class="row no-gutters">
             <div class="col-md-2 d-flex align-items-center">
-                <img src="${achievementImages[ach.image_id]}" style="width: 75px; border-radius: 50%; margin-left: 10px"
+                <img src="${achievementImages[ach.image_id || 0]}" style="width: 75px; border-radius: 50%; margin-left: 10px"
                 class="card-img" alt="">
             </div>
             <div class="col-md-10 d-flex align-items-center">
@@ -93,7 +93,7 @@ function displayPicture(user) {
   var pic_string = `<img
     id="profile-pic"
     width="500"
-    src="${images[user.image_id]}"
+    src="${images[user.image_id || 0]}"
     class="userimg"
   />`;
   console.log(pic_string);

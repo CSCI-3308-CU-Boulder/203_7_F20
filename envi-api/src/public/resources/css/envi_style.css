@@ -5,11 +5,20 @@ body {
 
 .navbar {
   background-color: #c5c3ba;
-  position:fixed;
+  position:sticky;
   top:0;
   width:100%;
   overflow: hidden;
   z-index: 100;
+}
+
+#top-nav {
+  background-color: #c5c3ba;
+}
+
+#nav-eye {
+  width: 12%;
+  border-radius: 50%;
 }
 
 /* Sidenav */
