@@ -6,7 +6,7 @@ async function loadLogoutModal() {//function to be applied ON LOAD
         .then(user => {//if logged in, build modal to allow user to log out
             console.log(user);
             if (user) {
-                document.getElementById('navbar_profile').src = images[user.image_id]
+                document.getElementById('navbar_profile').src = images[user.image_id || 0]
                 document.getElementById("logout_modal").innerHTML = `
                 <div role="document">
                     <div class="modal-content">

@@ -127,7 +127,7 @@ function createAchievement(friendAch) {
         `<div class="card mb-3 theme-light rounded-all" style = "max-width: 540px; border: none" >
     <div class="row no-gutters">
             <div class="col-md-2 d-flex align-items-center">
-                <img src="${achievementImages[friendAch.image_id]}" style="width: 75px; border-radius: 50%; margin-left: 10px"
+                <img src="${achievementImages[friendAch.image_id || 0]}" style="width: 75px; border-radius: 50%; margin-left: 10px"
                 class="card-img" alt="">
             </div>
             <div class="col-md-10 d-flex align-items-center">
@@ -154,7 +154,7 @@ function createFriend(friend) {
         `<div class="card mb-3 theme-dark" style = "max-width: 540px; max-height: 50px; border: none; border-radius: calc(3rem - 1px)" >
     <div class="row no-gutters">
             <div class="col-md-1 d-flex align-items-center">
-                <img src="${images[friend.image_id]}" style="width: 40px; border-radius: 50%; margin-left: 10px; margin-bottom: 12px"
+                <img src="${images[friend.image_id || 0]}" style="width: 40px; border-radius: 50%; margin-left: 10px; margin-bottom: 12px"
                 class="card-img" alt="">
             </div>
             <div class="col-md-11">
@@ -298,6 +298,7 @@ function addFriend() {
                     .catch(function (error) {
                         console.log(error)
                     })
+                loadFriends();
             }
         })
         .catch(error => {
@@ -311,7 +312,7 @@ function createSearchCard(user) {
         style="max-width: 540px; max-height: 50px; border: none; border-radius: calc(3rem - 1px); margin-top: 10px">
         <div class="row no-gutters">
             <div class="col-md-1">
-            <img src="${images[user.image_id]}"
+            <img src="${images[user.image_id || 0]}"
                 style="width: 40px; border-radius: 50%; margin-top: 8px; margin-left: 10px" class="card-img" alt="">
             </div>
             <div class="col-md-10" style="align-items: center;">

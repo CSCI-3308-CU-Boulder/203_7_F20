@@ -59,27 +59,21 @@ var achievementImages = [
 
 function createAchievement(ach) {
   //builds string to insert card into html
-  console.log("CreateAchievement Name: ");
-  console.log(ach.name);
+  // console.log("CreateAchievement Name: ");
+  // console.log(ach.name);
   var cardStr =
-    '<div class = "card flex-row flex-wrap theme-light" style="border: hidden; margin-bottom: 10px; border-radius: calc(0.75rem - 1px)">\
-    <div class="card-header" style="background-color: transparent; padding-top: 0.5rem;\
-    padding-right: 0.25rem;\
-    padding-bottom: 0rem;\
-    padding-left: 0.75rem;">\
-      <img style="width: 75px; border-radius:50%" src="' +
-    achievementImages[ach.image_id] +
-    '" alt="" />\
-    </div>\
-    <div class="card-block px-2 bac">\
-      <p class="card-title" style="padding-top: 12px"> <b>' +
-    ach.name +
-    "</b> </br>" +
-    ach.description +
-    '</p>\
-    </div>\
-    <div class="w-100"></div>\
-    </div>';
+    `<div class="card mb-3 theme-light rounded-all" style = "max-width: 540px; border: none;" >
+    <div class="row no-gutters">
+            <div class="col-md-2 d-flex align-items-center">
+                <img src="${achievementImages[ach.image_id || 0]}" style="width: 75px; border-radius: 50%; margin-left: 10px"
+                class="card-img" alt="">
+            </div>
+            <div class="col-md-10 d-flex align-items-center">
+                <div class="card-body">
+                <p class="card-title"> <b> ${ach.name}</b> 
+                </br> ${ach.description}
+                </p>
+                </div> </div> </div> </div >`;
   return cardStr;
 }
 
@@ -99,7 +93,7 @@ function displayPicture(user) {
   var pic_string = `<img
     id="profile-pic"
     width="500"
-    src="${images[user.image_id]}"
+    src="${images[user.image_id || 0]}"
     class="userimg"
   />`;
   console.log(pic_string);
