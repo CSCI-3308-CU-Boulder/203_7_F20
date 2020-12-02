@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<style>
+    img {
+        object-fit: contain;
+    }
+    
+    table {
+        width: 100%;
+    }
+    
+    #c1 {
+        float: left;
+    }
+    
+    #c2 {
+        float: right;
+        /* background-position-x:absolute;
+        right:700px;
+        top  :10px; */
+    }
+</style>
+
+<head>
+    <title>envi</title>
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon-32.png" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../resources/css/envi_style.css">
+    <link rel="stylesheet" href="./tracking.css">
+</head>
+<body>
+    
+    <nav class="navbar navbar-light" style="background-color: #c5c3ba">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="../home">Home</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li style="text-align:right">
+                <a href="#logout_modal" data-toggle="modal">
+                    <img class="pull-right" src="../assets/profile_pic_placeholder.gif" id="navbar_profile">
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- Logout Modal -->
+    <div id="logout_modal" class="modal logout-modal" style="backdrop-filter: none;">
+        <div role="document">
+            <div class="modal-content">
+                <div class="modal-header" id="modal_header"
+                style="max-height: 40px; display: flex; align-items: center; border: none;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal_body"
+            style="max-height: 70px; display: flex; align-items: center; border: none;">
+            <a style="color: #297562; font-size: large" id="logout_name">You are not logged in.</a>
+        </div>
+        <div class="modal-footer" id="lgout_buttons"
+        style="max-height: 70px; display: flex; align-items: center; border: none;">
+        <a href="../login">
+            <button type="button" class="button">Log In</button></a>
+            <a href="../signup">
+                <button type="button" class="button">Sign Up</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Side navigation -->
+<div class="sidenav" style="width: 250px">
+    <br />
+    <br />
+    <br />
+    <br />
+    <p>
+        <a href="../home">
+            <img src="../assets/envi.png" alt="envi logo" width="200px" height="200px"
+            style="margin-top: -100px; margin-left: 25px; margin-bottom: 20px" />
+        </a>
+    </p>
+    <a href="../profile" class="sidenav-button" style="margin-top: -10px">Profile</a>
+    <a href="../tracking" class="sidenav-button" style="margin-top: 10px">Tracking</a>
+    <a href="../friends" class="sidenav-button" style="margin-top: 10px">Friends</a>
+    <a href="../donate" class="sidenav-button" style="margin-top: 10px">Donate</a>
+</div>
+
+<!-- Top Navigation -->
+<nav class="navbar navbar-light">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="../home/">Home</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li style="text-align:right">
+            <a href="#logout_modal" data-toggle="modal">
+                <img class="pull-right" src="../assets/profile_pic_placeholder.gif" id="navbar_profile" width="12%">
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Page content -->
+<div class="main" style="margin-left: 250px; margin-top: 56px">
+    
+    <div class="row">
+        <div class="col-6">
+            <!-- Water Bottle -->
+            <!-- Water bottle here! -->
+            <h3 id="bottle_count" style="color: #297562"></h3>
+            <img id="bottle" src="../assets/water_bottle/lvl0.jpg" alt="Water Bottle" />
+        </div>
+        <div class="col-6">
+            <div id="username" style="color: #297562">username</div>
+            <div class="row" style="padding-right: 4%">
+                <!-- Impact Points -->
+                <div class="col" style="max-width: 40%">
+                    <div class="card rounded-all" style="border: none; background-color: none;">
+                        <div class="card-body" style="text-align: center; border: none; padding: 5%">
+                            <p id="impact_points" points=0 style="font-size: 80px; margin: none">?</p>
+                            <p style="font-size: 16px; margin: none">Impact Points</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- Pie Chart -->
+                    <div id="piechart" style="width: 100%">
+                        <p style="font-size: small; text-align: center;">Insufficient information to create chart. Start
+                            tracking tasks to see your progress!</p>
+                        </div>
+                    </div>
+                    <div id="tasks" class=" card theme-light rounded-all" style="width:170%; border: none;">
+                        <div class=" card-header theme-dark rounded-top">
+                            <h5>My Progress</h5>
+                        </div>
+                        <div class="card-title text-right">
+                            <button type="button" class="button" style="margin-right: 10px; margin-top: 10px" data-toggle="modal"
+                            data-target="#addTask">Add Task</button></div>
+                            <div class="card-body" id="tasks_display">
+                                <!-- Function to add new cards for every new task added-->
+                                <!-- <div class='theme-dark rounded-all card' id="counter" style="border: none">
+                                    <div class='card-header'>task name
+                                        <div class='card-body'>
+                                            <p class='card-text' style='font-size: 12pt'> task description / type
+                                            </p>
+                                            <button class='button'>Complete Task</button>
+                                            
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="task-card">
+                                    <div class="left">
+                                        <div class="task-count">#</div>
+                                        <div class="task-type">Recycle</div>
+                                    </div>
+                                    <div class="middle">
+                                        <div class="task-name">Name</div>
+                                        <div class="task-description">Description</div>
+                                    </div>
+                                    <div class="right">
+                                        <svg viewBox="0 0 16 16" class="bi bi-check-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="addTask" class="modal fade rounded-all" style="border:none">
+                <div class="modal-dialog modal-login rounded-all">
+                    <div class="modal-content rounded-all" style="border:none">
+                        <div class="modal-header theme-dark">
+                            <h4 class="modal-title">Add Task</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                        </div>
+                        <div class="modal-body" style="border: none">
+                            <a id="error_msg" style="font-size: small; color: #d86b54"></a>
+                            <div class="form-group">
+                                <input onkeyup=enableButton() type="text" maxlength="20" id="taskName" class="rounded-all form-control"
+                                name="name" placeholder="Task Name" required="required" />
+                            </div>
+                            <div class="form-group">
+                                <input onkeyup=enableButton() type="text" maxlength="100" id="descr" class="rounded-all form-control"
+                                name="description" placeholder="Task description (optional)" required="required" />
+                            </div>
+                            <div class="form-group">
+                                <select onchange=enableButton() class="form-control rounded-all" id="type">
+                                    <option value="" disabled selected>Choose Type</option>
+                                    <option value="recycle">Recycle: +1</option>
+                                    <option value="reduce">Reduce: +2</option>
+                                    <option value="reuse">Reuse: +3</option>
+                                </select>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="button" id="my_submit_button" class="button" disabled="true" onclick="addTask()">
+                                    Submit Task
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- <div id="addTask" class="modal fade rounded-all" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="theme-dark modal-header">
+                <h4 class="modal-title text-center">Add Task</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <label for="taskName" style="font-size: small">Task Name</label><br>
+                    <input onkeyup=usernameValid() type="text" id="taskName" class="rounded-all form-control" name="username"
+                    placeholder="Username" required="required" />
+                    <label for="descr" id="taskDescription">Description (Optional)</label><br>
+                    <input type="text" class="rounded-all" id="descr" name="descr"><br>
+                    <label for="type">Type</label><br>
+                    <select name="type" class="rounded-all" id="type" required>
+                        <option value="" disabled selected>Choose Type</option>
+                        <option value="reduce" id="reduce">Reduce</option>
+                        <option value="reuse" id="reuse">Reuse</option>
+                        <option value="recycle" id="recycle">Recycle</option>
+                    </select>
+                    <br><br>
+                    <button type="button" class="button" value="Submit" onclick="addTask()">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="button" data-dismiss="modal">Close</button>
+        </div>
+    </div> -->
+</div>
+
+
+</div>
+</div>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- Pie Chart -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script src="../resources/js/utilities.js"></script>
+<script src="../resources/js/navbar.js"></script>
+<!-- <script src="./trackingPage.js"></script> -->
+</body>
+
+</html>
