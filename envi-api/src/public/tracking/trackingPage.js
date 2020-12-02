@@ -26,53 +26,6 @@ google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {//create pie chart from axios request
   loggedIn()
-<<<<<<< HEAD
-    .then(user => {
-      console.log(user)
-      if (user) {
-        let id = user.id;
-        let username = user.username;
-        axios.get(baseUrl + `/api/users/${id}/numTasks`)
-          .then(function (response) {
-            console.log("this response is ",response)
-            // let reduce = response.data.reduce[0].sum
-            // let reuse = response.data.reuse[0].sum
-            // let recycle = response.data.recycle[0].sum
-            let reduce = 8;
-            let reuse = 6;
-            let recycle = 12;
-            console.log(reduce)
-            if (reduce && reuse && recycle) {
-              document.getElementById("piechart").innerHTML = ""
-              var data = google.visualization.arrayToDataTable([
-                ['Type', 'Times Completed'],
-                ['Reduce', reduce],
-                ['Reuse', reuse],
-                ['Recycle', recycle]
-              ]);
-
-              var options = {
-                colors: ['#ecb349', '#7ca6a6', '#d86b54'],
-                legend: {
-                  position: 'none'
-                },
-                pieSliceText: 'label',
-                fontSize: '8px',
-                chartArea: {
-                  left: '7%',
-                  top: '7%',
-                  width: '86%',
-                  height: '86%'
-                }
-              };
-
-              var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-              chart.draw(data, options);
-            }
-            else {
-
-=======
   .then(user => {
     console.log(user)
     if (user) {
@@ -106,7 +59,6 @@ function drawChart() {//create pie chart from axios request
               top: '7%',
               width: '86%',
               height: '86%'
->>>>>>> e6a418328f1a06d496facac0d7dfbb37c328a603
             }
           };
           
@@ -338,36 +290,6 @@ function onLoadFunc() {
   .catch(err => console.log(err))
 }
 
-<<<<<<< HEAD
-  loggedIn()
-    .then(user => {
-      // console.log(user)
-      loadLogoutModal(user)
-      if (user) {
-        let username = user.username;
-        //LOAD PAGE HERE
-        axios
-          .get(baseUrl + "/api/users/" + username)
-          .then(function (response) {
-            // handle success
-            // displayTasks();
-            let user = response.data;
-            // post method to completeTask, sending task_id and task_type
-            axios({
-              method: 'post',
-              url: baseUrl + '/api/users/' + user.username + '/completeTask',
-              data: {
-                task_id: task_id,
-                impact: task_type
-              }
-            });
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          });
-      }
-=======
 window.onload = onLoadFunc;
 
 
@@ -375,7 +297,6 @@ function enableButton() {
   var name = document.getElementById("taskName");
   var description = document.getElementById("descr");
   var type = document.getElementById("type");
->>>>>>> e6a418328f1a06d496facac0d7dfbb37c328a603
 
   var valid = false;
   if (name.value && description.value && type.value) {
