@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "nodemon -i public/",
     "build": "rimraf ./build && tsc",
-    "start": "npm run build && node build/index.js"
+    "start": "npm install && npm run build && cp -R src/public build/public/ && node build/index.js"
   },
   "author": "",
   "license": "ISC",
