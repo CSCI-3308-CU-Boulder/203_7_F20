@@ -17,8 +17,14 @@ body {
 }
 
 #nav-eye {
-  width: 12%;
+  /*circular image that automatically resizes to fit page*/
+  display: inline-block;
+  max-width: 100%;
+  width: auto;
+  height: auto; /* automatically crops non-square image to fit in circle */
   border-radius: 50%;
+
+  object-fit: cover;
 }
 
 /* Sidenav */
@@ -151,7 +157,7 @@ img {
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: #76a4b3;
+  background-color: #699696;
   color: #fff;
   text-align: center;
   padding: 5px 0;
@@ -176,7 +182,7 @@ img {
 
 .theme-dark {
   /*dark background and white text (as seen in username display*/
-  background-color: #76a4b3 ;
+  background-color: #699696 ;
   color: white;
 }
 
@@ -224,5 +230,5 @@ COLOR PALETTE
 #ecb349 (yellow button color)
 #f7f4f2 (beige background)
 #297562 (teal text color)
-#76a4b3 (grayish-blue background)
+#699696 (grayish-blue background)
 */
