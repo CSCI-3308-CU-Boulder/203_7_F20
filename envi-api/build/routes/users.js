@@ -246,16 +246,19 @@ router.post('/:id/addFriend/:friendUsername', function (req, res) {
 // and increments times_completed by 1 but for all tasks, not specific ones
 // needs to be fixed so that it updates by task_id
 router.post('/:username/completeTask', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, task_id, impact, update, points;
+    var _a, task_id, impact, update, points, added;
     return __generator(this, function (_b) {
         _a = req.body, task_id = _a.task_id, impact = _a.impact;
         update = "UPDATE tasks SET times_completed = times_completed + 1 WHERE id = $1;";
         points = "UPDATE users SET impact_points = impact_points + 1 WHERE id = $1;";
+        added = 1;
         if (impact == 'reuse') {
             points = "UPDATE users SET impact_points = impact_points + 3 WHERE id = $1;"; // adding 3 impact points for reuse
+            added = 3;
         }
         else if (impact == 'reduce') {
             points = "UPDATE users SET impact_points = impact_points + 2 WHERE id = $1;"; // adding 2 impact points for reduce
+            added = 2;
         }
         // query(update, [req.user.id, task_id])
         query(update, [task_id])
@@ -264,7 +267,7 @@ router.post('/:username/completeTask', function (req, res) { return __awaiter(vo
             query(points, [req.user.id])
                 .then(function (results1) {
                 console.log('User points updated');
-                userUtility.calculateNewAchievements(req.user)
+                userUtility.calculateNewAchievements(req.user, added)
                     .then(function (newAchievement) {
                     res.json({ success: true, newAchievement: newAchievement });
                 })
@@ -304,7 +307,7 @@ router.get('/:id/getTasks', function (req, res) {
     console.log('Getting tasks');
     // let { id } = req.user;
     // console.log(id);
-    var taskQuery = 'SELECT * FROM tasks WHERE user_id = $1 ORDER BY create_date DESC;';
+    var taskQuery = 'SELECT * FROM tasks WHERE user_id = $1 ORDER BY create_date, name DESC;';
     query(taskQuery, [req.user.id])
         .then(function (results) { return res.json({ tasks: results.rows }); })
         .catch(function (err) { return res.json({ err: err }); });

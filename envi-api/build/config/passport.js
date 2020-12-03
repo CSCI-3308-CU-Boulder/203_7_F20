@@ -1,9 +1,12 @@
 "use strict";
 var bcrypt = require('bcrypt');
 var LocalStrategy = require('passport-local').Strategy;
+var emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/g;
 module.exports = function (passport, query) {
     passport.use(new LocalStrategy(function (username, password, done) {
-        var results = query('SELECT * FROM users WHERE username=$1', [username]).then(function (results) {
+        // Allow users to log in with email or username
+        var usernameType = username.match(emailRegex) ? 'email' : 'username';
+        var results = query("SELECT * FROM users WHERE " + usernameType + "=$1", [username]).then(function (results) {
             if (!results || results.rows.length == 0) {
                 var err = "User not found";
                 console.error(err);

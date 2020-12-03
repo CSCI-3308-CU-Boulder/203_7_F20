@@ -29,6 +29,17 @@ const validatePassword = (password) => {
 // it allows you to use async functions as route handlers
 const router = new Router()
 
+const taskQuery = `INSERT INTO tasks (user_id, name, description, impact) VALUES 
+                    ($1, 'Recycle Bottle', 'Although simple, recycling everyday items can create a large impact over time.', 'recycle'),
+                    ($1, 'Recycle Electronics', 'Recycling electronics is an important step in creating a sustainable future!', 'recycle'),
+                    ($1, 'Reuse Waterbottle', 'Help reduce waste and stay hydrated :)', 'reuse'),
+                    ($1, 'Ride the bus', 'Public transportation is a great way to reduce carbon emissions.', 'reduce'),
+                    ($1, 'Ride a bike to work', 'Help reduce emissions and get fit!', 'reduce'),
+                    ($1, 'Donate clothing', 'Help someone in need, get rid of the uneccesary, and create a positive impact!', 'reuse'),
+                    ($1, 'Consign Clothing', 'Get rid of uneccesary clothing, get paid, and create a positive impact!', 'reuse'),
+                    ($1, 'Use a reusable bag', 'Don''t forget your reusable bags in your trunk!', 'reuse'),
+                    ($1, 'Donate clothing', 'Help someone in need, get rid of the uneccesary, and create a positive impact!', 'reuse');`;
+
 // Route for creating new users: req.body = { username, password, name, email, image_id }
 // POST '/api/signup/'
 router.post('/', (req, res, next) => {
@@ -38,7 +49,7 @@ router.post('/', (req, res, next) => {
         res.status(401).send("Invalid user input")
         return null
     }
-
+    
     const saltRounds = 10
     bcrypt.genSalt(saltRounds, (err, salt) => {
         if (err) console.log(err)
@@ -49,20 +60,26 @@ router.post('/', (req, res, next) => {
                 email,
                 name,
                 image_id
-            ) VALUES ($1, $2, $3, $4, $5)`, [
-                username.toLowerCase(),
-                hash,
-                email.toLowerCase(),
-                name,
-                parseInt(image_id)
-            ])
-            .then(result => {
-                const { rows } = result;
-                res.json({ success: true, user: rows[0] });
-            }).catch(err => {
-                console.error(err)
-                res.json(err)
-            })
+                ) VALUES ($1, $2, $3, $4, $5)`, [
+                    username.toLowerCase(),
+                    hash,
+                    email.toLowerCase(),
+                    name,
+                    parseInt(image_id)
+                ])
+                .then(() => {
+                    query(`SELECT * FROM users WHERE username = $1;`, [username.toLowerCase()])
+                    .then(results => {
+                        // console.log(results)
+                        let user = results.rows[0]
+                        delete user.password
+                        query(taskQuery, [user.id])
+                        .then(res.json({ success: true, user: user }))
+                        .catch(err => res.json({ err: err }))
+                    })
+                    .catch(err => res.json({ err: err }))
+                })
+                .catch(err => res.json({ err: err }))
         })
     })
 })

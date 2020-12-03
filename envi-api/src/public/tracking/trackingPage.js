@@ -21,7 +21,6 @@
 // }
 
 //load pie chart package
-google.charts.load('current', { 'packages': ['corechart'] });
 //google.charts.setOnLoadCallback(drawChart);
 
 function drawChart(reduce, reuse, recycle) {//create pie chart from reduce, reuse, recycle statistics
@@ -275,6 +274,7 @@ function redirectHome() {
 
 function onLoadFunc() {
   loadLogoutModal()
+    .then(google.charts.load('current', { 'packages': ['corechart'] }))
     .then(displayTasks)
     .catch(err => console.log(err))
 }

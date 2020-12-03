@@ -27,6 +27,7 @@ var validatePassword = function (password) {
 // this has the same API as the normal express router except
 // it allows you to use async functions as route handlers
 var router = new Router();
+var taskQuery = "INSERT INTO tasks (user_id, name, description, impact) VALUES \n                    ($1, 'Recycle Bottle', 'Although simple, recycling everyday items can create a large impact over time.', 'recycle'),\n                    ($1, 'Recycle Electronics', 'Recycling electronics is an important step in creating a sustainable future!', 'recycle'),\n                    ($1, 'Reuse Waterbottle', 'Help reduce waste and stay hydrated :)', 'reuse'),\n                    ($1, 'Ride the bus', 'Public transportation is a great way to reduce carbon emissions.', 'reduce'),\n                    ($1, 'Ride a bike to work', 'Help reduce emissions and get fit!', 'reduce'),\n                    ($1, 'Donate clothing', 'Help someone in need, get rid of the uneccesary, and create a positive impact!', 'reuse'),\n                    ($1, 'Consign Clothing', 'Get rid of uneccesary clothing, get paid, and create a positive impact!', 'reuse'),\n                    ($1, 'Use a reusable bag', 'Don''t forget your reusable bags in your trunk!', 'reuse'),\n                    ($1, 'Donate clothing', 'Help someone in need, get rid of the uneccesary, and create a positive impact!', 'reuse');";
 // Route for creating new users: req.body = { username, password, name, email, image_id }
 // POST '/api/signup/'
 router.post('/', function (req, res, next) {
@@ -41,20 +42,26 @@ router.post('/', function (req, res, next) {
         if (err)
             console.log(err);
         bcrypt.hash(password, salt, function (err, hash) {
-            query("INSERT INTO users(\n                username,\n                password,\n                email,\n                name,\n                image_id\n            ) VALUES ($1, $2, $3, $4, $5)", [
+            query("INSERT INTO users(\n                username,\n                password,\n                email,\n                name,\n                image_id\n                ) VALUES ($1, $2, $3, $4, $5)", [
                 username.toLowerCase(),
                 hash,
                 email.toLowerCase(),
                 name,
                 parseInt(image_id)
             ])
-                .then(function (result) {
-                var rows = result.rows;
-                res.json({ success: true, user: rows[0] });
-            }).catch(function (err) {
-                console.error(err);
-                res.json(err);
-            });
+                .then(function () {
+                query("SELECT * FROM users WHERE username = $1;", [username.toLowerCase()])
+                    .then(function (results) {
+                    // console.log(results)
+                    var user = results.rows[0];
+                    delete user.password;
+                    query(taskQuery, [user.id])
+                        .then(res.json({ success: true, user: user }))
+                        .catch(function (err) { return res.json({ err: err }); });
+                })
+                    .catch(function (err) { return res.json({ err: err }); });
+            })
+                .catch(function (err) { return res.json({ err: err }); });
         });
     });
 });

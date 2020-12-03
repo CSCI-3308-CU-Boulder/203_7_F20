@@ -70,7 +70,7 @@ function submitLogin() {
         console.log(response.data);
         let { username } = response.data;
         // Redirect to profile page
-        window.location.replace(`/profile#${username}`)
+        window.location.replace(`/tracking`)
       } else {
         console.log(response)
       }

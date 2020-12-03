@@ -12,9 +12,10 @@ var router = new Router();
 // })
 // "/login/"
 router.post('/', function (req, res, next) {
-    console.log(req.body);
     if (req.body.username)
         req.body.username = req.body.username.toLowerCase();
+    if (req.body.email)
+        req.body.email = req.body.email.toLowerCase();
     next();
 }, function (req, res, next) {
     // call passport authentication passing the "local" strategy name and a callback function

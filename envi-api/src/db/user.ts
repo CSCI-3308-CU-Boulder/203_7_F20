@@ -63,14 +63,21 @@ module.exports = {
                     break;
             }
 
-            if (!newAchievement && (impact_points % 50 == 0 || impact_points % 51 || impact_points %52) && impact_points != 0) {
-                newAchievement = { name: `${impact_points} impact points accumulated`, description: "Keep it up. Thank you for your impacts, from the whole world.", image_id: 6 }
+            if (!newAchievement && (impact_points % 50 == 0 || impact_points % 51 == 0 || impact_points % 52 == 0) && impact_points != 0 && impact_points > 102) {
+                newAchievement = { name: `${impact_points - (impact_points % 50)} impact points accumulated`, description: "Keep it up. Thank you for your impacts, from the whole world.", image_id: 6 }
             } 
 
             if (newAchievement) {
-                insertAchievement(user, newAchievement)
-                .then(ach => resolve(ach))
-                .catch(err => reject(err))
+                // Check if achievement exists already
+                query(`SELECT COUNT(*) FROM achievements WHERE user_id = ${user.id} AND name = '${newAchievement.name}';`)
+                .then(results => {
+                    if (results.rows[0].count == 0) {
+                        // insert achievement
+                        insertAchievement(user, newAchievement)
+                        .then(ach => resolve(ach))
+                        .catch(err => reject(err))
+                    } else resolve(null)
+                })
             } else {
                 resolve(null)
             }
