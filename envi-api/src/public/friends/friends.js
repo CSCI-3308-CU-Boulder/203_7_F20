@@ -3,8 +3,6 @@
  * Add function to display friends from database
  */
 
-var baseUrl = 'http://localhost:5000'
-
 var exFriendAch = [
     //hardcoded user achievements
     {
@@ -86,7 +84,7 @@ var achievementImages = [
 
 function getUser(friendId) { // friendId is an object containing the id of the user you want, to get the users username
     var friendUsername;
-    axios.get(baseUrl + '/api/users/' + friendId.id + '/getUser', friendId)
+    axios.get('/api/users/' + friendId.id + '/getUser', friendId)
         .then(function (userRes) {
             // console.log(userRes)
             friendUsername = userRes.data.username;
@@ -111,7 +109,7 @@ function createAchievement(friendAch) {
     // console.log("createAchievement FriendUsername: ")
     // console.log(friendUsername);
 
-    // axios.get(baseUrl + '/api/users/' +friendId.id+ '/getUser', friendId)
+    // axios.get('/api/users/' +friendId.id+ '/getUser', friendId)
     // .then(function (userRes) {
     //     // console.log(userRes)
     //     friendUsername = userRes.data.username;
@@ -196,7 +194,7 @@ function loadFriends() {
             if (user) {
                 let username = user.username;
                 axios //get friends
-                    .get(baseUrl + "/api/users/" + username + "/getFriends")
+                    .get("/api/users/" + username + "/getFriends")
                     .then((friendsRes) => {
                         friends = friendsRes.data.friends;
                         console.log(friends);
@@ -206,7 +204,7 @@ function loadFriends() {
                         console.log(error);
                     })
                 axios // load achievements
-                    .get(baseUrl + "/api/users/" + username + "/getFriendAchievements")
+                    .get("/api/users/" + username + "/getFriendAchievements")
                     .then((friendAchRes) => {
                         let friendsAch = friendAchRes.data.friends;
                         console.log("build feed: ")
@@ -227,7 +225,7 @@ function loadFriends() {
         })
 
     // axios //get user doc
-    //     .get(baseUrl + "/api/users/" + username)
+    //     .get("/api/users/" + username)
     //     .then((response) => {
     //         // handle success
     //         let user = response.data;

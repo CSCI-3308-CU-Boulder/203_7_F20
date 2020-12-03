@@ -1,4 +1,3 @@
-var baseUrl = "http://localhost:5000"
 var image_id = 0;
 
 document.getElementById("submit_button").addEventListener("click", function (event) {
@@ -202,7 +201,7 @@ function signup() {
         email: email,
         image_id: image_id
       }
-      axios.post(baseUrl + "/api/signup", payload).then((response) => {
+      axios.post("/api/signup", payload).then((response) => {
         console.log(response)
         if (!response.data.err) {
           // Redirect with success

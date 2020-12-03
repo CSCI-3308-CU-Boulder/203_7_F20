@@ -6,9 +6,11 @@ const isProduction = process.env.NODE_ENV === 'production'
 const connectionString = `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}:${process.env.PGPORT}/${process.env.PGDATABASE}`
 console.log(isProduction ? process.env.DATABASE_URL : connectionString)
 
+let sslMode = isProduction ? { sslmode: "require", rejectUnauthorized: false } : false
+
 const pool = new Pool({
     connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
-    ssl: isProduction,
+    ssl: sslMode
 })
 
 // // the pool will emit an error on behalf of any idle clients

@@ -1,4 +1,3 @@
-var baseUrl = 'http://localhost:5000'
 
 var exAch = [
   //hardcoded user achievements
@@ -110,7 +109,7 @@ function loadProfile() {
         let username = user.username;
         //LOAD PAGE HERE
         axios
-          .get(baseUrl + "/api/users/" + username)
+          .get("/api/users/" + username)
           .then(function (response) {
             // handle success
             let user = response.data;
@@ -119,7 +118,7 @@ function loadProfile() {
             displayPicture(user);
             displayInfo(user);
             axios
-              .get(baseUrl + "/api/users/" + username + "/getAchievements")
+              .get("/api/users/" + username + "/getAchievements")
               .then(function (results) {
                 // get user achievements array
                 console.log("achievements");

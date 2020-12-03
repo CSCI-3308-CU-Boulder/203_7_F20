@@ -15,7 +15,7 @@
       if (document.cookie.length > 0) {
         username = document.cookie.split('=')[1]
         axios
-          .get(baseUrl + "/users/" + username)
+          .get("/users/" + username)
           .then(function (response) {
             // handle success
             console.log(response.data);
