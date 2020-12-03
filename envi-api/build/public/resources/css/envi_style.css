@@ -1,0 +1,234 @@
+body {
+  font-family: "Lato", sans-serif;
+  background-color: white;
+}
+
+.navbar {
+  background-color: #c5c3ba;
+  position:sticky;
+  top:0;
+  width:100%;
+  overflow: hidden;
+  z-index: 100;
+}
+
+#top-nav {
+  background-color: #c5c3ba;
+}
+
+#nav-eye {
+  /*circular image that automatically resizes to fit page*/
+  display: inline-block;
+  max-width: 100%;
+  width: auto;
+  height: auto; /* automatically crops non-square image to fit in circle */
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+/* Sidenav */
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #aca5904d;
+  overflow-x: hidden;
+  padding-top: 20px;
+  text-align: center;
+  margin-top: 56px;
+}
+
+.sidenav-button {
+  background-color: #ecb349;
+  border: none;
+  color: white;
+  width: 85%;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  border-radius: calc(0.5rem - 1px);
+}
+
+.sidenav-button:hover {
+  background-color: #da9d2d;
+  border: none;
+  color: white;
+  width: 85%;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  border-radius: calc(0.5rem - 1px);
+}
+
+.particles-js-canvas {
+  z-index: -1;
+}
+
+img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding-left: 30px;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/*  */
+
+/* Profile Image */
+
+.userimg {
+  /*circular image that automatically resizes to fit page*/
+  display: inline-block;
+  max-width: 100%;
+  width: auto;
+  height: auto; /* automatically crops non-square image to fit in circle */
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+/* main button */
+.button {
+  background-color: #ecb349;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: calc(3rem - 1px);
+}
+
+.button:hover {
+  background-color: #da9d2d;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: calc(3rem - 1px);
+}
+
+.add-button {
+  background-color: none;
+  color: white;
+  border: none;
+  text-decoration: none;
+}
+
+.add-button:hover {
+  background-color: none;
+  color: lightgray;
+  border: none;
+  text-decoration: none;
+  cursor: pointer ;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #699696;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  top: -5px;
+  left: 105%;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/* color themes */
+.theme-light {
+  /*light background and teal text (as seen in achievements cards*/
+  background-color: #f7f4f2 !important;
+  color: #297562;
+}
+
+.theme-dark {
+  /*dark background and white text (as seen in username display*/
+  background-color: #699696 ;
+  color: white;
+}
+
+.custom-header {
+  /*large font, teal text (as seen in "My Achievements"*/
+  font-size: 28px;
+  color: #297562;
+}
+
+/* rounded corners */
+.rounded-top {
+  /*rounds only the top corners of an element (as seen in username display)*/
+  border-radius: calc(0.75rem - 1px) calc(0.75rem - 1px) 0 0 !important;
+}
+
+.rounded-all {
+  /*rounds all corners of element*/
+  border-radius: calc(0.75rem - 1px);
+}
+
+/*modal in top right (login/logout)*/
+#navbar_profile {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+.logout-modal {
+  position: absolute !important;
+  top: 55px !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 80% !important;
+  z-index: 10040 !important;
+  overflow: auto !important;
+  overflow-y: auto !important;
+  max-width: 20%;
+}
+
+/*NOTE: if any attribute isn't changing in the page, add !important to the end of the line. 
+I guess sometimes bootstrap attributes are prioritized over custom css */
+
+/*
+COLOR PALETTE
+#ecb349 (yellow button color)
+#f7f4f2 (beige background)
+#297562 (teal text color)
+#699696 (grayish-blue background)
+*/

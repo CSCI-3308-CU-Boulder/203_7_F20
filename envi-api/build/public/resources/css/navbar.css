@@ -1,0 +1,14 @@
+#top-nav {
+    background-color: #c5c3ba;
+}
+
+#nav-eye {
+    /*circular image that automatically resizes to fit page*/
+  display: inline-block;
+  max-width: 100%;
+  width: auto;
+  height: auto; /* automatically crops non-square image to fit in circle */
+  border-radius: 50%;
+
+  object-fit: cover;
+}

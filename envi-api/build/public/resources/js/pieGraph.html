@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Pie Chart</title>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 100%; height: 100%"></div>
+    <script type="text/javascript">
+        // Load google charts
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        
+        // Draw the chart and set the chart values
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+          ['Task', 'Points'],
+          ['Reduce', 8],
+          ['Reuse', 2],
+          ['Recycle', 2],
+        ]);
+        // Change the number of points to change the graph
+        
+          // Add a title and set the width and height of the chart
+          // The colors will apply to the order of the data above
+          var options = {'title':'Statistics', 'width':1000, 'height':500, 'colors':['lightblue', 'pink',  'orange']};
+        
+          // Display the chart inside the <div> element with id="piechart"
+          var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+          chart.draw(data, options);
+        }
+        </script>
+        
+  </body>
+</html>
