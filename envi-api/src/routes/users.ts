@@ -224,11 +224,14 @@ router.post('/:username/completeTask', async (req, res) => { // json with task_i
     const { task_id, impact } = req.body;
     var update = "UPDATE tasks SET times_completed = times_completed + 1 WHERE id = $1;"; // updating the task as completed in db
     var points = "UPDATE users SET impact_points = impact_points + 1 WHERE id = $1;"; // adding impact points for the user - 1 if recycle
+    var added = 1;
     if (impact == 'reuse') {
         points = "UPDATE users SET impact_points = impact_points + 3 WHERE id = $1;"; // adding 3 impact points for reuse
+        added = 3;
     }
     else if (impact == 'reduce') {
         points = "UPDATE users SET impact_points = impact_points + 2 WHERE id = $1;"; // adding 2 impact points for reduce
+        added = 2;
     }
 
     // query(update, [req.user.id, task_id])
@@ -238,7 +241,7 @@ router.post('/:username/completeTask', async (req, res) => { // json with task_i
             query(points, [req.user.id])
                 .then(results1 => {
                     console.log('User points updated');
-                    userUtility.calculateNewAchievements(req.user)
+                    userUtility.calculateNewAchievements(req.user, added)
                         .then(newAchievement => {
                             res.json({ success: true, newAchievement: newAchievement })
                         })
