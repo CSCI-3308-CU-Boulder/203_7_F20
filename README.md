@@ -66,7 +66,7 @@ We will have two meetings a week over Zoom and communicate as we work over a Sla
 
 Tuesday at 7:15pm and Wednesday at 6:45pm using Zoom
 
-# Architecture
+## Architecture
 
 - Database
   - PostgreSQL
@@ -90,8 +90,9 @@ Tuesday at 7:15pm and Wednesday at 6:45pm using Zoom
   - [Axios](https://www.npmjs.com/package/axios)
   - [Google Charts](https://developers.google.com/chart/interactive/docs/gallery/piechart)
 
-# Testing
-## User Acceptance Tests Cases
+## Testing
+
+### User Acceptance Tests Cases
 
 - Signup Page
   - A user inputs an invalid username
@@ -123,3 +124,7 @@ Tuesday at 7:15pm and Wednesday at 6:45pm using Zoom
     - If everything is valid, the password will be encrypted and updated in the database.
   - A user updates any other information
     - The data should be updated to the database and the frontend should update to reflect the changes.
+
+## Version
+
+- FinalSubmission
