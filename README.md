@@ -12,15 +12,9 @@
 ## Application Name: envi
 
 ## Application Description:
-Track things you do to help the environment
-Reusable water bottles/cups
-Reusable Straws
-Donate clothes
-Reusable shopping bag
-Biking/walking rather than driving
-Allows users to share their positive impacts with friends
-Earn rewards to create a “biome” - you can build it up as you do more
-Corporate carbon footprint tracker?
+envi is a website designed to help individuals monitor their environmental impact. Users have their own profile page where they may change their profile picture, information such as their username or name, as well as view their impact points and achievements. Users can track many actions, including using reusable water bottles and cups, avoiding disposable straws, and biking or walking rather than driving. As users continue to track their progress on the tracking page, the impact points they earn are reflected with a water bottle graphic on the tracking page and on the profile page. After reaching different amounts of impact points, users are awarded with achievements. 
+In addition to tracking a user’s individual accomplishments, users may follow their friends to see their achievements. This fosters a friendly and competitive social platform for environmentally conscious people to share their positive impacts with their community. In order to provide more knowledge about the importance of saving our planet, envi also offers the option for users to visit the websites of companies and organizations dedicated to protecting the environment as well as donate to their causes.
+
 
 ## Vision Statement:
 For environmentally conscious people who would like to track and share the positive impacts they’re making, envi is a social platform where users can build a communal sense of environmental accountability that unites us during these troubling times.
