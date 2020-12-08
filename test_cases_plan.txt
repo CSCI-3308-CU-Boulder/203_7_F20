@@ -1,0 +1,60 @@
+User Acceptance Tests:
+
+1) Signup Page (* I’m not sure what functions are doing the checks, so I just put [function] instead)
+Test Cases: when a user uses an invalid username, when a user uses a valid
+username, when the user uses an invalid password/doesn’t meet the criteria, when the
+username a user chooses is already taken, when the username is not chosen already, if
+one of the required fields is not filled, if they have not checked off the terms and
+conditions agreement, if the passwords do not match
+    a) When a user uses an invalid username (has an invalid character) - the [function]
+    will check to make sure that all of the characters used in the name are valid
+    characters
+    b) When a user uses a valid username - when they click the “Submit” button, the
+    username and information will populate in the database, so no one else can have
+    the same username
+    c) When the user uses an invalid password - the [function] will check to see if all the
+    characters in the password are valid or not. If they are not then the user will not
+    be able to use that password for their account. Additionally, if the password does
+    not meet all the criteria, then the user won’t be able to use that password for their
+    account
+    d) When the username a user chooses is already taken - when the user tries to
+    complete the sign-up process, the [function] will check if the username is already
+    in the database, and if it is, the user will have to choose a different username
+    e) If one of the required fields is not filled - if they try to click the submit button the
+    “required” tag in the form will not allow the user to submit the form without filling
+    out all of the required fields
+    f) If they have not checked off the Terms and Conditions agreement - if the user
+    tries to finish the sign-up process but has not checked of the checkbox that
+    indicates they read the Terms and Conditions (no one does though), then they
+    will be notified that they didn’t check it off
+    g) If the passwords do not match - the [function] will check and see if the passwords
+    match, and it they don’t then the user cannot complete the sign-up process
+
+2) Login Page
+Test Cases: when a user’s login information is correct, if the user’s username is
+incorrect, if the user’s password is incorrect, if the user has not signed up yet and tries
+to use the login page
+    a) If the user has an invalid username, the username inputted will be checked
+    against the username stored in the database. The user will have to try different
+    usernames until every character matches the characters in the database.
+    b) If the user has an invalid password, the password inputted will be checked
+    against the password stored in the database. The user will have to try different
+    passwords until every character matches the characters in the database.
+    c) If the user has not signed up yet, it will check in the database to see if the
+    username and password exists. If the credentials do not exist, then the user will
+    be prompted to create an account on the signup page.
+
+3) User Profile Page
+Test Cases: when the user wants to change their name, when the user wants to change
+their username, if the user wants to change their password, if the username they chose
+is taken, if they want to update their profile picture
+    a) If the user wants to change their username to a username that is already taken, they
+    should be unable to submit the form and an error should be displayed.
+    b) If the user wants to change their username to a username that is not already taken, the
+    username should be updated in the database so that login verification works with the
+    new username.
+    c) If the user wants to change their password, the new password will not submit to the
+    database until the old password is entered correctly and the new password matches
+    criteria (length, contains a number, etc.)
+    d) If the user changes any other information, the data should be sent to the database so
+    that the new information is loaded when the user logs in again.
