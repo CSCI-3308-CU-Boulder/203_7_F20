@@ -8,6 +8,7 @@
 ## Installation
 
 After installing the requirements above, run the following commands to get up and runnning
+
 ```sh
 # Clone the repository and move to the node project directory
 git clone https://github.com/CSCI-3308-CU-Boulder/203_7_F20.git
@@ -55,12 +56,14 @@ For environmentally conscious people who would like to track and share the posit
 ## Development Method
 
 - Agile using Jira
- - [See Jira Backlog Here](https://envi-203-7-csci3308.atlassian.net/jira/software/projects/EC/boards/1/backlog)
+  - [See Jira Backlog Here](https://envi-203-7-csci3308.atlassian.net/jira/software/projects/EC/boards/1/backlog)
 
 ## Communication Plan
+
 We will have two meetings a week over Zoom and communicate as we work over a Slack channel. Standup meetings once a week with our TA will keep us up to date on how each individual team member’s work is going.
 
 ## Meeting Plan
+
 Tuesday at 7:15pm and Wednesday at 6:45pm using Zoom
 
 # Architecture
