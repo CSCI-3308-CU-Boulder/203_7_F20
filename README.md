@@ -31,6 +31,9 @@ Communication Plan: We will have two meetings a week over Zoom and communicate a
 
 Meeting Plan: Tuesday at 7:15pm and Wednesday at 6:45pm(Zoom)
 
+## How to Run the Code:
+After cloning the repo into a coding environment of your choice, navigate to the envi-api folder where you can run the application locally by saying "npm run start:dev" on the command line. Then go to the browser and type "localhost:5000". This will take you to envi's home page.
+
 
 
 # Proposed Architecture Plan:
